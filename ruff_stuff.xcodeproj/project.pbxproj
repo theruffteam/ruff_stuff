@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA2DF33B16B39D2A0013DE12 /* Login.psd in Resources */ = {isa = PBXBuildFile; fileRef = BA2DF33A16B39D2A0013DE12 /* Login.psd */; };
 		DC2721BD160CB0B200D88944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2721BC160CB0B200D88944 /* Default-568h@2x.png */; };
 		DC275D2B13B27DBF009C5098 /* Pow.caf in Resources */ = {isa = PBXBuildFile; fileRef = DC275D2A13B27DBF009C5098 /* Pow.caf */; };
 		DC275D2C13B27DBF009C5098 /* Pow.caf in Resources */ = {isa = PBXBuildFile; fileRef = DC275D2A13B27DBF009C5098 /* Pow.caf */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA2DF33A16B39D2A0013DE12 /* Login.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Login.psd; sourceTree = "<group>"; };
 		DC2721BC160CB0B200D88944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC275D2A13B27DBF009C5098 /* Pow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pow.caf; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA2DF33916B39D2A0013DE12 /* EmiBear */ = {
+			isa = PBXGroup;
+			children = (
+				BA2DF33A16B39D2A0013DE12 /* Login.psd */,
+			);
+			path = EmiBear;
+			sourceTree = "<group>";
+		};
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +209,7 @@
 		DCC1A0F813A94ED5005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA2DF33916B39D2A0013DE12 /* EmiBear */,
 				DC2721BC160CB0B200D88944 /* Default-568h@2x.png */,
 				DCC1A0F913A94ED5005BD75D /* Default.png */,
 				DCC1A0FB13A94ED5005BD75D /* fps_images.png */,
@@ -382,6 +393,7 @@
 				DC3C6FCD14B8BFEA00DAD281 /* fps_images-hd.png in Resources */,
 				DC65618615114C6A00E59F8A /* fps_images-ipadhd.png in Resources */,
 				DC2721BD160CB0B200D88944 /* Default-568h@2x.png in Resources */,
+				BA2DF33B16B39D2A0013DE12 /* Login.psd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
