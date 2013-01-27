@@ -1,28 +1,44 @@
-/*
- * Kobold2D™ --- http://www.kobold2d.org
- *
- * Copyright (c) 2010-2011 Steffen Itterheim. 
- * Released under MIT License in Germany (LICENSE-Kobold2D.txt).
- */
+// =============================================================================
+// File      : HelloWorldLayer.h
+// Project   : Ruff
+// Author(s) : theruffteam
+// Version   : 0
+// Updated   : 01/26/2013
+// =============================================================================
+// This is the header file for the "HelloWorldLayer" class.
+// =============================================================================
 
 #import "kobold2d.h"
+#import "CWorld.h"
 
-typedef enum 
-{
-	kAccelerometerValuesRaw,
-	kAccelerometerValuesSmoothed,
-	kAccelerometerValuesInstantaneous,
-	kGyroscopeRotationRate,
-	kDeviceMotion,
-	
-	kInputTypes_End,
-} InputTypes;
-
+// HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
-{
-	CCSprite* ship;
-	CCParticleSystem* particleFX;
-	InputTypes inputType;
-}
+
+
+@property CWorld*    _myWorld;
+
+
+// returns a CCScene that contains the HelloWorldLayer as the only child
+//+(CCScene *) scene;
 
 @end
+
+/*
+ typedef enum
+ {
+ kAccelerometerValuesRaw,
+ kAccelerometerValuesSmoothed,
+ kAccelerometerValuesInstantaneous,
+ kGyroscopeRotationRate,
+ kDeviceMotion,
+ 
+ kInputTypes_End,
+ } InputTypes;
+ 
+ @interface HelloWorldLayer : CCLayer
+ {
+ CCSprite* ship;
+ CCParticleSystem* particleFX;
+ InputTypes inputType;
+ }
+ */
