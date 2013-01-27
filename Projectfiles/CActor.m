@@ -1,17 +1,17 @@
 // =============================================================================
-// File      : CCharacter.m
+// File      : CActor.m
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
 // Updated   : 01/26/2013
 // =============================================================================
-// This is the implementation file for the "CCharacter" class.
+// This is the implementation file for the "CActor" class.
 // =============================================================================
 
-#import "CCharacter.h"
+#import "CActor.h"
 
 
-@implementation CCharacter
+@implementation CActor
 
 - (id) init:  (NSString*) name:  (CProfile*) profile
 {

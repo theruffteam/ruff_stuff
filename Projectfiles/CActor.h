@@ -1,11 +1,11 @@
 // =============================================================================
-// File      : CCharacter.h
+// File      : CActor.h
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
 // Updated   : 01/26/2013
 // =============================================================================
-// This is the header file for the "CCharacter" class.
+// This is the header file for the "CActor" class.
 // =============================================================================
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@
 #import "CProfile.h"
 
 
-@interface CCharacter : CCSprite
+@interface CActor : CCSprite
 {
     @private
         CProfile*            _profile;
