@@ -18,6 +18,7 @@
 		6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A82016B4D13F007EA9D2 /* CWorld.m */; };
 		6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82A16B4F3C3007EA9D2 /* audio.plist */; };
 		6827A82D16B4F887007EA9D2 /* seasonal_background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82C16B4F887007EA9D2 /* seasonal_background.mp3 */; };
+		6831E4F416B5EB42008EF11E /* RuffSide-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6831E4F316B5EB42008EF11E /* RuffSide-hd.png */; };
 		BA2DF34D16B3A15F0013DE12 /* Login.psd in Resources */ = {isa = PBXBuildFile; fileRef = BA2DF34C16B3A15F0013DE12 /* Login.psd */; };
 		DC2721BD160CB0B200D88944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2721BC160CB0B200D88944 /* Default-568h@2x.png */; };
 		DC275D2B13B27DBF009C5098 /* Pow.caf in Resources */ = {isa = PBXBuildFile; fileRef = DC275D2A13B27DBF009C5098 /* Pow.caf */; };
@@ -97,6 +98,7 @@
 		6827A82016B4D13F007EA9D2 /* CWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWorld.m; sourceTree = "<group>"; };
 		6827A82A16B4F3C3007EA9D2 /* audio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audio.plist; sourceTree = "<group>"; };
 		6827A82C16B4F887007EA9D2 /* seasonal_background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = seasonal_background.mp3; sourceTree = "<group>"; };
+		6831E4F316B5EB42008EF11E /* RuffSide-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RuffSide-hd.png"; path = "EmiBear/RuffSide-hd.png"; sourceTree = "<group>"; };
 		BA2DF34C16B3A15F0013DE12 /* Login.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = Login.psd; path = EmiBear/Login.psd; sourceTree = "<group>"; };
 		DC2721BC160CB0B200D88944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC275D2A13B27DBF009C5098 /* Pow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pow.caf; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		BA2DF34B16B3A1340013DE12 /* EmiBear */ = {
 			isa = PBXGroup;
 			children = (
+				6831E4F316B5EB42008EF11E /* RuffSide-hd.png */,
 				BA2DF34C16B3A15F0013DE12 /* Login.psd */,
 			);
 			name = EmiBear;
@@ -450,6 +453,7 @@
 				BA2DF34D16B3A15F0013DE12 /* Login.psd in Resources */,
 				6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */,
 				6827A82D16B4F887007EA9D2 /* seasonal_background.mp3 in Resources */,
+				6831E4F416B5EB42008EF11E /* RuffSide-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

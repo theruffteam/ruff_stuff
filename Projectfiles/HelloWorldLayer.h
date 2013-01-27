@@ -9,21 +9,17 @@
 // =============================================================================
 
 #import "kobold2d.h"
-#import "CWorld.h"
+//#import "CWorld.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+//@interface HelloWorldLayer : CCLayer
 
-
-@property CWorld*    _myWorld;
+//@property CWorld*    _myWorld;
 
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 //+(CCScene *) scene;
 
-@end
-
-/*
  typedef enum
  {
  kAccelerometerValuesRaw,
@@ -41,4 +37,5 @@
  CCParticleSystem* particleFX;
  InputTypes inputType;
  }
- */
+ 
+ @end
