@@ -10,7 +10,6 @@
 		6827A80E16B4D115007EA9D2 /* CAudioManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A80C16B4D115007EA9D2 /* CAudioManagement.m */; };
 		6827A82116B4D13F007EA9D2 /* CAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81016B4D13E007EA9D2 /* CAbility.m */; };
 		6827A82216B4D13F007EA9D2 /* CAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81216B4D13E007EA9D2 /* CAudio.m */; };
-		6827A82316B4D13F007EA9D2 /* CCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81416B4D13E007EA9D2 /* CCharacter.m */; };
 		6827A82416B4D13F007EA9D2 /* CCharacterManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81616B4D13E007EA9D2 /* CCharacterManagement.m */; };
 		6827A82516B4D13F007EA9D2 /* CGraphicManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */; };
 		6827A82616B4D13F007EA9D2 /* CLevelManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */; };
@@ -74,6 +73,7 @@
 		DCC1A3B013A94F1A005BD75D /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A39513A94F1A005BD75D /* config.lua */; };
 		DCF95CD213A97EC500AE3B80 /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CC913A97EC500AE3B80 /* libcocos2d-mac.a */; };
 		DCF95CD413A97EC500AE3B80 /* libkobold2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */; };
+		E618D31916B5E40900CEF65F /* CActor.m in Sources */ = {isa = PBXBuildFile; fileRef = E618D31816B5E40900CEF65F /* CActor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,8 +83,6 @@
 		6827A81016B4D13E007EA9D2 /* CAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAbility.m; sourceTree = "<group>"; };
 		6827A81116B4D13E007EA9D2 /* CAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAudio.h; sourceTree = "<group>"; };
 		6827A81216B4D13E007EA9D2 /* CAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAudio.m; sourceTree = "<group>"; };
-		6827A81316B4D13E007EA9D2 /* CCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacter.h; sourceTree = "<group>"; };
-		6827A81416B4D13E007EA9D2 /* CCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCharacter.m; sourceTree = "<group>"; };
 		6827A81516B4D13E007EA9D2 /* CCharacterManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterManagement.h; sourceTree = "<group>"; };
 		6827A81616B4D13E007EA9D2 /* CCharacterManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCharacterManagement.m; sourceTree = "<group>"; };
 		6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGraphicManagement.h; sourceTree = "<group>"; };
@@ -157,6 +155,8 @@
 		DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libkobold2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
+		E618D2DB16B5E2B400CEF65F /* CActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActor.h; sourceTree = "<group>"; };
+		E618D31816B5E40900CEF65F /* CActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CActor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,8 +296,8 @@
 				6827A81216B4D13E007EA9D2 /* CAudio.m */,
 				6827A80D16B4D115007EA9D2 /* CAudioManagement.h */,
 				6827A80C16B4D115007EA9D2 /* CAudioManagement.m */,
-				6827A81316B4D13E007EA9D2 /* CCharacter.h */,
-				6827A81416B4D13E007EA9D2 /* CCharacter.m */,
+				E618D2DB16B5E2B400CEF65F /* CActor.h */,
+				E618D31816B5E40900CEF65F /* CActor.m */,
 				6827A81516B4D13E007EA9D2 /* CCharacterManagement.h */,
 				6827A81616B4D13E007EA9D2 /* CCharacterManagement.m */,
 				6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */,
@@ -402,7 +402,7 @@
 		DCC1A0D813A94EC0005BD75D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "ruff_stuff" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -485,13 +485,13 @@
 				6827A80E16B4D115007EA9D2 /* CAudioManagement.m in Sources */,
 				6827A82116B4D13F007EA9D2 /* CAbility.m in Sources */,
 				6827A82216B4D13F007EA9D2 /* CAudio.m in Sources */,
-				6827A82316B4D13F007EA9D2 /* CCharacter.m in Sources */,
 				6827A82416B4D13F007EA9D2 /* CCharacterManagement.m in Sources */,
 				6827A82516B4D13F007EA9D2 /* CGraphicManagement.m in Sources */,
 				6827A82616B4D13F007EA9D2 /* CLevelManagement.m in Sources */,
 				6827A82716B4D13F007EA9D2 /* CProfile.m in Sources */,
 				6827A82816B4D13F007EA9D2 /* CResourceManagement.m in Sources */,
 				6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */,
+				E618D31916B5E40900CEF65F /* CActor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
@@ -572,6 +573,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};
