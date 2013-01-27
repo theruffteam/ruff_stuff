@@ -23,8 +23,8 @@
         // background color of the screen
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-		CCDirector* director = [CCDirector sharedDirector];
-		CGPoint screenCenter = director.screenCenter;
+		//CCDirector* director = [CCDirector sharedDirector];
+		//CGPoint screenCenter = director.screenCenter;
     
         // create our world entity
         // this is simply used right now to invoke our audio management system

@@ -58,7 +58,7 @@
 - (NSDictionary*) initializeAudioCategory:(NSString*)category forEntity:(NSString*)entityName
 {
     // get the desired sub-audio-dictionary from our world audio dictionary
-    NSDictionary*    resultDictionary = [[_audioDictionary objectForKey:category] objectForKey:entityName];
+    NSDictionary*    resultDictionary = [(NSDictionary*)[_audioDictionary objectForKey:category] objectForKey:entityName];
 
 
     // if we have found what we are looking for, go ahead and populate a new
