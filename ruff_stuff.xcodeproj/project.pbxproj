@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6827A80E16B4D115007EA9D2 /* CAudioManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A80C16B4D115007EA9D2 /* CAudioManagement.m */; };
+		6827A82116B4D13F007EA9D2 /* CAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81016B4D13E007EA9D2 /* CAbility.m */; };
+		6827A82216B4D13F007EA9D2 /* CAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81216B4D13E007EA9D2 /* CAudio.m */; };
+		6827A82316B4D13F007EA9D2 /* CCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81416B4D13E007EA9D2 /* CCharacter.m */; };
+		6827A82416B4D13F007EA9D2 /* CCharacterManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81616B4D13E007EA9D2 /* CCharacterManagement.m */; };
+		6827A82516B4D13F007EA9D2 /* CGraphicManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */; };
+		6827A82616B4D13F007EA9D2 /* CLevelManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */; };
+		6827A82716B4D13F007EA9D2 /* CProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81C16B4D13E007EA9D2 /* CProfile.m */; };
+		6827A82816B4D13F007EA9D2 /* CResourceManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81E16B4D13F007EA9D2 /* CResourceManagement.m */; };
+		6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A82016B4D13F007EA9D2 /* CWorld.m */; };
+		6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82A16B4F3C3007EA9D2 /* audio.plist */; };
+		6827A82D16B4F887007EA9D2 /* seasonal_background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82C16B4F887007EA9D2 /* seasonal_background.mp3 */; };
 		BA2DF34D16B3A15F0013DE12 /* Login.psd in Resources */ = {isa = PBXBuildFile; fileRef = BA2DF34C16B3A15F0013DE12 /* Login.psd */; };
 		DC2721BD160CB0B200D88944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2721BC160CB0B200D88944 /* Default-568h@2x.png */; };
 		DC275D2B13B27DBF009C5098 /* Pow.caf in Resources */ = {isa = PBXBuildFile; fileRef = DC275D2A13B27DBF009C5098 /* Pow.caf */; };
@@ -65,6 +77,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6827A80C16B4D115007EA9D2 /* CAudioManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAudioManagement.m; sourceTree = "<group>"; };
+		6827A80D16B4D115007EA9D2 /* CAudioManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAudioManagement.h; sourceTree = "<group>"; };
+		6827A80F16B4D13D007EA9D2 /* CAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAbility.h; sourceTree = "<group>"; };
+		6827A81016B4D13E007EA9D2 /* CAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAbility.m; sourceTree = "<group>"; };
+		6827A81116B4D13E007EA9D2 /* CAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAudio.h; sourceTree = "<group>"; };
+		6827A81216B4D13E007EA9D2 /* CAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAudio.m; sourceTree = "<group>"; };
+		6827A81316B4D13E007EA9D2 /* CCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacter.h; sourceTree = "<group>"; };
+		6827A81416B4D13E007EA9D2 /* CCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCharacter.m; sourceTree = "<group>"; };
+		6827A81516B4D13E007EA9D2 /* CCharacterManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterManagement.h; sourceTree = "<group>"; };
+		6827A81616B4D13E007EA9D2 /* CCharacterManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCharacterManagement.m; sourceTree = "<group>"; };
+		6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGraphicManagement.h; sourceTree = "<group>"; };
+		6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGraphicManagement.m; sourceTree = "<group>"; };
+		6827A81916B4D13E007EA9D2 /* CLevelManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLevelManagement.h; sourceTree = "<group>"; };
+		6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLevelManagement.m; sourceTree = "<group>"; };
+		6827A81B16B4D13E007EA9D2 /* CProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CProfile.h; sourceTree = "<group>"; };
+		6827A81C16B4D13E007EA9D2 /* CProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CProfile.m; sourceTree = "<group>"; };
+		6827A81D16B4D13F007EA9D2 /* CResourceManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CResourceManagement.h; sourceTree = "<group>"; };
+		6827A81E16B4D13F007EA9D2 /* CResourceManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CResourceManagement.m; sourceTree = "<group>"; };
+		6827A81F16B4D13F007EA9D2 /* CWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWorld.h; sourceTree = "<group>"; };
+		6827A82016B4D13F007EA9D2 /* CWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWorld.m; sourceTree = "<group>"; };
+		6827A82A16B4F3C3007EA9D2 /* audio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audio.plist; sourceTree = "<group>"; };
+		6827A82C16B4F887007EA9D2 /* seasonal_background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = seasonal_background.mp3; sourceTree = "<group>"; };
 		BA2DF34C16B3A15F0013DE12 /* Login.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = Login.psd; path = EmiBear/Login.psd; sourceTree = "<group>"; };
 		DC2721BC160CB0B200D88944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC275D2A13B27DBF009C5098 /* Pow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pow.caf; sourceTree = "<group>"; };
@@ -123,7 +157,6 @@
 		DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libkobold2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
-		E67E026416B39E3100B3DD07 /* HiEmily.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiEmily.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +205,6 @@
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
-				E67E026416B39E3100B3DD07 /* HiEmily.h */,
 				DCC1A38C13A94F1A005BD75D /* Projectfiles */,
 				DCC1A0F713A94ED5005BD75D /* Projectfiles-iOS */,
 				DCC1A26413A94EE6005BD75D /* Projectfiles-Mac */,
@@ -258,6 +290,26 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				6827A80F16B4D13D007EA9D2 /* CAbility.h */,
+				6827A81016B4D13E007EA9D2 /* CAbility.m */,
+				6827A81116B4D13E007EA9D2 /* CAudio.h */,
+				6827A81216B4D13E007EA9D2 /* CAudio.m */,
+				6827A80D16B4D115007EA9D2 /* CAudioManagement.h */,
+				6827A80C16B4D115007EA9D2 /* CAudioManagement.m */,
+				6827A81316B4D13E007EA9D2 /* CCharacter.h */,
+				6827A81416B4D13E007EA9D2 /* CCharacter.m */,
+				6827A81516B4D13E007EA9D2 /* CCharacterManagement.h */,
+				6827A81616B4D13E007EA9D2 /* CCharacterManagement.m */,
+				6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */,
+				6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */,
+				6827A81916B4D13E007EA9D2 /* CLevelManagement.h */,
+				6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */,
+				6827A81B16B4D13E007EA9D2 /* CProfile.h */,
+				6827A81C16B4D13E007EA9D2 /* CProfile.m */,
+				6827A81D16B4D13F007EA9D2 /* CResourceManagement.h */,
+				6827A81E16B4D13F007EA9D2 /* CResourceManagement.m */,
+				6827A81F16B4D13F007EA9D2 /* CWorld.h */,
+				6827A82016B4D13F007EA9D2 /* CWorld.m */,
 				DCC1A38F13A94F1A005BD75D /* HelloWorldLayer.h */,
 				DCC1A39013A94F1A005BD75D /* HelloWorldLayer.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
@@ -271,6 +323,8 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6827A82C16B4F887007EA9D2 /* seasonal_background.mp3 */,
+				6827A82A16B4F3C3007EA9D2 /* audio.plist */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 				DC275D2A13B27DBF009C5098 /* Pow.caf */,
 				DC8586CF142B7F3600613CA4 /* touchsprite-hd.png */,
@@ -394,6 +448,8 @@
 				DC65618615114C6A00E59F8A /* fps_images-ipadhd.png in Resources */,
 				DC2721BD160CB0B200D88944 /* Default-568h@2x.png in Resources */,
 				BA2DF34D16B3A15F0013DE12 /* Login.psd in Resources */,
+				6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */,
+				6827A82D16B4F887007EA9D2 /* seasonal_background.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +482,16 @@
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AB13A94F1A005BD75D /* HelloWorldLayer.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				6827A80E16B4D115007EA9D2 /* CAudioManagement.m in Sources */,
+				6827A82116B4D13F007EA9D2 /* CAbility.m in Sources */,
+				6827A82216B4D13F007EA9D2 /* CAudio.m in Sources */,
+				6827A82316B4D13F007EA9D2 /* CCharacter.m in Sources */,
+				6827A82416B4D13F007EA9D2 /* CCharacterManagement.m in Sources */,
+				6827A82516B4D13F007EA9D2 /* CGraphicManagement.m in Sources */,
+				6827A82616B4D13F007EA9D2 /* CLevelManagement.m in Sources */,
+				6827A82716B4D13F007EA9D2 /* CProfile.m in Sources */,
+				6827A82816B4D13F007EA9D2 /* CResourceManagement.m in Sources */,
+				6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
