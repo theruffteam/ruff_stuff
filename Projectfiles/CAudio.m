@@ -3,7 +3,7 @@
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
-// Updated   : 01/26/2013
+// Updated   : 01/29/2013
 // =============================================================================
 // This is the implementation file for the "CAudio" class.
 // =============================================================================
@@ -83,7 +83,6 @@
 
 - (void) playBackgroundMusic: (NSString*)musicFilename withVolumeAt: (float)volume isBackgroundMusicOn: (BOOL)isMusicAlreadyPlaying
 {
-    [self engine];
     // preload and play
     // if no current music is playing, preload incoming music
     if (!isMusicAlreadyPlaying)
@@ -91,9 +90,9 @@
         // fade in
         [[self engine] playBackgroundMusic:musicFilename];
         
-        [_audioEngine setBackgroundMusicVolume: 0.1];
+        [_audioEngine setBackgroundMusicVolume: 0.5];
         
-        [CDXPropertyModifierAction fadeBackgroundMusic:1.2f finalVolume:1.0f curveType:kIT_Exponential shouldStop:NO];
+        [CDXPropertyModifierAction fadeBackgroundMusic:0.0f finalVolume:0.5f curveType:kIT_Exponential shouldStop:NO];
         }
     else
         {

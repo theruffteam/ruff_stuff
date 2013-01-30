@@ -3,39 +3,36 @@
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
-// Updated   : 01/26/2013
+// Updated   : 01/29/2013
 // =============================================================================
 // This is the header file for the "CWorld" class.
 // =============================================================================
 
 #import <Foundation/Foundation.h>
 #import "CLevelManagement.h"
-#import "CCharacterManagement.h"
+#import "CActorManagement.h"
 #import "CGraphicManagement.h"
 #import "CAudioManagement.h"
 #import "CResourceManagement.h"
 #import "kobold2d.h"
 
 @interface CWorld : CCLayer
-{
-    
-    
     // levels
-    CLevelManagement*        _levelManager;
+    @property    CLevelManagement*        _levelManager;
     
     // resources
-    CResourceManagement*     _resourceManager;
+    @property    CResourceManagement*     _resourceManager;
     
-    // characters
-    CCharacterManagement*    _characterManager;
+    // actors
+    @property    CActorManagement*        _actorManager;
     
     // graphics
-    CGraphicManagement*      _graphicManager;
+    @property    CGraphicManagement*      _graphicManager;
     
     // audio
-    CAudioManagement*        _audioManager;
-}
+    @property    CAudioManagement*        _audioManager;
 
-- (id) initLevelContentsFromFile: (NSString*)levelsPList  characterContentsFromFile: (NSString*)charactersPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList;
+
+- (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList;
 
 @end

@@ -3,35 +3,33 @@
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
-// Updated   : 01/26/2013
+// Updated   : 01/29/2013
 // =============================================================================
 // This is the implementation file for the "CWorld" class.
 // =============================================================================
 
 #import "CWorld.h"
 
-
 @implementation CWorld
 
-
-- (id) initLevelContentsFromFile: (NSString*)levelsPList  characterContentsFromFile: (NSString*)charactersPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList
+- (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList
 {
-    if(self = [super init])
+    if (self = [super init])
         {
         // levels
-        _levelManager = [[CLevelManagement alloc] initFromLevelsFile: levelsPList];
+        self._levelManager = [[CLevelManagement alloc] initFromLevelsFile: levelsPList];
 
-        // characters
-        _characterManager = [[CCharacterManagement alloc] initFromCharactersFile: charactersPList];
+        // actors
+        self._actorManager = [[CActorManagement alloc] initFromActorsFile: actorsPList];
 
         // graphics
-        _graphicManager = [[CGraphicManagement alloc] initFromGraphicsFile: graphicsPList];
+        self._graphicManager = [[CGraphicManagement alloc] initFromGraphicsFile: graphicsPList];
 
         // audio
-        _audioManager = [[CAudioManagement alloc] initFromAudioFile: audioPList];
+        self._audioManager = [[CAudioManagement alloc] initFromAudioFile: audioPList];
 
         // resources
-        _resourceManager = [[CResourceManagement alloc] initFromResourcesFile: resourcesPList];
+        self._resourceManager = [[CResourceManagement alloc] initFromResourcesFile: resourcesPList];
         }
 
     return self;
