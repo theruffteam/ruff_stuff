@@ -3,11 +3,10 @@
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
-// Updated   : 01/26/2013
+// Updated   : 01/29/2013
 // =============================================================================
 // This is the implementation file for the "CAudioManagement" class.
 // =============================================================================
-#import "CAudio.h"
 #import "CAudioManagement.h"
 
 
