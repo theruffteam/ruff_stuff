@@ -15,9 +15,10 @@
 -(void) fadeInvillageBackground:(int) blank;
 -(void) fadeInruffLeaningOnTreeForeground:(int) blank;
 -(void) fadeInTitleAndMenuOptions: (int) blank;
--(void) addMainMenuLabelsToLayer:(CCLayer*) layer;
+-(void) addMainMenuLabelsToLayer:(id) sender;
 -(void) changeInputType:(ccTime)delta;
 -(void) postUpdateInputTests:(ccTime)delta;
+-(void) startNewGame:(id) sender;
 @end
 
 @implementation CTitleScreenScene
@@ -41,7 +42,6 @@
                           graphicContentsFromFile:@"graphics.plist"
                           audioContentsFromFile:@"audio.plist"
                           resourceContentsFromFile:@"resources.plist"];
-        
 
         // =====================================================================
         // Title Screen
@@ -50,7 +50,10 @@
         // explicitly set the background color of the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
-        [self addMainMenuLabelsToLayer: self.menuLayer];
+        self.menuLayer.isTouchEnabled = YES;
+        
+        [self addMainMenuLabelsToLayer: self];
+        
         
 		self.menuStaticRuff = [CCSprite spriteWithFile:@"RuffSide.png"];
 		self.menuStaticRuff.position = CGPointMake(screenCenter.x + 150, screenCenter.y + 25);
@@ -88,8 +91,8 @@
         
         
 		[self scheduleUpdate];
-		[self schedule:@selector(changeInputType:) interval:8.0f];
-		[self schedule:@selector(postUpdateInputTests:)];
+		//[self schedule:@selector(changeInputType:) interval:8.0f];
+		//[self schedule:@selector(postUpdateInputTests:)];
         [self scheduleOnce:@selector(fadeInvillageBackground:) delay:2.5f];
         
         //HelloWorldLayer *hw = [HelloWorldLayer node]; // This is how we create the handle.
@@ -99,19 +102,24 @@
 		
         
 		// initialize KKInput
-		KKInput* input = [KKInput sharedInput];
-		//input.accelerometerActive = input.accelerometerAvailable;
-		//input.gyroActive = input.gyroAvailable;
-		input.multipleTouchEnabled = YES;
-		input.gestureTapEnabled = input.gesturesAvailable;
-		input.gestureDoubleTapEnabled = input.gesturesAvailable;
-		input.gestureSwipeEnabled = input.gesturesAvailable;
-		input.gestureLongPressEnabled = input.gesturesAvailable;
-		//input.gesturePanEnabled = input.gesturesAvailable;
-		//input.gestureRotationEnabled = input.gesturesAvailable;
-		input.gesturePinchEnabled = input.gesturesAvailable;
+//		KKInput* input = [KKInput sharedInput];
+//		//input.accelerometerActive = input.accelerometerAvailable;
+//		//input.gyroActive = input.gyroAvailable;
+//		input.multipleTouchEnabled = YES;
+//		input.gestureTapEnabled = input.gesturesAvailable;
+//		input.gestureDoubleTapEnabled = input.gesturesAvailable;
+//		input.gestureSwipeEnabled = input.gesturesAvailable;
+//		input.gestureLongPressEnabled = input.gesturesAvailable;
+//		//input.gesturePanEnabled = input.gesturesAvailable;
+//		//input.gestureRotationEnabled = input.gesturesAvailable;
+//		input.gesturePinchEnabled = input.gesturesAvailable;
         
+        // play bgmusic
         [self.ruffWorld._audioManager playBackgroundMusic:@"title_screen.caf" withVolumeAt:0.3f isBackgroundMusicOn:NO];
+
+        //preload sound effect for selecting items on the menu
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.15f];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"select_item.wav"];
         }
     
 	return self;
@@ -137,8 +145,9 @@
 }
 
 
--(void) addMainMenuLabelsToLayer: (CCLayer*) layer
+-(void) addMainMenuLabelsToLayer: (id) sender
 {
+    
 	CCDirector* director = [CCDirector sharedDirector];
 	CGPoint screenCenter = director.screenCenter;
     
@@ -146,18 +155,36 @@
 	CCLabelTTF* gameTitle = [CCLabelTTF labelWithString:@"Ruff" fontName:@"Verdana" fontSize:80];
 	gameTitle.position = CGPointMake(screenCenter.x, screenCenter.y + 100);
 	gameTitle.color = ccBLACK;
-	[layer addChild:gameTitle];
+	[self.menuLayer addChild:gameTitle];
     
    	CCLabelTTF* newGame = [CCLabelTTF labelWithString:@"New Game" fontName:@"Verdana" fontSize:20];
-	newGame.position = CGPointMake(screenCenter.x, screenCenter.y);
+	//newGame.position = CGPointMake(screenCenter.x, screenCenter.y);
 	newGame.color = ccBLACK;
-	[layer addChild:newGame];
+	//[layer addChild:newGame];
     
     CCLabelTTF* options = [CCLabelTTF labelWithString:@"Options" fontName:@"Verdana" fontSize:20];
-	options.position = CGPointMake(screenCenter.x, screenCenter.y - 30);
+	//options.position = CGPointMake(screenCenter.x, screenCenter.y - 30);
 	options.color = ccBLACK;
-	[layer addChild:options];
+	//[layer addChild:options];
+    
+    CCMenuItemLabel* newGameTouch = [CCMenuItemLabel itemWithLabel:newGame target:sender selector:@selector(startNewGame:)];
+    CCMenuItemLabel* optionsTouch = [CCMenuItemLabel itemWithLabel:options target:sender selector:@selector(startNewGame:)];
+    
+    self.menu = [CCMenu menuWithItems: newGameTouch, optionsTouch, nil];
+    
+    [self.menu alignItemsVertically];
+
+    [self.menuLayer addChild: self.menu];
 }
+
+-(void) startNewGame: (id) sender
+{
+    // play preloaded sound effect
+    [[SimpleAudioEngine sharedEngine] playEffect:@"select_item.wav"];
+
+    CCLOG(@"start new game");
+}
+
 
 
 -(void) movemenuStaticRuffByPollingKeyboard
@@ -522,40 +549,40 @@
 
 -(void) update:(ccTime)delta
 {
-	KKInput* input = [KKInput sharedInput];
-	if ([input isAnyTouchOnNode:self touchPhase:KKTouchPhaseAny])
-        {
-		CCLOG(@"Touch: beg=%d mov=%d sta=%d end=%d can=%d",
-			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseBegan],
-			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseMoved],
-			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseStationary],
-			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseEnded],
-			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseCancelled]);
-        }
-	
-	CCDirector* director = [CCDirector sharedDirector];
-	
-	if (director.currentPlatformIsIOS)
-        {
-		//[self movemenuStaticRuffWithMotionSensors];
-		[self moveParticleFXToTouch];
-		[self detectSpriteTouched];
-		[self gestureRecognition];
-		
-		if ([KKInput sharedInput].anyTouchEndedThisFrame)
-            {
-			CCLOG(@"anyTouchEndedThisFrame");
-            }
-        }
-	else
-        {
-		[self movemenuStaticRuffByPollingKeyboard];
-		[self rotatemenuStaticRuffWithMouseButtons];
-		[self particleFXFollowsMouse];
-		[self detectMouseOverTouchSprite];
-        }
-	
-	[self wrapmenuStaticRuffAtScreenBorders];
+//	KKInput* input = [KKInput sharedInput];
+//	if ([input isAnyTouchOnNode:self touchPhase:KKTouchPhaseAny])
+//        {
+//		CCLOG(@"Touch: beg=%d mov=%d sta=%d end=%d can=%d",
+//			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseBegan],
+//			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseMoved],
+//			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseStationary],
+//			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseEnded],
+//			  [input isAnyTouchOnNode:self touchPhase:KKTouchPhaseCancelled]);
+//        }
+//	
+//	CCDirector* director = [CCDirector sharedDirector];
+//	
+//	if (director.currentPlatformIsIOS)
+//        {
+//		//[self movemenuStaticRuffWithMotionSensors];
+//		[self moveParticleFXToTouch];
+//		[self detectSpriteTouched];
+//		[self gestureRecognition];
+//		
+//		if ([KKInput sharedInput].anyTouchEndedThisFrame)
+//            {
+//			CCLOG(@"anyTouchEndedThisFrame");
+//            }
+//        }
+//	else
+//        {
+//		[self movemenuStaticRuffByPollingKeyboard];
+//		[self rotatemenuStaticRuffWithMouseButtons];
+//		[self particleFXFollowsMouse];
+//		[self detectMouseOverTouchSprite];
+//        }
+//	
+//	[self wrapmenuStaticRuffAtScreenBorders];
 }
 
 -(void) postUpdateInputTests:(ccTime)delta

@@ -90,14 +90,14 @@
         // fade in
         [[self engine] playBackgroundMusic:musicFilename];
         
-        [_audioEngine setBackgroundMusicVolume: 0.5];
+        [_audioEngine setBackgroundMusicVolume: 0.75];
         
-        [CDXPropertyModifierAction fadeBackgroundMusic:0.0f finalVolume:0.5f curveType:kIT_Exponential shouldStop:NO];
+        [CDXPropertyModifierAction fadeBackgroundMusic:0.0f finalVolume:0.75f curveType:kIT_Exponential shouldStop:NO];
         }
     else
         {
         // fade out
-        [CDXPropertyModifierAction fadeBackgroundMusic:0.8f finalVolume:0.0f curveType:kIT_Exponential shouldStop:NO];
+        [CDXPropertyModifierAction fadeBackgroundMusic:0.75f finalVolume:0.0f curveType:kIT_Exponential shouldStop:NO];
         
         [self playBackgroundMusic:musicFilename withVolumeAt:volume isBackgroundMusicOn:!isMusicAlreadyPlaying];
         }
