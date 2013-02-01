@@ -93,7 +93,7 @@
 		[self scheduleUpdate];
 		//[self schedule:@selector(changeInputType:) interval:8.0f];
 		//[self schedule:@selector(postUpdateInputTests:)];
-        [self scheduleOnce:@selector(fadeInvillageBackground:) delay:2.5f];
+        [self scheduleOnce:@selector(fadeInvillageBackground:) delay:0.5f];
         
         //HelloWorldLayer *hw = [HelloWorldLayer node]; // This is how we create the handle.
         //[hw Testing]; // This is how we call any method inside.
@@ -115,10 +115,10 @@
 //		input.gesturePinchEnabled = input.gesturesAvailable;
         
         // play bgmusic
-        [self.ruffWorld._audioManager playBackgroundMusic:@"title_screen.caf" withVolumeAt:0.3f isBackgroundMusicOn:NO];
+        [self.ruffWorld._audioManager playBackgroundMusic:@"intro_256.caf" withVolumeAt:0.0f isBackgroundMusicOn:NO];
 
         //preload sound effect for selecting items on the menu
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.15f];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.07f];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"select_item.wav"];
         }
     
@@ -127,16 +127,16 @@
 
 -(void) fadeInvillageBackground: (int) blank
 {
-    [self.villageBackground runAction: [CCFadeTo actionWithDuration:3.0f opacity:100]];
+    [self.villageBackground runAction: [CCFadeTo actionWithDuration:4.0f opacity:110]];
     
-    [self scheduleOnce:@selector(fadeInruffLeaningOnTreeForeground:) delay:6.5f];
+    [self scheduleOnce:@selector(fadeInruffLeaningOnTreeForeground:) delay:5.95f];
 }
 
 -(void) fadeInruffLeaningOnTreeForeground: (int) blank
 {
-    [self.ruffLeaningOnTreeForeground runAction: [CCFadeTo actionWithDuration:3.0f opacity:255]];
+    [self.ruffLeaningOnTreeForeground runAction: [CCFadeTo actionWithDuration:3.45f opacity:255]];
     
-    [self scheduleOnce:@selector(fadeInTitleAndMenuOptions:) delay:4.0f];
+    [self scheduleOnce:@selector(fadeInTitleAndMenuOptions:) delay:5.15f];
 }
 
 -(void) fadeInTitleAndMenuOptions: (int) blank
