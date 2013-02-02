@@ -13,10 +13,15 @@
 
 
 @interface CActor : CCSprite
-{
-    @private
-        NSMutableArray*      _abilities;
-        NSMutableArray*      _animations;
-}
+
+    @property   CGRect              attackHitBox;
+    @property   NSArray*            soundFX;
+    @property   NSArray*            attack;
+    @property   int                 hitPoints;
+    @property   float               gravity;
+    @property   CGPoint             direction;
+    @property   CGPoint             position;
+    @property   NSArray*            ability;
+    @property   NSArray*            animation;
 
 @end

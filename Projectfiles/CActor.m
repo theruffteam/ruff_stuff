@@ -13,16 +13,16 @@
 
 @implementation CActor
 
-- (id) init:  (NSString*) name:  (CProfile*) profile
-{
-    self = [super init];
-    
-    if (self)
-        {
-        [_profile copy: profile];
-        }
-
-    return self;  
-}
+//- (id) init:  (NSString*) name:  (CProfile*) profile
+//{
+//    self = [super init];
+//    
+//    if (self)
+//        {
+//        [_profile copy: profile];
+//        }
+//
+//    return self;  
+//}
 
 @end
