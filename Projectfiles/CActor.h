@@ -10,18 +10,13 @@
 
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
-#import "CProfile.h"
 
 
 @interface CActor : CCSprite
 {
     @private
-        CProfile*            _profile;
         NSMutableArray*      _abilities;
         NSMutableArray*      _animations;
 }
-
-- (id) init:  (NSString*) name:  (CProfile*) profile;
-
 
 @end
