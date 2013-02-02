@@ -20,7 +20,7 @@
     bool            _isAlive;
 }
 
-- (id)      init:  (unsigned int) typeOfProfile:  (unsigned int) maxHitPoints:  (unsigned int) hitPoints:  (bool) isAlive;
+- (id)      init:(unsigned int) typeOfProfile:(unsigned int) maxHitPoints:(unsigned int) hitPoints:(bool) isAlive;
 - (bool)    updateMaxHitPoints;
 - (bool)    updateHitPoints;
 - (bool)    updateType;

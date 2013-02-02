@@ -35,5 +35,6 @@ typedef enum
     @property CCSprite* ruffLeaningOnTreeForeground;
     @property CCParticleSystem* particleFX;
     @property InputTypes inputType;
+@property CCMenu* menu;
 
 @end

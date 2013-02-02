@@ -58,7 +58,7 @@
 
 - (void) switchToTitleScreen: (int) blank
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionScene transitionWithDuration:0.0f scene:[CTitleScreenScene nodeWithScene]]];
+    [[CCDirector sharedDirector] replaceScene:[CTitleScreenScene nodeWithScene]];
 }
 
 -(void) update:(ccTime)delta
