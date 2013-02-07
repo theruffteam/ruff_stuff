@@ -7,7 +7,7 @@
 // =============================================================================
 // This is the implementation file for the "CTitleScreenScene" class.
 // =============================================================================
-
+#import "CCVideoPlayer.h"
 #import "CTitleScreenScene.h"
 
 
@@ -127,7 +127,7 @@
 
 -(void) fadeInvillageBackground: (int) blank
 {
-    [self.villageBackground runAction: [CCFadeTo actionWithDuration:4.0f opacity:110]];
+    [self.villageBackground runAction: [CCFadeTo actionWithDuration:4.0f opacity:123]];
     
     [self scheduleOnce:@selector(fadeInruffLeaningOnTreeForeground:) delay:5.95f];
 }
@@ -182,6 +182,8 @@
     // play preloaded sound effect
     [[SimpleAudioEngine sharedEngine] playEffect:@"select_item.wav"];
 
+    [CCVideoPlayer playMovieWithFile:@"young_ruff_dash_attack.mp4"];
+    
     CCLOG(@"start new game");
 }
 

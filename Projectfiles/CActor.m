@@ -10,19 +10,47 @@
 
 #import "CActor.h"
 
+@interface CActor (PrivateMethods)
+- (void) CActorPrivateMethod;
+@end
 
 @implementation CActor
 
-- (id) init:  (NSString*) name:  (CProfile*) profile
+- (id) initWithPropertyList: (NSString*) actorPList
 {
-    self = [super init];
-    
-    if (self)
+    if (self = [super init])
         {
-        [_profile copy: profile];
+        // initialize stuff here
         }
-
-    return self;  
+    
+    return self;
 }
 
+
+- (BOOL) attack: (NSString*) nameOfAttack
+{
+  
+    return false;
+    
+}
+
+
+- (BOOL) jump: (CGPoint) direction;
+{
+    
+    return false;
+}
+
+
+- (BOOL) move: (CGPoint) position withDirection: (CGPoint) direction withGravity: (float) gravity;
+{
+    
+    return false;
+}
+
+
+- (void) CActorPrivateMethod;
+{
+    
+}
 @end

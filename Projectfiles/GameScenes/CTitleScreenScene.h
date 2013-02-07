@@ -29,12 +29,11 @@ typedef enum
 
     // testing properties (these are only here as we experiment with kobold2d)
     @property CCLayer* menuLayer;
-
     @property CCSprite* menuStaticRuff;
     @property CCSprite* villageBackground;
     @property CCSprite* ruffLeaningOnTreeForeground;
     @property CCParticleSystem* particleFX;
     @property InputTypes inputType;
-@property CCMenu* menu;
+    @property CCMenu* menu;
 
 @end
