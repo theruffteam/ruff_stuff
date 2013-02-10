@@ -10,7 +10,7 @@
 
 #import "CGame.h"
 #import "CTitleScreenScene.h"
-
+#import "ActorClasses/CYoungRuff.h"
 @interface CGame (PrivateMethods)
     - (void) switchToTitleScreen: (int) blank;
 @end

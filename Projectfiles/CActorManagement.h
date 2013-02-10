@@ -12,12 +12,11 @@
 #import "kobold2d.h"
 
 @interface CActorManagement : CCNode
-{
-    @private
-        NSMutableDictionary*    _characters;
-}
 
-- (id)      initFromActorsFile: (NSString*)actorsPList;
+    @property    NSMutableDictionary*        actors;
+
+
+- (id)      initActorsFromDirectory: (NSString*)actorsDirectory;
 - (bool)    createCharacter;
 - (bool)    deleteCharacter;
 - (bool)    modifyCharacter;

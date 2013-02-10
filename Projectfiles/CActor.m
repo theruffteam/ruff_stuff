@@ -16,11 +16,13 @@
 
 @implementation CActor
 
-- (id) initWithPropertyList: (NSString*) actorPList
+- (id) initWithPropertyList: (NSString *) actorPList forActor: (NSString *) actorName
 {
     if (self = [super init])
         {
         // initialize stuff here
+
+        
         }
     
     return self;
@@ -53,4 +55,5 @@
 {
     
 }
+
 @end

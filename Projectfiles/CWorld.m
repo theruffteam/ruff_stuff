@@ -12,24 +12,24 @@
 
 @implementation CWorld
 
-- (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList
+- (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsDirectory  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList
 {
     if (self = [super init])
         {
         // levels
-        self._levelManager = [[CLevelManagement alloc] initFromLevelsFile: levelsPList];
+        _levelManager = [[CLevelManagement alloc] initFromLevelsFile: levelsPList];
 
         // actors
-        self._actorManager = [[CActorManagement alloc] initFromActorsFile: actorsPList];
+        _actorManager = [[CActorManagement alloc] initActorsFromDirectory: actorsDirectory];
 
         // graphics
-        self._graphicManager = [[CGraphicManagement alloc] initFromGraphicsFile: graphicsPList];
+        _graphicManager = [[CGraphicManagement alloc] initFromGraphicsFile: graphicsPList];
 
         // audio
-        self._audioManager = [[CAudioManagement alloc] initFromAudioFile: audioPList];
+        _audioManager = [[CAudioManagement alloc] initFromAudioFile: audioPList];
 
         // resources
-        self._resourceManager = [[CResourceManagement alloc] initFromResourcesFile: resourcesPList];
+        _resourceManager = [[CResourceManagement alloc] initFromResourcesFile: resourcesPList];
         }
 
     return self;

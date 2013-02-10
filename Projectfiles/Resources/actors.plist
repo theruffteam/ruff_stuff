@@ -2,54 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>music</key>
+	<key>CYoungRuff</key>
 	<dict>
-		<key>seasonal</key>
+		<key>attributes</key>
 		<dict>
-			<key>background</key>
-			<string>seasonal_background.mp3</string>
-			<key>boss</key>
-			<string>seasonal_boss.mp3</string>
+			<key>boundingBox</key>
+			<string>youngRuffRight</string>
+			<key>attackHitBox</key>
+			<string>sword</string>
+			<key>hitPoints</key>
+			<integer>10</integer>
+			<key>baseAttack</key>
+			<string>sword</string>
+			<key>specialAttack</key>
+			<string>dash</string>
+			<key>position</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>direction</key>
+			<array>
+				<integer>3</integer>
+				<integer>4</integer>
+			</array>
+			<key>gravity</key>
+			<integer>5</integer>
 		</dict>
-		<key>tundra</key>
+		<key>listOfAnimations</key>
 		<dict>
 			<key>background</key>
 			<string>tundra_background.mp3</string>
 			<key>boss</key>
 			<string>tundra_boss.mp3</string>
 		</dict>
-		<key>barrens</key>
+		<key>listOfSoundFX</key>
 		<dict>
 			<key>background</key>
 			<string>barrens_background.mp3</string>
 			<key>boss</key>
 			<string>barrens_boss.mp3</string>
-		</dict>
-	</dict>
-	<key>effects</key>
-	<dict>
-		<key>baby_snircle</key>
-		<dict>
-			<key>jump</key>
-			<string>baby_snircle_jump.mp3</string>
-			<key>die</key>
-			<string>baby_snircle_die.mp3</string>
-			<key>rescue</key>
-			<string>baby_snircle_rescue.mp3</string>
-		</dict>
-		<key>touches</key>
-		<dict>
-			<key>chop_tree</key>
-			<string>touches_chop_tree.mp3</string>
-			<key>break_boulder</key>
-			<string>touches_break_boulder.mp3</string>
-		</dict>
-		<key>generic</key>
-		<dict>
-			<key>start_playing</key>
-			<string>generic_start_playing.mp3</string>
-			<key>pause_playing</key>
-			<string>generic_pause_playing.mp3</string>
 		</dict>
 	</dict>
 </dict>

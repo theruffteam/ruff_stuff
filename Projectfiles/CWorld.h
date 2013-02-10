@@ -14,23 +14,24 @@
 #import "CGraphicManagement.h"
 #import "CAudioManagement.h"
 #import "CResourceManagement.h"
+#import "CGameMechanicsScene.h"
 #import "kobold2d.h"
 
 @interface CWorld : CCLayer
     // levels
-    @property    CLevelManagement*        _levelManager;
+    @property    CLevelManagement*        levelManager;
     
     // resources
-    @property    CResourceManagement*     _resourceManager;
+    @property    CResourceManagement*     resourceManager;
     
     // actors
-    @property    CActorManagement*        _actorManager;
+    @property    CActorManagement*        actorManager;
     
     // graphics
-    @property    CGraphicManagement*      _graphicManager;
+    @property    CGraphicManagement*      graphicManager;
     
     // audio
-    @property    CAudioManagement*        _audioManager;
+    @property    CAudioManagement*        audioManager;
 
 
 - (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList;

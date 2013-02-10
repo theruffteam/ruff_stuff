@@ -35,14 +35,14 @@
         self.menuLayer = [[CCLayer alloc] init];
         
         
-        // create a world for Ruff
-        self.ruffWorld = [[CWorld alloc]
+        /* create a world for Ruff
+        /self.ruffWorld = [[CWorld alloc]
                           initLevelContentsFromFile:@"levels.plist"
                           actorContentsFromFile:@"actors.plis"
                           graphicContentsFromFile:@"graphics.plist"
                           audioContentsFromFile:@"audio.plist"
                           resourceContentsFromFile:@"resources.plist"];
-
+*/
         // =====================================================================
         // Title Screen
         // =====================================================================
@@ -115,7 +115,10 @@
 //		input.gesturePinchEnabled = input.gesturesAvailable;
         
         // play bgmusic
-        [self.ruffWorld._audioManager playBackgroundMusic:@"intro_256.caf" withVolumeAt:0.0f isBackgroundMusicOn:NO];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"intro_256.caf" loop:YES];
+        
+        //[self.ruffWorld.audioManager playBackgroundMusic:@"intro_256.caf" withVolumeAt:0.0f isBackgroundMusicOn:NO];
 
         //preload sound effect for selecting items on the menu
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.07f];

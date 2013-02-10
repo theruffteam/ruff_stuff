@@ -12,19 +12,19 @@
 #import "kobold2d.h"
 
 @interface CActor : CCSprite
-    @property    CGRect           attackHitBox;
-    @property    NSArray*         listOfSoundFX;
-    @property    NSString*        specialAttack;
-    @property    NSString*        baseAttack;
     @property    CCSprite*        boundingBox; // hitBox
+    @property    CGRect           attackHitBox;
     @property    int              hitPoints;
-    @property    float            gravity;
-    @property    CGPoint          direction; // (dx, dy)
+    @property    NSString*        baseAttack;
+    @property    NSString*        specialAttack;
     @property    CGPoint          position; // (x,y)
+    @property    CGPoint          direction; // (dx, dy)
+    @property    float            gravity;
     @property    NSArray*         listOfAnimations;
+    @property    NSArray*         listOfSoundFX;
 
 
-- (id) initWithPropertyList: (NSString*) actorPList;
+- (id) initWithPropertyList: (NSString*) actorPList forActor: (NSString*) actorName;
 - (BOOL) attack: (NSString*) nameOfAttack;
 - (BOOL) jump: (CGPoint) direction;
 - (BOOL) move: (CGPoint) position withDirection: (CGPoint) direction withGravity: (float) gravity;
