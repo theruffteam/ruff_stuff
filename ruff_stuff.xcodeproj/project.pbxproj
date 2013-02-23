@@ -29,7 +29,6 @@
 		687C2F3A16B7F67F00E231F9 /* graphics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3616B7F67F00E231F9 /* graphics.plist */; };
 		687C2F3B16B7F67F00E231F9 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3716B7F67F00E231F9 /* levels.plist */; };
 		687C2F3C16B7F67F00E231F9 /* resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3816B7F67F00E231F9 /* resources.plist */; };
-		687C2F4016B7F89D00E231F9 /* CActorManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C2F3F16B7F89D00E231F9 /* CActorManagement.m */; };
 		687C2F4416B80EDD00E231F9 /* CGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C2F4316B80EDC00E231F9 /* CGame.m */; };
 		687C2F4D16B89EA300E231F9 /* CTitleScreenScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C2F4B16B89EA300E231F9 /* CTitleScreenScene.m */; };
 		687C2F5216B8BAB200E231F9 /* title_screen_bg_01-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */; };
@@ -111,8 +110,6 @@
 		687C2F3616B7F67F00E231F9 /* graphics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graphics.plist; sourceTree = "<group>"; };
 		687C2F3716B7F67F00E231F9 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
 		687C2F3816B7F67F00E231F9 /* resources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = resources.plist; sourceTree = "<group>"; };
-		687C2F3F16B7F89D00E231F9 /* CActorManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CActorManagement.m; sourceTree = "<group>"; };
-		687C2F4116B7F8D400E231F9 /* CActorManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActorManagement.h; sourceTree = "<group>"; };
 		687C2F4216B80EDC00E231F9 /* CGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGame.h; sourceTree = "<group>"; };
 		687C2F4316B80EDC00E231F9 /* CGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGame.m; sourceTree = "<group>"; };
 		687C2F4B16B89EA300E231F9 /* CTitleScreenScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTitleScreenScene.m; path = GameScenes/CTitleScreenScene.m; sourceTree = "<group>"; };
@@ -361,8 +358,6 @@
 				6827A80C16B4D115007EA9D2 /* CAudioManagement.m */,
 				E618D2DB16B5E2B400CEF65F /* CActor.h */,
 				E618D31816B5E40900CEF65F /* CActor.m */,
-				687C2F4116B7F8D400E231F9 /* CActorManagement.h */,
-				687C2F3F16B7F89D00E231F9 /* CActorManagement.m */,
 				687C2F4216B80EDC00E231F9 /* CGame.h */,
 				687C2F4316B80EDC00E231F9 /* CGame.m */,
 				6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */,
@@ -551,7 +546,6 @@
 				6827A82816B4D13F007EA9D2 /* CResourceManagement.m in Sources */,
 				6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */,
 				E618D31916B5E40900CEF65F /* CActor.m in Sources */,
-				687C2F4016B7F89D00E231F9 /* CActorManagement.m in Sources */,
 				687C2F4416B80EDD00E231F9 /* CGame.m in Sources */,
 				687C2F4D16B89EA300E231F9 /* CTitleScreenScene.m in Sources */,
 				684546D816C7949800AD018E /* CYoungRuff.m in Sources */,
