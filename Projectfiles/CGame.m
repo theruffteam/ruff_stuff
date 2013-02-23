@@ -28,7 +28,6 @@
 		CCDirector* director = [CCDirector sharedDirector];
 		CGPoint screenCenter = director.screenCenter;
         
-        
         // =====================================================================
         // Company Logo Screen
         // =====================================================================

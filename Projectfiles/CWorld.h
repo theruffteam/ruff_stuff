@@ -10,7 +10,6 @@
 
 #import <Foundation/Foundation.h>
 #import "CLevelManagement.h"
-#import "CActorManagement.h"
 #import "CGraphicManagement.h"
 #import "CAudioManagement.h"
 #import "CResourceManagement.h"
@@ -18,14 +17,45 @@
 #import "kobold2d.h"
 
 @interface CWorld : CCLayer
-    // levels
+
+    @property unsigned int                currentLevel;
+
+    // actors (any living entity)
+    @property    NSMutableDictionary*     dictionaryOfWorldActors;
+
+    // assests (any non-living entity - e.g. platform, rock, etc.)
+    @property    NSMutableDictionary*     dictionaryOfWorldAssests;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // levels (where everything is going to be placed)
     @property    CLevelManagement*        levelManager;
-    
-    // resources
+
+
+
+
+
+
+
+
+    // resources (replaced by assests dictionary)
     @property    CResourceManagement*     resourceManager;
     
-    // actors
-    @property    CActorManagement*        actorManager;
+
     
     // graphics
     @property    CGraphicManagement*      graphicManager;
@@ -34,6 +64,6 @@
     @property    CAudioManagement*        audioManager;
 
 
-- (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsPList  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList;
+- (id) initWorldWithActorsFromPlist: (NSString*)actorsPList;
 
 @end
