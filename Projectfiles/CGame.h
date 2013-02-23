@@ -10,8 +10,10 @@
 
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
+#import "CWorld.h"
 #import "KKStartupConfig.h"
 
-@interface CGame : CCLayer
 
+@interface CGame : CCLayer
+    @property    CWorld*        ruffWorld;
 @end

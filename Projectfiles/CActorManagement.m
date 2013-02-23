@@ -9,17 +9,30 @@
 // =============================================================================
 
 #import "CActorManagement.h"
+#import "CActor.h"
 
+@interface CActorManagement (PrivateMethods)
+- (NSDictionary*) createDictionaryForActor: (NSString *) actorName withPListFile: (NSString *) actorPList;
+@end
 
 @implementation CActorManagement
 
-- (id) initFromActorsFile: (NSString*)actorsPList;
+- (id) initActorsFromDirectory:(NSString *)actorsDirectory;
 {
-    self = [super init];
-
-    if (self)
+    if (self = [super init])
         {
-        _characters = [[NSMutableDictionary alloc] init];
+        CCLOG(@"%s", __PRETTY_FUNCTION__);
+        
+        _actors = [[NSMutableDictionary alloc] init];
+        
+        NSArray* actors = [[NSBundle mainBundle] pathsForResourcesOfType:@".h" inDirectory:@"ActorClasses"];
+        
+        for (NSString* actor in actors)
+            {
+            CCLOG(@"Loading Actor: %@", [[actor lastPathComponent] stringByDeletingPathExtension]);
+            
+            [_actors setObject:[self createDictionaryForActor:[[actor lastPathComponent] stringByDeletingPathExtension] withPListFile:@"actors.plist"] forKey: @"CYoungRuff"];
+            }
         }
 
     return self;
@@ -46,4 +59,14 @@
 
     return true;
 }
+
+
+- (NSDictionary*) createDictionaryForActor: (NSString *) actorName withPListFile: (NSString *) actorPList
+{
+    NSDictionary* actorDictionary = [[[NSDictionary alloc] initWithContentsOfFile:actorPList] objectForKey:actorName];
+    
+    return actorDictionary;
+}
+
+
 @end

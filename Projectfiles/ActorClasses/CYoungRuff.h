@@ -1,24 +1,28 @@
 // =============================================================================
-// File      : CActorManagement.h
+// File      : CYoungRuff.h
 // Project   : Ruff
 // Author(s) : theruffteam
 // Version   : 0
-// Updated   : 01/29/2013
+// Updated   : 01/26/2013
 // =============================================================================
-// This is the header file for the "CCharacterManagement" class.
+// This is the header file for the "CActor" class.
 // =============================================================================
 
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
+#import "CActor.h"
 
-@interface CActorManagement : CCNode
+typedef enum
+{
+    NormalMode = 0,
+	DemoMode,
+	ShowcaseMode,
+} PlayingMode;
 
-    @property    NSMutableDictionary*        actors;
+
+@interface CYoungRuff : CActor
 
 
-- (id)      initActorsFromDirectory: (NSString*)actorsDirectory;
-- (bool)    createCharacter;
-- (bool)    deleteCharacter;
-- (bool)    modifyCharacter;
+- (id) initRuff: (PlayingMode) playMode;
 
 @end

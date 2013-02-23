@@ -10,18 +10,23 @@
 
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
-#import "CProfile.h"
-
 
 @interface CActor : CCSprite
-{
-    @private
-        CProfile*            _profile;
-        NSMutableArray*      _abilities;
-        NSMutableArray*      _animations;
-}
+    @property    CCSprite*        boundingBox; // hitBox
+    @property    CGRect           attackHitBox;
+    @property    int              hitPoints;
+    @property    NSString*        baseAttack;
+    @property    NSString*        specialAttack;
+    @property    CGPoint          position; // (x,y)
+    @property    CGPoint          direction; // (dx, dy)
+    @property    float            gravity;
+    @property    NSArray*         listOfAnimations;
+    @property    NSArray*         listOfSoundFX;
 
-- (id) init:  (NSString*) name:  (CProfile*) profile;
 
+- (id) initWithPropertyList: (NSString*) actorPList forActor: (NSString*) actorName;
+- (BOOL) attack: (NSString*) nameOfAttack;
+- (BOOL) jump: (CGPoint) direction;
+- (BOOL) move: (CGPoint) position withDirection: (CGPoint) direction withGravity: (float) gravity;
 
 @end

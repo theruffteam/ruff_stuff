@@ -7,7 +7,7 @@
 // =============================================================================
 // This is the implementation file for the "CTitleScreenScene" class.
 // =============================================================================
-
+#import "CCVideoPlayer.h"
 #import "CTitleScreenScene.h"
 
 
@@ -35,14 +35,14 @@
         self.menuLayer = [[CCLayer alloc] init];
         
         
-        // create a world for Ruff
-        self.ruffWorld = [[CWorld alloc]
+        /* create a world for Ruff
+        /self.ruffWorld = [[CWorld alloc]
                           initLevelContentsFromFile:@"levels.plist"
                           actorContentsFromFile:@"actors.plis"
                           graphicContentsFromFile:@"graphics.plist"
                           audioContentsFromFile:@"audio.plist"
                           resourceContentsFromFile:@"resources.plist"];
-
+*/
         // =====================================================================
         // Title Screen
         // =====================================================================
@@ -115,7 +115,10 @@
 //		input.gesturePinchEnabled = input.gesturesAvailable;
         
         // play bgmusic
-        [self.ruffWorld._audioManager playBackgroundMusic:@"intro_256.caf" withVolumeAt:0.0f isBackgroundMusicOn:NO];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"intro_256.caf" loop:YES];
+        
+        //[self.ruffWorld.audioManager playBackgroundMusic:@"intro_256.caf" withVolumeAt:0.0f isBackgroundMusicOn:NO];
 
         //preload sound effect for selecting items on the menu
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.07f];
@@ -127,7 +130,7 @@
 
 -(void) fadeInvillageBackground: (int) blank
 {
-    [self.villageBackground runAction: [CCFadeTo actionWithDuration:4.0f opacity:110]];
+    [self.villageBackground runAction: [CCFadeTo actionWithDuration:4.0f opacity:123]];
     
     [self scheduleOnce:@selector(fadeInruffLeaningOnTreeForeground:) delay:5.95f];
 }
@@ -182,6 +185,8 @@
     // play preloaded sound effect
     [[SimpleAudioEngine sharedEngine] playEffect:@"select_item.wav"];
 
+    [CCVideoPlayer playMovieWithFile:@"young_ruff_dash_attack.mp4"];
+    
     CCLOG(@"start new game");
 }
 
