@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
 
-@interface CActor : CCSprite
+@interface CActor : KKPixelMaskSprite
     @property    CCSprite*        boundingBox; // hitBox
     @property    CGRect           attackHitBox;
     @property    int              hitPoints;

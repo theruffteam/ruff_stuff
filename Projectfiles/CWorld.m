@@ -10,29 +10,48 @@
 
 #import "CWorld.h"
 
+@interface CWorld (PrivateMethods)
+-(BOOL) initActors: (NSString*)actorsPList;
+
+@end
+
+
 @implementation CWorld
 
-- (id) initLevelContentsFromFile: (NSString*)levelsPList  actorContentsFromFile: (NSString*)actorsDirectory  graphicContentsFromFile: (NSString*)graphicsPList  audioContentsFromFile: (NSString*)audioPList  resourceContentsFromFile: (NSString*)resourcesPList
+- (id) initWorldWithActorsFromPlist: (NSString*)actorsPList
 {
     if (self = [super init])
         {
-        // levels
-        _levelManager = [[CLevelManagement alloc] initFromLevelsFile: levelsPList];
-
-        // actors
-        _actorManager = [[CActorManagement alloc] initActorsFromDirectory: actorsDirectory];
-
-        // graphics
-        _graphicManager = [[CGraphicManagement alloc] initFromGraphicsFile: graphicsPList];
-
-        // audio
-        _audioManager = [[CAudioManagement alloc] initFromAudioFile: audioPList];
-
-        // resources
-        _resourceManager = [[CResourceManagement alloc] initFromResourcesFile: resourcesPList];
+        // initialize our dictionary of world assets
+        if (! [self initActors: actorsPList])
+            {
+            CCLOG(@"Failed to initialize the world assests dictionary");
+            }
         }
 
     return self;
+}
+
+
+-(BOOL) initActors: actorsPList
+{
+    BOOL    isInitialized = NO;
+
+    CCLOG(@"%s", __PRETTY_FUNCTION__);
+
+    _dictionaryOfWorldActors = [[NSMutableDictionary alloc] init];
+    
+    NSArray* actors = [[NSBundle mainBundle] pathsForResourcesOfType:@".h" inDirectory:@"ActorClasses"];
+
+    for (NSString* actor in actors)
+        {
+        NSString* actorClassName = [[actor lastPathComponent] stringByDeletingPathExtension];
+        CCLOG(@"Loading Actor: %@", actorClassName);
+        
+        [_dictionaryOfWorldActors setObject:[[[NSDictionary alloc] initWithContentsOfFile:actorsPList] objectForKey:actorClassName] forKey: actorClassName];
+        }
+
+    return isInitialized;
 }
 
 

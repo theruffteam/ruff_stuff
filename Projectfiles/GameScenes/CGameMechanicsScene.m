@@ -10,8 +10,8 @@
 #import "CCVideoPlayer.h"
 #import "CGameMechanicsScene.h"
 
-#define JUMP_FORCE 30
-#define GRAVITY_FORCE -1.6f
+#define RUFF_JUMP_SPEED 35
+#define GRAVITY -1.0f
 #define RUFF_SPEED 7.0f
 
 
@@ -166,8 +166,9 @@
 	if (! _isJumping)
         {
         _isJumping = YES;
-        _jumpSpeed = JUMP_FORCE;
+        _jumpSpeed = RUFF_JUMP_SPEED;
         _ruffBaseY = _ruffSprite.position.y;
+        _jumpTime  = 0.0f;
 
         [self schedule:@selector(moveTick)];
 
@@ -177,31 +178,31 @@
 
 - (void) moveTick
 {
-	_projectedRuffPosition = _ruffSprite.position;
-    
-	// here to b/c we probably need a function to detect if ground below has changed our baseY
+	// here b/c we probably need a function to detect if ground below has changed our baseY
     // from where we first started our jump
     // otherwise, we could fall through part of the ground when we land
     int baseY = _ruffBaseY;
+
+	float changeOfY = 0.0f;
+ 
+    _projectedRuffPosition = _ruffSprite.position;
+    _jumpTime++;
     
-	float gravity = GRAVITY_FORCE;
-	
-    if (_projectedRuffPosition.y > baseY )
-        {
-        _jumpSpeed += gravity;
-        }
+    changeOfY = (GRAVITY*_jumpTime*_jumpTime + _jumpSpeed*_jumpTime) - ((GRAVITY*(_jumpTime-1.0f)*(_jumpTime-1.0f) + _jumpSpeed*(_jumpTime-1.0f)));
     
-	float projectedY = _projectedRuffPosition.y + _jumpSpeed;
+	float projectedY = _projectedRuffPosition.y + changeOfY;
 	
     _isJumping = (projectedY > baseY); // turns the jump flag on for falling to prevent mid-fall jump
     
-	if (projectedY <= baseY && _jumpSpeed <= 0)
+	if (projectedY <= baseY)
         {
 		projectedY = baseY;
 		
-        _jumpSpeed = 0;
+        _jumpSpeed = 0.0f;
 		
         _isJumping = NO;
+        
+        _jumpTime = 0.0f;
         
         [self unschedule:@selector(moveTick)];
         }

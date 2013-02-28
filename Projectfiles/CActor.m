@@ -20,8 +20,6 @@
 {
     if (self = [super init])
         {
-        // initialize stuff here
-
         
         }
     

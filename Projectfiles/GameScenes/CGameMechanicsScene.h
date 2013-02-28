@@ -22,6 +22,7 @@
     @property    CGPoint            healthBarDestination;
     @property    BOOL               isJumping;
     @property    float              jumpSpeed;
+    @property    float              jumpTime;
     @property    float              ruffBaseY;
     @property    CGPoint            projectedRuffPosition;
 @end
