@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6827A80E16B4D115007EA9D2 /* CAudioManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A80C16B4D115007EA9D2 /* CAudioManagement.m */; };
-		6827A82116B4D13F007EA9D2 /* CAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81016B4D13E007EA9D2 /* CAbility.m */; };
-		6827A82216B4D13F007EA9D2 /* CAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81216B4D13E007EA9D2 /* CAudio.m */; };
-		6827A82516B4D13F007EA9D2 /* CGraphicManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */; };
-		6827A82616B4D13F007EA9D2 /* CLevelManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */; };
-		6827A82816B4D13F007EA9D2 /* CResourceManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A81E16B4D13F007EA9D2 /* CResourceManagement.m */; };
 		6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A82016B4D13F007EA9D2 /* CWorld.m */; };
 		6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82A16B4F3C3007EA9D2 /* audio.plist */; };
 		682E1AE016B94D440051C33A /* select_item.wav in Resources */ = {isa = PBXBuildFile; fileRef = 682E1ADF16B94D440051C33A /* select_item.wav */; };
+		682E5E2316D8950300820D6A /* actors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 682E5E2216D8950300820D6A /* actors.plist */; };
+		682E5E2616DB3DE200820D6A /* ruffReady-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 682E5E2416DB3DE200820D6A /* ruffReady-ipad.png */; };
+		682E5E2716DB3DE200820D6A /* ruffReady-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 682E5E2516DB3DE200820D6A /* ruffReady-ipadhd.png */; };
+		682E5E2916DC4A7F00820D6A /* world.plist in Resources */ = {isa = PBXBuildFile; fileRef = 682E5E2816DC4A7F00820D6A /* world.plist */; };
 		684546D816C7949800AD018E /* CYoungRuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 684546D716C7949800AD018E /* CYoungRuff.m */; };
 		684546DE16C79CD100AD018E /* CGameMechanicsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 684546DC16C79CD100AD018E /* CGameMechanicsScene.m */; };
 		684546E516C8053900AD018E /* title_screen_bg_01-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 684546E316C8053900AD018E /* title_screen_bg_01-ipadhd.png */; };
@@ -25,10 +23,9 @@
 		686CD76716BB826500E1D733 /* intro_256.caf in Resources */ = {isa = PBXBuildFile; fileRef = 686CD76616BB826500E1D733 /* intro_256.caf */; };
 		686CD76916BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 686CD76816BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 */; };
 		687C2F3416B7DD2B00E231F9 /* title_screen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3316B7DD2B00E231F9 /* title_screen.caf */; };
-		687C2F3916B7F67F00E231F9 /* actors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3516B7F67F00E231F9 /* actors.plist */; };
+		687C2F3916B7F67F00E231F9 /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3516B7F67F00E231F9 /* assets.plist */; };
 		687C2F3A16B7F67F00E231F9 /* graphics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3616B7F67F00E231F9 /* graphics.plist */; };
 		687C2F3B16B7F67F00E231F9 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3716B7F67F00E231F9 /* levels.plist */; };
-		687C2F3C16B7F67F00E231F9 /* resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3816B7F67F00E231F9 /* resources.plist */; };
 		687C2F4416B80EDD00E231F9 /* CGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C2F4316B80EDC00E231F9 /* CGame.m */; };
 		687C2F4D16B89EA300E231F9 /* CTitleScreenScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C2F4B16B89EA300E231F9 /* CTitleScreenScene.m */; };
 		687C2F5216B8BAB200E231F9 /* title_screen_bg_01-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */; };
@@ -79,22 +76,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6827A80C16B4D115007EA9D2 /* CAudioManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAudioManagement.m; sourceTree = "<group>"; };
-		6827A80D16B4D115007EA9D2 /* CAudioManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAudioManagement.h; sourceTree = "<group>"; };
-		6827A80F16B4D13D007EA9D2 /* CAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAbility.h; sourceTree = "<group>"; };
-		6827A81016B4D13E007EA9D2 /* CAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAbility.m; sourceTree = "<group>"; };
-		6827A81116B4D13E007EA9D2 /* CAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAudio.h; sourceTree = "<group>"; };
-		6827A81216B4D13E007EA9D2 /* CAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAudio.m; sourceTree = "<group>"; };
-		6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGraphicManagement.h; sourceTree = "<group>"; };
-		6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGraphicManagement.m; sourceTree = "<group>"; };
-		6827A81916B4D13E007EA9D2 /* CLevelManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLevelManagement.h; sourceTree = "<group>"; };
-		6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLevelManagement.m; sourceTree = "<group>"; };
-		6827A81D16B4D13F007EA9D2 /* CResourceManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CResourceManagement.h; sourceTree = "<group>"; };
-		6827A81E16B4D13F007EA9D2 /* CResourceManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CResourceManagement.m; sourceTree = "<group>"; };
 		6827A81F16B4D13F007EA9D2 /* CWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWorld.h; sourceTree = "<group>"; };
 		6827A82016B4D13F007EA9D2 /* CWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWorld.m; sourceTree = "<group>"; };
 		6827A82A16B4F3C3007EA9D2 /* audio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audio.plist; sourceTree = "<group>"; };
 		682E1ADF16B94D440051C33A /* select_item.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = select_item.wav; sourceTree = "<group>"; };
+		682E5E2216D8950300820D6A /* actors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = actors.plist; sourceTree = "<group>"; };
+		682E5E2416DB3DE200820D6A /* ruffReady-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ruffReady-ipad.png"; sourceTree = "<group>"; };
+		682E5E2516DB3DE200820D6A /* ruffReady-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ruffReady-ipadhd.png"; sourceTree = "<group>"; };
+		682E5E2816DC4A7F00820D6A /* world.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world.plist; sourceTree = "<group>"; };
 		684546D616C7949800AD018E /* CYoungRuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYoungRuff.h; path = Projectfiles/ActorClasses/CYoungRuff.h; sourceTree = SOURCE_ROOT; };
 		684546D716C7949800AD018E /* CYoungRuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYoungRuff.m; path = Projectfiles/ActorClasses/CYoungRuff.m; sourceTree = SOURCE_ROOT; };
 		684546DC16C79CD100AD018E /* CGameMechanicsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGameMechanicsScene.m; path = GameScenes/CGameMechanicsScene.m; sourceTree = "<group>"; };
@@ -106,10 +95,9 @@
 		686CD76616BB826500E1D733 /* intro_256.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro_256.caf; sourceTree = "<group>"; };
 		686CD76816BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "young_ruff_dash_attack-ipadhd.mp4"; sourceTree = "<group>"; };
 		687C2F3316B7DD2B00E231F9 /* title_screen.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = title_screen.caf; sourceTree = "<group>"; };
-		687C2F3516B7F67F00E231F9 /* actors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = actors.plist; sourceTree = "<group>"; };
+		687C2F3516B7F67F00E231F9 /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
 		687C2F3616B7F67F00E231F9 /* graphics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graphics.plist; sourceTree = "<group>"; };
 		687C2F3716B7F67F00E231F9 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
-		687C2F3816B7F67F00E231F9 /* resources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = resources.plist; sourceTree = "<group>"; };
 		687C2F4216B80EDC00E231F9 /* CGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGame.h; sourceTree = "<group>"; };
 		687C2F4316B80EDC00E231F9 /* CGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGame.m; sourceTree = "<group>"; };
 		687C2F4B16B89EA300E231F9 /* CTitleScreenScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTitleScreenScene.m; path = GameScenes/CTitleScreenScene.m; sourceTree = "<group>"; };
@@ -220,11 +208,12 @@
 			isa = PBXGroup;
 			children = (
 				DCC1A39513A94F1A005BD75D /* config.lua */,
-				687C2F3516B7F67F00E231F9 /* actors.plist */,
+				687C2F3516B7F67F00E231F9 /* assets.plist */,
+				682E5E2216D8950300820D6A /* actors.plist */,
 				6827A82A16B4F3C3007EA9D2 /* audio.plist */,
 				687C2F3616B7F67F00E231F9 /* graphics.plist */,
 				687C2F3716B7F67F00E231F9 /* levels.plist */,
-				687C2F3816B7F67F00E231F9 /* resources.plist */,
+				682E5E2816DC4A7F00820D6A /* world.plist */,
 			);
 			name = "Configuration Files";
 			sourceTree = "<group>";
@@ -243,6 +232,7 @@
 		687C2F5416B8BAB900E231F9 /* HD Files */ = {
 			isa = PBXGroup;
 			children = (
+				682E5E2516DB3DE200820D6A /* ruffReady-ipadhd.png */,
 				684546E916C8057200AD018E /* RuffSide-ipad.png */,
 				684546E316C8053900AD018E /* title_screen_bg_01-ipadhd.png */,
 				684546E416C8053900AD018E /* title_screen_bg_02-ipadhd.png */,
@@ -350,24 +340,12 @@
 				687C2F4A16B89DF300E231F9 /* GameScenes */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
-				6827A80F16B4D13D007EA9D2 /* CAbility.h */,
-				6827A81016B4D13E007EA9D2 /* CAbility.m */,
-				6827A81116B4D13E007EA9D2 /* CAudio.h */,
-				6827A81216B4D13E007EA9D2 /* CAudio.m */,
-				6827A80D16B4D115007EA9D2 /* CAudioManagement.h */,
-				6827A80C16B4D115007EA9D2 /* CAudioManagement.m */,
 				E618D2DB16B5E2B400CEF65F /* CActor.h */,
 				E618D31816B5E40900CEF65F /* CActor.m */,
 				687C2F4216B80EDC00E231F9 /* CGame.h */,
 				687C2F4316B80EDC00E231F9 /* CGame.m */,
-				6827A81716B4D13E007EA9D2 /* CGraphicManagement.h */,
-				6827A81816B4D13E007EA9D2 /* CGraphicManagement.m */,
 				68A4C67D16D5FA38001E1934 /* CLevel.h */,
 				68A4C67E16D5FA38001E1934 /* CLevel.m */,
-				6827A81916B4D13E007EA9D2 /* CLevelManagement.h */,
-				6827A81A16B4D13E007EA9D2 /* CLevelManagement.m */,
-				6827A81D16B4D13F007EA9D2 /* CResourceManagement.h */,
-				6827A81E16B4D13F007EA9D2 /* CResourceManagement.m */,
 				6827A81F16B4D13F007EA9D2 /* CWorld.h */,
 				6827A82016B4D13F007EA9D2 /* CWorld.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
@@ -381,6 +359,7 @@
 			children = (
 				687C2F3E16B7F73300E231F9 /* Configuration Files */,
 				687C2F5416B8BAB900E231F9 /* HD Files */,
+				682E5E2416DB3DE200820D6A /* ruffReady-ipad.png */,
 				684546E716C8056400AD018E /* RuffSide-ipadhd.png */,
 				687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */,
 				687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */,
@@ -500,10 +479,9 @@
 				BA2DF34D16B3A15F0013DE12 /* Login.psd in Resources */,
 				6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */,
 				687C2F3416B7DD2B00E231F9 /* title_screen.caf in Resources */,
-				687C2F3916B7F67F00E231F9 /* actors.plist in Resources */,
+				687C2F3916B7F67F00E231F9 /* assets.plist in Resources */,
 				687C2F3A16B7F67F00E231F9 /* graphics.plist in Resources */,
 				687C2F3B16B7F67F00E231F9 /* levels.plist in Resources */,
-				687C2F3C16B7F67F00E231F9 /* resources.plist in Resources */,
 				687C2F5216B8BAB200E231F9 /* title_screen_bg_01-ipad.png in Resources */,
 				687C2F5316B8BAB200E231F9 /* title_screen_bg_02-ipad.png in Resources */,
 				682E1AE016B94D440051C33A /* select_item.wav in Resources */,
@@ -513,6 +491,10 @@
 				684546E616C8053900AD018E /* title_screen_bg_02-ipadhd.png in Resources */,
 				684546E816C8056400AD018E /* RuffSide-ipadhd.png in Resources */,
 				684546EA16C8057200AD018E /* RuffSide-ipad.png in Resources */,
+				682E5E2316D8950300820D6A /* actors.plist in Resources */,
+				682E5E2616DB3DE200820D6A /* ruffReady-ipad.png in Resources */,
+				682E5E2716DB3DE200820D6A /* ruffReady-ipadhd.png in Resources */,
+				682E5E2916DC4A7F00820D6A /* world.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,12 +520,6 @@
 			files = (
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
-				6827A80E16B4D115007EA9D2 /* CAudioManagement.m in Sources */,
-				6827A82116B4D13F007EA9D2 /* CAbility.m in Sources */,
-				6827A82216B4D13F007EA9D2 /* CAudio.m in Sources */,
-				6827A82516B4D13F007EA9D2 /* CGraphicManagement.m in Sources */,
-				6827A82616B4D13F007EA9D2 /* CLevelManagement.m in Sources */,
-				6827A82816B4D13F007EA9D2 /* CResourceManagement.m in Sources */,
 				6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */,
 				E618D31916B5E40900CEF65F /* CActor.m in Sources */,
 				687C2F4416B80EDD00E231F9 /* CGame.m in Sources */,

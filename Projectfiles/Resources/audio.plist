@@ -2,55 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>music</key>
+	<key>background</key>
 	<dict>
-		<key>seasonal</key>
-		<dict>
-			<key>background</key>
-			<string>seasonal_background.mp3</string>
-			<key>boss</key>
-			<string>seasonal_boss.mp3</string>
-		</dict>
-		<key>tundra</key>
-		<dict>
-			<key>background</key>
-			<string>tundra_background.mp3</string>
-			<key>boss</key>
-			<string>tundra_boss.mp3</string>
-		</dict>
-		<key>barrens</key>
-		<dict>
-			<key>background</key>
-			<string>barrens_background.mp3</string>
-			<key>boss</key>
-			<string>barrens_boss.mp3</string>
-		</dict>
+		<key>tutorial_background</key>
+		<string>tutorial_background.mp3</string>
 	</dict>
-	<key>effects</key>
+	<key>boss</key>
 	<dict>
-		<key>baby_snircle</key>
-		<dict>
-			<key>jump</key>
-			<string>baby_snircle_jump.mp3</string>
-			<key>die</key>
-			<string>baby_snircle_die.mp3</string>
-			<key>rescue</key>
-			<string>baby_snircle_rescue.mp3</string>
-		</dict>
-		<key>touches</key>
-		<dict>
-			<key>chop_tree</key>
-			<string>touches_chop_tree.mp3</string>
-			<key>break_boulder</key>
-			<string>touches_break_boulder.mp3</string>
-		</dict>
-		<key>generic</key>
-		<dict>
-			<key>start_playing</key>
-			<string>generic_start_playing.mp3</string>
-			<key>pause_playing</key>
-			<string>generic_pause_playing.mp3</string>
-		</dict>
+		<key>tutorial_boss</key>
+		<string>tutorial_boss.mp3</string>
+	</dict>
+	<key>victory</key>
+	<dict>
+		<key>tutorial_victory</key>
+		<string>tutorial_victory.mp3</string>
 	</dict>
 </dict>
 </plist>

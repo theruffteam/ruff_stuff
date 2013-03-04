@@ -9,61 +9,38 @@
 // =============================================================================
 
 #import <Foundation/Foundation.h>
-#import "CLevelManagement.h"
-#import "CGraphicManagement.h"
-#import "CAudioManagement.h"
-#import "CResourceManagement.h"
-#import "CGameMechanicsScene.h"
 #import "kobold2d.h"
+#import "CGameMechanicsScene.h"
+#import "CLevel.h"
+
 
 @interface CWorld : CCLayer
 
-    @property unsigned int                currentLevel;
+    @property    unsigned int             currentLevel;
+    @property    NSMutableArray*          stateSequenceOfEvents;
+    @property    CLevel*                  levelFactory;
 
     // actors (any living entity)
-    @property    NSMutableDictionary*     dictionaryOfWorldActors;
+    @property    NSMutableDictionary*     worldActors;
 
     // assests (any non-living entity - e.g. platform, rock, etc.)
-    @property    NSMutableDictionary*     dictionaryOfWorldAssests;
+    @property    NSMutableDictionary*     worldAssets;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // levels (where everything is going to be placed)
-    @property    CLevelManagement*        levelManager;
-
-
-
-
-
-
-
-
-    // resources (replaced by assests dictionary)
-    @property    CResourceManagement*     resourceManager;
-    
-
-    
-    // graphics
-    @property    CGraphicManagement*      graphicManager;
-    
     // audio
-    @property    CAudioManagement*        audioManager;
+    @property    NSMutableDictionary*     worldAudio;
+
+    // cutscenes
+    @property    NSMutableDictionary*     worldCutScenes;
+
+    // graphics (e.g. backgrounds and foregrounds)
+    @property    NSMutableDictionary*     worldGraphics;
+
+    // levels (configurations)
+    @property    NSMutableDictionary*     worldLevels;
 
 
-- (id) initWorldWithActorsFromPlist: (NSString*)actorsPList;
+- (id) initWorldContentsFromPlist: (NSString*)worldPList;
+
+- (void) playNextLevel;
 
 @end

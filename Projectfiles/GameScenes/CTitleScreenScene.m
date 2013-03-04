@@ -7,6 +7,7 @@
 // =============================================================================
 // This is the implementation file for the "CTitleScreenScene" class.
 // =============================================================================
+#import "SimpleAudioEngine.h"
 #import "CCVideoPlayer.h"
 #import "CTitleScreenScene.h"
 
