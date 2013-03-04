@@ -9,6 +9,7 @@
 // =============================================================================
 #import "CCVideoPlayer.h"
 #import "CGameMechanicsScene.h"
+#import "CWorld.h"
 
 #define RUFF_JUMP_SPEED 35
 #define GRAVITY -1.0f
@@ -30,14 +31,22 @@
     
 	if ((self = [super init]))
         {
+        
+        CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:@"world.plist"];
+        
         CCDirector* director = [CCDirector sharedDirector];
         KKInput* input = [KKInput sharedInput];
         
         // explicitly set the background color of the screen to black
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
         // get ruff on the screen
-		_ruffSprite = [CCSprite spriteWithFile:@"RuffSide.png"];
+		CCSprite* background = [CCSprite spriteWithFile:@"title_screen_bg_02.png"];
+        background.position = CGPointMake(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
+		[self addChild: background];
+        
+        // get ruff on the screen
+		_ruffSprite = [CCSprite spriteWithFile:@"ruffReady.png"];
 		_ruffSprite.position = CGPointMake(100, 300);
 		[self addChild: _ruffSprite];
         

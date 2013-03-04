@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CYoungRuff</key>
+	<key>CPlatform</key>
 	<dict>
-		<key>CActor</key>
+		<key>attributes</key>
 		<dict>
 			<key>boundingBox</key>
 			<string>youngRuffRight</string>
@@ -28,26 +28,20 @@
 			</array>
 			<key>gravity</key>
 			<integer>5</integer>
-			<key>listOfAnimations</key>
-			<dict>
-				<key>baseAttack</key>
-				<string>tundra_background.mp3</string>
-				<key>specialAttack</key>
-				<string>tundra_boss.mp3</string>
-				<key>ready</key>
-				<string></string>
-				<key>walk</key>
-				<string></string>
-				<key>jump</key>
-				<string></string>
-			</dict>
-			<key>listOfSoundFX</key>
-			<dict>
-				<key>background</key>
-				<string>barrens_background.mp3</string>
-				<key>boss</key>
-				<string>barrens_boss.mp3</string>
-			</dict>
+		</dict>
+		<key>listOfAnimations</key>
+		<dict>
+			<key>background</key>
+			<string>tundra_background.mp3</string>
+			<key>boss</key>
+			<string>tundra_boss.mp3</string>
+		</dict>
+		<key>listOfSoundFX</key>
+		<dict>
+			<key>background</key>
+			<string>barrens_background.mp3</string>
+			<key>boss</key>
+			<string>barrens_boss.mp3</string>
 		</dict>
 	</dict>
 </dict>

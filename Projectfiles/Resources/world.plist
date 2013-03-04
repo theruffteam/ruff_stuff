@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>actors</key>
+	<string>actors.plist</string>
+	<key>assets</key>
+	<string>assets.plist</string>
+	<key>audio</key>
+	<string>audio.plist</string>
+	<key>graphics</key>
+	<string>graphics.plist</string>
+	<key>levels</key>
+	<string>levels.plist</string>
+</dict>
+</plist>
