@@ -19,9 +19,8 @@
 
 - (id) initRuff: (PlayingMode) playMode
 {
-    if (self = [self init])
+    if (self = [super init])
         {
-        //
         
         }
     

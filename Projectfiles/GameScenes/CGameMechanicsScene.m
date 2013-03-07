@@ -13,7 +13,8 @@
 
 #define RUFF_JUMP_SPEED 35
 #define GRAVITY -1.0f
-#define RUFF_SPEED 7.0f
+#define RUFF_SPEED 500.0f
+#define RUFF_FREE_FALL_SPEED 150.0f
 
 
 @interface CGameMechanicsScene (PrivateMethods)
@@ -32,7 +33,7 @@
 	if ((self = [super init]))
         {
         
-        CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:@"world.plist"];
+        //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
         
         CCDirector* director = [CCDirector sharedDirector];
         KKInput* input = [KKInput sharedInput];
@@ -40,13 +41,16 @@
         // explicitly set the background color of the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
-        // get ruff on the screen
+        /*
+        // get background on the screen
 		CCSprite* background = [CCSprite spriteWithFile:@"title_screen_bg_02.png"];
         background.position = CGPointMake(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
 		[self addChild: background];
+        */
         
         // get ruff on the screen
-		_ruffSprite = [CCSprite spriteWithFile:@"ruffReady.png"];
+        _ruffSprite = [[CYoungRuff alloc] initRuff:0];
+        _ruffSprite = [CYoungRuff spriteWithFile:@"ruffReady.png"];
 		_ruffSprite.position = CGPointMake(100, 300);
 		[self addChild: _ruffSprite];
         
@@ -74,19 +78,27 @@
 		input.multipleTouchEnabled = YES;
 		input.gestureTapEnabled = input.gesturesAvailable;
 		//input.gestureDoubleTapEnabled = input.gesturesAvailable;
-		input.gestureSwipeEnabled = input.gesturesAvailable;
+		//input.gestureSwipeEnabled = input.gesturesAvailable;
         //input.gestureLongPressEnabled = input.gesturesAvailable;
         }
+    
+    
+        // set to zero, mod to add images
+        _placeRuffOnScreen = 2;
+    
+        _ruffSprite.hitPoints = 10;
+        _ruffSprite.previousPosition = _ruffSprite.position;
     
 	return self;
 }
 
 
--(void) gestureRecognition
+-(void) gestureRecognitionWithDelta: (ccTime) delta
 {
 	KKInput* input = [KKInput sharedInput];
-    CGPoint ruffSpritePosition = self.ruffSprite.position;
+    CGPoint ruffSpritePosition = _ruffSprite.position;
     CGPoint position = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+    int     directionMultiplier = 1;
     
     
     // detect any touches within the left control circle
@@ -97,19 +109,32 @@
         if (position.x >= 0.5 * (_leftCirclePosition.x + 100))
             {
             _ruffSprite.flipX = NO;
-            ruffSpritePosition.x += RUFF_SPEED;
             }
         else
             {
             _ruffSprite.flipX = YES;
-            ruffSpritePosition.x -= RUFF_SPEED;
+            directionMultiplier = -1;
             }
         
-        if (position.y >= 0.65f * (_leftCirclePosition.y + 100))
+        ruffSpritePosition.x += directionMultiplier * (RUFF_SPEED * delta);
+        
+        // check if we need to jump
+        if (!_isJumping  &&  position.y >= 0.65f * (_leftCirclePosition.y + 100))
             {
+            // if we're within the middle 10% threshold of the jump zone,
+            // then we are performing a stationary jump so remove the update
+            // to our current x position
+            if (position.x > 0.45 * (_leftCirclePosition.x + 100)  &&
+                position.x < 0.55 * (_leftCirclePosition.x + 100))
+                {
+                ruffSpritePosition.x = _ruffSprite.position.x;//+ (-directionMultiplier * (RUFF_FREE_FALL_SPEED * delta));
+                }
+            
+            
             _ruffSprite.position = ruffSpritePosition;
             
             [self beginJumping];
+        
             }
         }
 
@@ -166,7 +191,7 @@
         CCLOG(@"CHARGING FOCUS (long press)");
         }
     
-    _ruffSprite.position = ruffSpritePosition;
+        _ruffSprite.position = ruffSpritePosition;
 }
 
 
@@ -178,7 +203,10 @@
         _jumpSpeed = RUFF_JUMP_SPEED;
         _ruffBaseY = _ruffSprite.position.y;
         _jumpTime  = 0.0f;
-
+        
+        // get ruff on the screen
+		
+        
         [self schedule:@selector(moveTick)];
 
         }
@@ -213,13 +241,22 @@
         
         _jumpTime = 0.0f;
         
+        _placeRuffOnScreen = 2;
+        
         [self unschedule:@selector(moveTick)];
         }
 
     _ruffSprite.position = CGPointMake(_ruffSprite.position.x, projectedY);
+    
+    if (_placeRuffOnScreen % 2)
+        {
+
+        }
+
+    ++_placeRuffOnScreen;
 }
 
-                              
+
 -(void) keepRuffBetweenScreenBorders
 {
 	CCDirector*    director = [CCDirector sharedDirector];
@@ -240,19 +277,48 @@
 
 -(void) update:(ccTime)delta
 {    
-    [self gestureRecognition];
+    [self gestureRecognitionWithDelta: delta];
 
     if ([KKInput sharedInput].anyTouchEndedThisFrame)
         {
         CCLOG(@"anyTouchEndedThisFrame");
         }
+    
+    if (_isJumping  &&  (_ruffSprite.position.x == _ruffSprite.previousPosition.x) && (_ruffSprite.position.y <_ruffSprite.previousPosition.y))
+        {
+        // facing right
+        if(! _ruffSprite.flipX)
+            {
+            _ruffSprite.position = CGPointMake(_ruffSprite.position.x + (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
+            }
+        // facing left
+        else
+            {
+            _ruffSprite.position = CGPointMake(_ruffSprite.position.x - (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
+            }
+        }
 
 	[self keepRuffBetweenScreenBorders];
+    
+    if (_ruffSprite.position.x < _ruffSprite.previousPosition.x)
+        {
+        _ruffSprite.flipX = YES;
+        }
+    else if (_ruffSprite.position.x > _ruffSprite.previousPosition.x)
+        {
+        _ruffSprite.flipX = NO;
+        }
+    
+    _ruffSprite.previousPosition = _ruffSprite.position;
+
 }
 
 
 -(void) draw
 {
+    // set circle drawing color
+    ccDrawColor4F( 0.0f, 0.0f, 0.0f, 1.0);
+    
     //draw mock-up health bar for kicks
     ccDrawRect(_healthBarOrigin, _healthBarDestination);    
     

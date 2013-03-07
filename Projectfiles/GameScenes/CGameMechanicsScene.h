@@ -25,4 +25,5 @@
     @property    float              jumpTime;
     @property    float              ruffBaseY;
     @property    CGPoint            projectedRuffPosition;
+    @property    unsigned int       placeRuffOnScreen;
 @end

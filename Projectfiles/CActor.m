@@ -16,9 +16,19 @@
 
 @implementation CActor
 
-- (id) initWithPropertyList: (NSString *) actorPList forActor: (NSString *) actorName
+-(id) init
 {
     if (self = [super init])
+        {
+        
+        }
+    
+    return self;
+}
+
+- (id) initWithPropertyList: (NSString *) actorPList forActor: (NSString *) actorName
+{
+    if (self = [self init])
         {
         
         }

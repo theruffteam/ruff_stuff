@@ -18,6 +18,7 @@
     @property    NSString*        baseAttack;
     @property    NSString*        specialAttack;
     @property    CGPoint          position; // (x,y)
+    @property    CGPoint          previousPosition; //(x,y)
     @property    CGPoint          direction; // (dx, dy)
     @property    float            gravity;
     @property    NSArray*         listOfAnimations;
