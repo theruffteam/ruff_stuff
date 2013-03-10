@@ -22,8 +22,14 @@
     @property    CGPoint            healthBarDestination;
     @property    BOOL               isJumping;
     @property    float              jumpSpeed;
-    @property    float              jumpTime;
+    @property    ccTime             jumpTime;
     @property    float              ruffBaseY;
     @property    CGPoint            projectedRuffPosition;
     @property    unsigned int       placeRuffOnScreen;
+    @property    ccTime             gameTime;
+    @property    ccTime             gameTimeDelta;
+    @property    ccTime             lastJumpTime;
+    @property    ccTime             initialJumpTime;
+
+
 @end

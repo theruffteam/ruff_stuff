@@ -11,8 +11,8 @@
 #import "CGameMechanicsScene.h"
 #import "CWorld.h"
 
-#define RUFF_JUMP_SPEED 35
-#define GRAVITY -1.0f
+#define RUFF_JUMP_SPEED 1493.598f
+#define GRAVITY -1991.465f
 #define RUFF_SPEED 500.0f
 #define RUFF_FREE_FALL_SPEED 150.0f
 
@@ -51,7 +51,7 @@
         // get ruff on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
         _ruffSprite = [CYoungRuff spriteWithFile:@"ruffReady.png"];
-		_ruffSprite.position = CGPointMake(100, 300);
+		_ruffSprite.position = CGPointMake(100, 275);
 		[self addChild: _ruffSprite];
         
         
@@ -89,6 +89,11 @@
         _ruffSprite.hitPoints = 10;
         _ruffSprite.previousPosition = _ruffSprite.position;
     
+        _gameTime = 0;
+        _gameTimeDelta = 0;
+        _lastJumpTime = 0;
+        _initialJumpTime = 0;
+    
 	return self;
 }
 
@@ -106,17 +111,17 @@
         position.y <= _leftCirclePosition.y + 100  &&
         ! CGPointEqualToPoint(position, CGPointZero))
         {
-        if (position.x >= 0.5 * (_leftCirclePosition.x + 100))
+        if (position.x > 0.6 * (_leftCirclePosition.x + 100))
             {
             _ruffSprite.flipX = NO;
+            ruffSpritePosition.x += directionMultiplier * (RUFF_SPEED * delta);
             }
-        else
+        else if (position.x < 0.4 * (_leftCirclePosition.x + 100))
             {
             _ruffSprite.flipX = YES;
             directionMultiplier = -1;
+            ruffSpritePosition.x += directionMultiplier * (RUFF_SPEED * delta);
             }
-        
-        ruffSpritePosition.x += directionMultiplier * (RUFF_SPEED * delta);
         
         // check if we need to jump
         if (!_isJumping  &&  position.y >= 0.65f * (_leftCirclePosition.y + 100))
@@ -124,8 +129,8 @@
             // if we're within the middle 10% threshold of the jump zone,
             // then we are performing a stationary jump so remove the update
             // to our current x position
-            if (position.x > 0.45 * (_leftCirclePosition.x + 100)  &&
-                position.x < 0.55 * (_leftCirclePosition.x + 100))
+            if (position.x > 0.40 * (_leftCirclePosition.x + 100)  &&
+                position.x < 0.60 * (_leftCirclePosition.x + 100))
                 {
                 ruffSpritePosition.x = _ruffSprite.position.x;//+ (-directionMultiplier * (RUFF_FREE_FALL_SPEED * delta));
                 }
@@ -203,9 +208,10 @@
         _jumpSpeed = RUFF_JUMP_SPEED;
         _ruffBaseY = _ruffSprite.position.y;
         _jumpTime  = 0.0f;
+        _lastJumpTime = _gameTime;
+        _initialJumpTime = _lastJumpTime;
         
         // get ruff on the screen
-		
         
         [self schedule:@selector(moveTick)];
 
@@ -223,9 +229,23 @@
 	float changeOfY = 0.0f;
  
     _projectedRuffPosition = _ruffSprite.position;
-    _jumpTime++;
+    CCLOG(@"Position: %f", _ruffSprite.position.y);
     
-    changeOfY = (GRAVITY*_jumpTime*_jumpTime + _jumpSpeed*_jumpTime) - ((GRAVITY*(_jumpTime-1.0f)*(_jumpTime-1.0f) + _jumpSpeed*(_jumpTime-1.0f)));
+    _jumpTime = _gameTime;
+    
+    changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (_jumpSpeed * (_jumpTime-_initialJumpTime)))  -
+                ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (_jumpSpeed * (_lastJumpTime-_initialJumpTime)));
+    
+    
+    if (changeOfY >=0)
+        {
+        CCLOG(@"changeOfY: %f, jumpTime %f:, _lastJumpTime: %f", changeOfY, _jumpTime, _lastJumpTime);
+        }
+    else {
+        CCLOG(@"PAUL");
+    }
+    
+    _lastJumpTime = _gameTime;
     
 	float projectedY = _projectedRuffPosition.y + changeOfY;
 	
@@ -276,7 +296,10 @@
 
 
 -(void) update:(ccTime)delta
-{    
+{
+    _gameTimeDelta = delta;
+    _gameTime += delta;
+    
     [self gestureRecognitionWithDelta: delta];
 
     if ([KKInput sharedInput].anyTouchEndedThisFrame)
@@ -284,30 +307,30 @@
         CCLOG(@"anyTouchEndedThisFrame");
         }
     
-    if (_isJumping  &&  (_ruffSprite.position.x == _ruffSprite.previousPosition.x) && (_ruffSprite.position.y <_ruffSprite.previousPosition.y))
-        {
-        // facing right
-        if(! _ruffSprite.flipX)
-            {
-            _ruffSprite.position = CGPointMake(_ruffSprite.position.x + (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
-            }
-        // facing left
-        else
-            {
-            _ruffSprite.position = CGPointMake(_ruffSprite.position.x - (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
-            }
-        }
+//    if (_isJumping  &&  (_ruffSprite.position.x == _ruffSprite.previousPosition.x) && (_ruffSprite.position.y <_ruffSprite.previousPosition.y))
+//        {
+//        // facing right
+//        if(! _ruffSprite.flipX)
+//            {
+//            _ruffSprite.position = CGPointMake(_ruffSprite.position.x + (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
+//            }
+//        // facing left
+//        else
+//            {
+//            _ruffSprite.position = CGPointMake(_ruffSprite.position.x - (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
+//            }
+//        }
 
 	[self keepRuffBetweenScreenBorders];
     
-    if (_ruffSprite.position.x < _ruffSprite.previousPosition.x)
-        {
-        _ruffSprite.flipX = YES;
-        }
-    else if (_ruffSprite.position.x > _ruffSprite.previousPosition.x)
-        {
-        _ruffSprite.flipX = NO;
-        }
+//    if (_ruffSprite.position.x < _ruffSprite.previousPosition.x)
+//        {
+//        _ruffSprite.flipX = YES;
+//        }
+//    else if (_ruffSprite.position.x > _ruffSprite.previousPosition.x)
+//        {
+//        _ruffSprite.flipX = NO;
+//        }
     
     _ruffSprite.previousPosition = _ruffSprite.position;
 
