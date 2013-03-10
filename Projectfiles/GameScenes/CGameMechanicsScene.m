@@ -104,47 +104,45 @@
 -(void) gestureRecognitionWithPositionOfRuff: (CGPoint) positionOfRuff
 {
 	KKInput* input = [KKInput sharedInput];
-//    CGPoint position = input.gestureTapLocation;
-
-//    CGPoint position = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
-    
-
-    
     KKTouch* touch;
+    float leftControlOfLeftCircle = 0.4f * (_leftCirclePosition.x + 100);
+    float rightControlOfLeftCircle = 0.6f * (_leftCirclePosition.x + 100);
+    BOOL leftMovementTap = NO;
+    BOOL rightMovementTap = NO;
+    
+
     CCARRAY_FOREACH(input.touches, touch)
-    {
-    CGPoint position = touch.location;
-    BOOL leftMovementGesture = position.x > 0.6 * (_leftCirclePosition.x + 100);
-    BOOL rightMovementGesture = position.x < 0.4 * (_leftCirclePosition.x + 100);
-
-    
-    // detect any touches within the left control circle
-    if (position.x <= _leftCirclePosition.x + 100  &&
-        position.y <= _leftCirclePosition.y + 100  &&
-        ! CGPointEqualToPoint(position, CGPointZero))
         {
-        if (!_isMoving  &&  (leftMovementGesture  || rightMovementGesture))
+        leftMovementTap = touch.location.x < leftControlOfLeftCircle;
+        rightMovementTap = touch.location.x > rightControlOfLeftCircle;
+
+        // detect any touches within the left control circle
+        if (touch.location.x <= _leftCirclePosition.x + 100  &&
+            touch.location.y <= _leftCirclePosition.y + 100  &&
+            ! CGPointEqualToPoint(touch.location, CGPointZero))
             {
-            _isMoving = YES;
-            
-            _ruffSprite.flipX = leftMovementGesture ? NO : YES;
+            if (!_isMoving  &&  (leftMovementTap  || rightMovementTap))
+                {
+                _isMoving = YES;
+                
+                _ruffSprite.flipX = rightMovementTap ? NO : YES;
+                }
+            }
+
+        // detect any touches within the right control circle
+        if (touch.location.x >= _rightCirclePosition.x - 100  &&
+            touch.location.y <= _leftCirclePosition.y + 100  &&
+            ! CGPointEqualToPoint(touch.location, CGPointZero))
+            {
+            // check if we need to jump
+            if (!_isJumping  &&  touch.location.y >= 0.65f * (_rightCirclePosition.y + 100))
+                {
+                _isJumping = YES;
+                //_ruffBaseY = _ruffSprite.position.y; // commented out now. that we're working with collision detection we should have a function that calculates our base Y
+                _initialJumpTime = _lastJumpTime;
+                }
             }
         }
-
-    if (position.x >= _rightCirclePosition.x - 100  &&
-        position.y <= _leftCirclePosition.y + 100  &&
-        ! CGPointEqualToPoint(position, CGPointZero))
-        {
-        // check if we need to jump
-        if (!_isJumping  &&  position.y >= 0.65f * (_rightCirclePosition.y + 100))
-            {
-            _isJumping = YES;
-            //_ruffBaseY = _ruffSprite.position.y;
-            _initialJumpTime = _lastJumpTime;
-            }
-        }
-    
-    }
     
     // detect swipes within right control circle
     if (input.gestureSwipeRecognizedThisFrame  &&
