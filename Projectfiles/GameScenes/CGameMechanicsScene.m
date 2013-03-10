@@ -48,12 +48,15 @@
 		[self addChild: background];
         */
         
-        // get ruff on the screen
-        _ruffSprite = [[CYoungRuff alloc] initRuff:0];
-        _ruffSprite = [CYoungRuff spriteWithFile:@"ruffReady.png"];
-		_ruffSprite.position = CGPointMake(100, 275);
-		[self addChild: _ruffSprite];
+        // get platform on the screen
+        _platform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
+		_platform.position = CGPointMake(800, 400);
+		[self addChild: _platform z:1 tag:1];
         
+        // get ruff on the screen
+        _ruffSprite = [[[CYoungRuff alloc] initRuff:0] initWithFile:@"ruffReady.png" alphaThreshold:0];
+		_ruffSprite.position = CGPointMake(100, 275);
+        [self addChild: _ruffSprite];
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
@@ -68,8 +71,6 @@
         // position of gesture control circles on left and right of screen
         _leftCirclePosition = CGPointMake(101.0f , 101.0f);
         _rightCirclePosition = CGPointMake(director.screenSize.width - 101.0f , 101.0f);
-        
-        _isJumping = NO;
         
         // update the screen based on fps
         [self scheduleUpdate];
@@ -88,9 +89,10 @@
     
         _ruffSprite.hitPoints = 10;
         _ruffSprite.previousPosition = _ruffSprite.position;
-    
         _gameTime = 0;
         _gameTimeDelta = 0;
+        _isJumping = NO;
+        _isMoving = NO;
         _lastJumpTime = 0;
         _initialJumpTime = 0;
 
@@ -99,51 +101,51 @@
 }
 
 
--(void) gestureRecognitionWithDelta: (ccTime) delta
+-(void) gestureRecognitionWithPositionOfRuff: (CGPoint) positionOfRuff
 {
 	KKInput* input = [KKInput sharedInput];
-    CGPoint ruffSpritePosition = _ruffSprite.position;
-    CGPoint position = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
-    int     directionMultiplier = 1;
+//    CGPoint position = input.gestureTapLocation;
+
+//    CGPoint position = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
     
+
+    
+    KKTouch* touch;
+    CCARRAY_FOREACH(input.touches, touch)
+    {
+    CGPoint position = touch.location;
+    BOOL leftMovementGesture = position.x > 0.6 * (_leftCirclePosition.x + 100);
+    BOOL rightMovementGesture = position.x < 0.4 * (_leftCirclePosition.x + 100);
+
     
     // detect any touches within the left control circle
     if (position.x <= _leftCirclePosition.x + 100  &&
         position.y <= _leftCirclePosition.y + 100  &&
         ! CGPointEqualToPoint(position, CGPointZero))
         {
-        
-        if (position.x > 0.6 * (_leftCirclePosition.x + 100))
+        if (!_isMoving  &&  (leftMovementGesture  || rightMovementGesture))
             {
-            _ruffSprite.flipX = NO;
-            ruffSpritePosition.x += directionMultiplier * (RUFF_SPEED * delta);
-            }
-        else if (position.x < 0.4 * (_leftCirclePosition.x + 100))
-            {
-            _ruffSprite.flipX = YES;
-            directionMultiplier = -1;
-            ruffSpritePosition.x += directionMultiplier * (RUFF_SPEED * delta);
-            }
-
-        // check if we need to jump
-        if (!_isJumping  &&  position.y >= 0.65f * (_leftCirclePosition.y + 100))
-            {
-            // if we're within the middle 10% threshold of the jump zone,
-            // then we are performing a stationary jump so remove the update
-            // to our current x position
-            if (position.x > 0.40 * (_leftCirclePosition.x + 100)  &&
-                position.x < 0.60 * (_leftCirclePosition.x + 100))
-                {
-                ruffSpritePosition.x = _ruffSprite.position.x;//+ (-directionMultiplier * (RUFF_FREE_FALL_SPEED * delta));
-                }
+            _isMoving = YES;
             
-        
-            //_ruffSprite.position = ruffSpritePosition;
-
-            [self beginJumping];
+            _ruffSprite.flipX = leftMovementGesture ? NO : YES;
             }
         }
 
+    if (position.x >= _rightCirclePosition.x - 100  &&
+        position.y <= _leftCirclePosition.y + 100  &&
+        ! CGPointEqualToPoint(position, CGPointZero))
+        {
+        // check if we need to jump
+        if (!_isJumping  &&  position.y >= 0.65f * (_rightCirclePosition.y + 100))
+            {
+            _isJumping = YES;
+            //_ruffBaseY = _ruffSprite.position.y;
+            _initialJumpTime = _lastJumpTime;
+            }
+        }
+    
+    }
+    
     // detect swipes within right control circle
     if (input.gestureSwipeRecognizedThisFrame  &&
         input.gestureSwipeLocation.x >= _rightCirclePosition.x - 100  &&
@@ -178,8 +180,6 @@
             }
         }
     
-    
-    
 	if (input.gestureTapRecognizedThisFrame)
         {
         // don't know
@@ -189,6 +189,7 @@
         {
         // maybe we can use this?
         }
+    
 	if (input.gestureLongPressBegan  &&
         input.gestureLongPressLocation.x >= _rightCirclePosition.x - 100  &&
         input.gestureLongPressLocation.y <= _rightCirclePosition.y + 100)
@@ -196,146 +197,110 @@
         // start charging focus meter?
         CCLOG(@"CHARGING FOCUS (long press)");
         }
-    
-        _ruffSprite.position = ruffSpritePosition;
 }
 
 
-- (void) beginJumping
-{
-	if (! _isJumping)
-        {
-        _isJumping = YES;
-        _ruffBaseY = _ruffSprite.position.y;
-        //_jumpTime  = 0.0f;
-        _lastJumpTime = _gameTime;
-        _initialJumpTime = _lastJumpTime;
-        
-        // get ruff on the screen
-        
-        //_ruffSprite.position = _ruffSprite.previousPosition;
-        //[self moveTick];
-        
-        //[self schedule:@selector(moveTick)];
-
-        }
-}
-
-
-- (void) moveTick
+- (float) makeRuffJump: (float)currentYOfRuff
 {
 	// here b/c we probably need a function to detect if ground below has changed our baseY
     // from where we first started our jump
     // otherwise, we could fall through part of the ground when we land
     int baseY = _ruffBaseY;
+    
+    // here is how we're calculating the change of y: (At^2 + vt) - (At0^2 + vt0)
+	float changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (RUFF_JUMP_SPEED * (_jumpTime-_initialJumpTime)))  -
+                      ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (RUFF_JUMP_SPEED * (_lastJumpTime-_initialJumpTime)));
+    float projectedY = currentYOfRuff + changeOfY;
 
-	float changeOfY = 0.0f;
- 
-    _projectedRuffPosition = _ruffSprite.position;
     
-    CCLOG(@"Position: %f", _ruffSprite.position.y);
-        
-    changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (RUFF_JUMP_SPEED * (_jumpTime-_initialJumpTime)))  -
-                ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (RUFF_JUMP_SPEED * (_lastJumpTime-_initialJumpTime)));
-    
-    
-    if (changeOfY >=0)
-        {
-        CCLOG(@"changeOfY: %f, jumpTime %f:, _lastJumpTime: %f", changeOfY, _jumpTime, _lastJumpTime);
-        }
-    else {
-        CCLOG(@"PAUL");
-    }
-        
-    if (_jumpTime != _lastJumpTime)
-        {
-        float projectedY = _projectedRuffPosition.y + changeOfY;
+    _isJumping = (projectedY > baseY); // turns the jump flag on for falling to prevent mid-fall jump
 
-        _isJumping = (projectedY > baseY); // turns the jump flag on for falling to prevent mid-fall jump
-    
-        if (projectedY <= baseY)
-            {
-            projectedY = baseY;
-				
-            _isJumping = NO;
+    if (projectedY <= baseY)
+        {
+        projectedY = baseY;
             
-        _placeRuffOnScreen = 2;
-        
-        //[self unschedule:@selector(moveTick)];
+        _isJumping = NO;
         }
 
-    _ruffSprite.position = CGPointMake(_ruffSprite.position.x, projectedY);
-}
-    if (_placeRuffOnScreen % 2)
-        {
-
-        }
-
-    ++_placeRuffOnScreen;
+    return projectedY;
 }
 
 
--(void) keepRuffBetweenScreenBorders
+-(CGPoint) keepRuffBetweenScreenBorders: (CGPoint) positionOfRuff
 {
 	CCDirector*    director = [CCDirector sharedDirector];
 	CGSize         screenSize = director.screenSize;
     CGFloat        halfOfRuffsWidth = 0.5f * _ruffSprite.contentSize.width;
         
-	if (_ruffSprite.position.x <= halfOfRuffsWidth)
+	if (positionOfRuff.x <= halfOfRuffsWidth)
         {
-		_ruffSprite.position = CGPointMake(halfOfRuffsWidth, _ruffSprite.position.y);
+		positionOfRuff = CGPointMake(halfOfRuffsWidth, positionOfRuff.y);
         }
-	else if (_ruffSprite.position.x >= screenSize.width - halfOfRuffsWidth)
+	else if (positionOfRuff.x >= screenSize.width - halfOfRuffsWidth)
         {
-		_ruffSprite.position = CGPointMake(screenSize.width - halfOfRuffsWidth, _ruffSprite.position.y);
+		positionOfRuff = CGPointMake(screenSize.width - halfOfRuffsWidth, positionOfRuff.y);
         }
+
+    return positionOfRuff;
 }
 
 
 -(void) update:(ccTime)delta
 {
+    CGPoint lastRuffMovementPosition = _ruffSprite.position;
+
     _gameTimeDelta = delta;
     _gameTime += delta;
     _jumpTime = _gameTime;
     
-    [self gestureRecognitionWithDelta: delta];
+
+    [self gestureRecognitionWithPositionOfRuff: lastRuffMovementPosition];
     
+    // check for jump FIRST, then moving
     if (_isJumping)
         {
-        [self moveTick];
+        lastRuffMovementPosition.y = [self makeRuffJump: lastRuffMovementPosition.y];
+        
+        }
+    
+    if (_isMoving)
+        {
+        lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
+
+        _isMoving = NO;
         }
     
     if ([KKInput sharedInput].anyTouchEndedThisFrame)
         {
         CCLOG(@"anyTouchEndedThisFrame");
         }
-    
-//    if (_isJumping  &&  (_ruffSprite.position.x == _ruffSprite.previousPosition.x) && (_ruffSprite.position.y <_ruffSprite.previousPosition.y))
-//        {
-//        // facing right
-//        if(! _ruffSprite.flipX)
-//            {
-//            _ruffSprite.position = CGPointMake(_ruffSprite.position.x + (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
-//            }
-//        // facing left
-//        else
-//            {
-//            _ruffSprite.position = CGPointMake(_ruffSprite.position.x - (RUFF_FREE_FALL_SPEED * delta), _ruffSprite.position.y);
-//            }
-//        }
 
-	[self keepRuffBetweenScreenBorders];
-    
-//    if (_ruffSprite.position.x < _ruffSprite.previousPosition.x)
-//        {
-//        _ruffSprite.flipX = YES;
-//        }
-//    else if (_ruffSprite.position.x > _ruffSprite.previousPosition.x)
-//        {
-//        _ruffSprite.flipX = NO;
-//        }
 
-        _ruffSprite.previousPosition = _ruffSprite.position;
+    // collision detection stuff (hacky im sure but wanted to see it working!)
+    if([_ruffSprite pixelMaskIntersectsNode:_platform])
+        {
+        CCLOG(@"WE HIT THE PLATFORM!");
+        
+        if (lastRuffMovementPosition.y - 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskHeight >= (_platform.position.y + (0.5f * _platform.pixelMaskHeight)))
+            {
+            _ruffBaseY = _platform.position.y + 0.5*_platform.pixelMaskHeight + 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskHeight - 1; // - 1 to stay intersected 
+            }
+        }
+    else if (![_ruffSprite pixelMaskIntersectsNode:_platform]  &&
+             ( lastRuffMovementPosition.x + 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskWidth <= _platform.position.x - 0.5*_platform.pixelMaskWidth  ||
+              lastRuffMovementPosition.x - 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskWidth >= _platform.position.x + 0.5*_platform.pixelMaskWidth) )
+        {
+        _ruffBaseY = 275; // hardcoded value from this scene's init function
+        lastRuffMovementPosition.y = _ruffBaseY;
+        }
+    
+    
+    
+	lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
+    
+    _ruffSprite.position = lastRuffMovementPosition;
+
+    _ruffSprite.previousPosition = _ruffSprite.position;
 
     _lastJumpTime = _gameTime;
     

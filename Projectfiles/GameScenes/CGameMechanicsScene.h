@@ -16,14 +16,15 @@
 @interface CGameMechanicsScene : CCLayer
 
     @property    CYoungRuff*        ruffSprite;
+    @property    KKPixelMaskSprite* platform;
     @property    CGPoint            leftCirclePosition;
     @property    CGPoint            rightCirclePosition;
     @property    CGPoint            healthBarOrigin;
     @property    CGPoint            healthBarDestination;
     @property    BOOL               isJumping;
+    @property    BOOL               isMoving;
     @property    ccTime             jumpTime;
     @property    float              ruffBaseY;
-    @property    CGPoint            projectedRuffPosition;
     @property    unsigned int       placeRuffOnScreen;
     @property    ccTime             gameTime;
     @property    ccTime             gameTimeDelta;

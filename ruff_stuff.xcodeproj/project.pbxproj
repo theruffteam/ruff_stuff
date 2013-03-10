@@ -31,6 +31,8 @@
 		687C2F5216B8BAB200E231F9 /* title_screen_bg_01-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */; };
 		687C2F5316B8BAB200E231F9 /* title_screen_bg_02-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */; };
 		68A4C67F16D5FA38001E1934 /* CLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A4C67E16D5FA38001E1934 /* CLevel.m */; };
+		68BD608A16EC7FE800E1D70D /* blackPlatform-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BD608816EC7FE800E1D70D /* blackPlatform-ipad.png */; };
+		68BD608B16EC7FE800E1D70D /* blackPlatform-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BD608916EC7FE800E1D70D /* blackPlatform-ipadhd.png */; };
 		DC2721BD160CB0B200D88944 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC2721BC160CB0B200D88944 /* Default-568h@2x.png */; };
 		DC3C6FCD14B8BFEA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FCC14B8BFEA00DAD281 /* fps_images-hd.png */; };
 		DC3C6FCE14B8BFEA00DAD281 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC3C6FCC14B8BFEA00DAD281 /* fps_images-hd.png */; };
@@ -105,6 +107,8 @@
 		687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_screen_bg_02-ipad.png"; sourceTree = "<group>"; };
 		68A4C67D16D5FA38001E1934 /* CLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLevel.h; sourceTree = "<group>"; };
 		68A4C67E16D5FA38001E1934 /* CLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLevel.m; sourceTree = "<group>"; };
+		68BD608816EC7FE800E1D70D /* blackPlatform-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackPlatform-ipad.png"; sourceTree = "<group>"; };
+		68BD608916EC7FE800E1D70D /* blackPlatform-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackPlatform-ipadhd.png"; sourceTree = "<group>"; };
 		DC2721BC160CB0B200D88944 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC3C6FCC14B8BFEA00DAD281 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 		687C2F5416B8BAB900E231F9 /* HD Files */ = {
 			isa = PBXGroup;
 			children = (
+				68BD608916EC7FE800E1D70D /* blackPlatform-ipadhd.png */,
 				682E5E2516DB3DE200820D6A /* ruffReady-ipadhd.png */,
 				684546E916C8057200AD018E /* RuffSide-ipad.png */,
 				684546E316C8053900AD018E /* title_screen_bg_01-ipadhd.png */,
@@ -358,6 +363,7 @@
 				687C2F5416B8BAB900E231F9 /* HD Files */,
 				682E5E2416DB3DE200820D6A /* ruffReady-ipad.png */,
 				684546E716C8056400AD018E /* RuffSide-ipadhd.png */,
+				68BD608816EC7FE800E1D70D /* blackPlatform-ipad.png */,
 				687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */,
 				687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */,
 				686CD76616BB826500E1D733 /* intro_256.caf */,
@@ -491,6 +497,8 @@
 				682E5E2616DB3DE200820D6A /* ruffReady-ipad.png in Resources */,
 				682E5E2716DB3DE200820D6A /* ruffReady-ipadhd.png in Resources */,
 				682E5E2916DC4A7F00820D6A /* world.plist in Resources */,
+				68BD608A16EC7FE800E1D70D /* blackPlatform-ipad.png in Resources */,
+				68BD608B16EC7FE800E1D70D /* blackPlatform-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

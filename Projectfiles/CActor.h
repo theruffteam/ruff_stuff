@@ -12,7 +12,7 @@
 #import "kobold2d.h"
 
 @interface CActor : KKPixelMaskSprite
-    @property    CCSprite*        boundingBox; // hitBox
+    //@property    CCSprite*        boundingBox; // hitBox
     @property    CGRect           attackHitBox;
     @property    int              hitPoints;
     @property    NSString*        baseAttack;
