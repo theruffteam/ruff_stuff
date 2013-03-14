@@ -289,6 +289,11 @@
               lastRuffMovementPosition.x - 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskWidth >= _platform.position.x + 0.5*_platform.pixelMaskWidth) )
         {
         _ruffBaseY = 275; // hardcoded value from this scene's init function
+        
+        }
+    
+    if (!_isJumping)
+        {
         lastRuffMovementPosition.y = _ruffBaseY;
         }
     
