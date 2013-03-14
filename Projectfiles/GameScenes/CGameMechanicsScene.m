@@ -12,6 +12,7 @@
 #import "CWorld.h"
 
 #define RUFF_JUMP_SPEED 1493.598f
+#define RUFF_FALL_SPEED 0.0f
 #define GRAVITY -1991.465f
 #define RUFF_SPEED 500.0f
 #define RUFF_FREE_FALL_SPEED 150.0f
@@ -48,24 +49,29 @@
 		[self addChild: background];
         */
         
-        // get platform on the screen
-        _platform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
-		_platform.position = CGPointMake(800, 400);
-		[self addChild: _platform z:1 tag:1];
+        // get black platform on the screen
+        _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
+		_blackPlatform.position = CGPointMake(800, 400);
+		[self addChild: _blackPlatform z:2 tag:1];
+   
+        // get green platform on the screen
+        _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
+		_greenPlatform.position = CGPointMake(_blackPlatform.position.x, _blackPlatform.position.y + 0.25f * ( _blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
+		[self addChild: _greenPlatform z:0 tag:2];
         
         // get ruff on the screen
         _ruffSprite = [[[CYoungRuff alloc] initRuff:0] initWithFile:@"ruffReady.png" alphaThreshold:0];
 		_ruffSprite.position = CGPointMake(100, 275);
-        [self addChild: _ruffSprite];
+        [self addChild: _ruffSprite z:1];
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
         health.position = CGPointMake(0.5 * health.contentSize.width, director.screenSize.height - (0.5f * health.contentSize.height));
-        health.color = ccWHITE;
+        health.color = ccBLACK;
         [self addChild: health];
         
         // position of health bar
-        _healthBarOrigin = CGPointMake(1.0f , director.screenSize.height - health.contentSize.height);
+        _healthBarOrigin = CGPointMake(2.0f , director.screenSize.height - health.contentSize.height);
         _healthBarDestination = CGPointMake(300.0f , director.screenSize.height - health.contentSize.height - 40.0f);
         
         // position of gesture control circles on left and right of screen
@@ -83,10 +89,9 @@
         //input.gestureLongPressEnabled = input.gesturesAvailable;
         }
     
-    
         // set to zero, mod to add images
         _placeRuffOnScreen = 2;
-    
+        _ruffBaseY = _ruffSprite.position.y;
         _ruffSprite.hitPoints = 10;
         _ruffSprite.previousPosition = _ruffSprite.position;
         _gameTime = 0;
@@ -94,6 +99,7 @@
         _isJumping = NO;
         _isMoving = NO;
         _lastJumpTime = 0;
+        _initialJumpSpeed = 0;
         _initialJumpTime = 0;
 
     
@@ -138,8 +144,10 @@
             if (!_isJumping  &&  touch.location.y >= 0.65f * (_rightCirclePosition.y + 100))
                 {
                 _isJumping = YES;
-                //_ruffBaseY = _ruffSprite.position.y; // commented out now. that we're working with collision detection we should have a function that calculates our base Y
+                _initialJumpSpeed = RUFF_JUMP_SPEED;
                 _initialJumpTime = _lastJumpTime;
+                
+                //_ruffBaseY = _ruffSprite.position.y; // commented out now. that we're working with collision detection we should have a function that calculates our base Y
                 }
             }
         }
@@ -198,7 +206,7 @@
 }
 
 
-- (float) makeRuffJump: (float)currentYOfRuff
+- (float) makeRuffJump: (float)currentYOfRuff withVelocity: (CGFloat)velocity
 {
 	// here b/c we probably need a function to detect if ground below has changed our baseY
     // from where we first started our jump
@@ -206,8 +214,8 @@
     int baseY = _ruffBaseY;
     
     // here is how we're calculating the change of y: (At^2 + vt) - (At0^2 + vt0)
-	float changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (RUFF_JUMP_SPEED * (_jumpTime-_initialJumpTime)))  -
-                      ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (RUFF_JUMP_SPEED * (_lastJumpTime-_initialJumpTime)));
+	float changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (velocity * (_jumpTime-_initialJumpTime)))  -
+                      ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (velocity * (_lastJumpTime-_initialJumpTime)));
     float projectedY = currentYOfRuff + changeOfY;
 
     
@@ -250,15 +258,14 @@
     _gameTimeDelta = delta;
     _gameTime += delta;
     _jumpTime = _gameTime;
-    
 
+    
     [self gestureRecognitionWithPositionOfRuff: lastRuffMovementPosition];
     
     // check for jump FIRST, then moving
     if (_isJumping)
         {
-        lastRuffMovementPosition.y = [self makeRuffJump: lastRuffMovementPosition.y];
-        
+        lastRuffMovementPosition.y = [self makeRuffJump: lastRuffMovementPosition.y withVelocity: _initialJumpSpeed];
         }
     
     if (_isMoving)
@@ -272,32 +279,24 @@
         {
         CCLOG(@"anyTouchEndedThisFrame");
         }
-
-
-    // collision detection stuff (hacky im sure but wanted to see it working!)
-    if([_ruffSprite pixelMaskIntersectsNode:_platform])
+    
+    if ([_ruffSprite pixelMaskIntersectsNode:_greenPlatform]  &&
+        (lastRuffMovementPosition.y - (0.25f * _ruffSprite.pixelMaskHeight) >= _blackPlatform.position.y + (0.25f * _blackPlatform.size.height)))
         {
-        CCLOG(@"WE HIT THE PLATFORM!");
+        CCLOG(@"green platform");
+        _ruffBaseY = _blackPlatform.position.y + 0.25f * (_blackPlatform.pixelMaskHeight + _ruffSprite.pixelMaskHeight);
+        }
+    else if (_ruffBaseY != 275)
+        {
+        _ruffBaseY = 275;
         
-        if (lastRuffMovementPosition.y - 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskHeight >= (_platform.position.y + (0.5f * _platform.pixelMaskHeight)))
+        if (!_isJumping)
             {
-            _ruffBaseY = _platform.position.y + 0.5*_platform.pixelMaskHeight + 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskHeight - 1; // - 1 to stay intersected 
+            _isJumping = YES;
+            _initialJumpSpeed = RUFF_FALL_SPEED;
+            _initialJumpTime = _lastJumpTime;
             }
         }
-    else if (![_ruffSprite pixelMaskIntersectsNode:_platform]  &&
-             ( lastRuffMovementPosition.x + 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskWidth <= _platform.position.x - 0.5*_platform.pixelMaskWidth  ||
-              lastRuffMovementPosition.x - 0.5*((KKPixelMaskSprite*)_ruffSprite).pixelMaskWidth >= _platform.position.x + 0.5*_platform.pixelMaskWidth) )
-        {
-        _ruffBaseY = 275; // hardcoded value from this scene's init function
-        
-        }
-    
-    if (!_isJumping)
-        {
-        lastRuffMovementPosition.y = _ruffBaseY;
-        }
-    
-    
     
 	lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     

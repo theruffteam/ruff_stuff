@@ -16,7 +16,9 @@
 @interface CGameMechanicsScene : CCLayer
 
     @property    CYoungRuff*        ruffSprite;
-    @property    KKPixelMaskSprite* platform;
+    @property    KKPixelMaskSprite* blackPlatform;
+    @property    KKPixelMaskSprite* greenPlatform;
+    @property    CGFloat            initialJumpSpeed;
     @property    CGPoint            leftCirclePosition;
     @property    CGPoint            rightCirclePosition;
     @property    CGPoint            healthBarOrigin;
