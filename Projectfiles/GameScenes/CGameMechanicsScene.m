@@ -42,29 +42,27 @@
         // explicitly set the background color of the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
-        /*
-        // get background on the screen
-		CCSprite* background = [CCSprite spriteWithFile:@"title_screen_bg_02.png"];
-        background.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
-		[self addChild: background];
-        */
         
-        // get black platform on the screen
-        _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
-		_blackPlatform.position = ccp(800, 400);
-		[self addChild: _blackPlatform z:2 tag:1];
-   
-        // get green platform on the screen
-        _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
-		_greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + 0.5f /CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
-		[self addChild: _greenPlatform z:0 tag:2];
-        
+        // get floor on the screen
+		CCSprite* floor = [CCSprite spriteWithFile:@"floor.png"];
+        floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
+		[self addChild: floor z:-5];
         
         
         // get ruff on the screen
         _ruffSprite = [[[CYoungRuff alloc] initRuff:0] initWithFile:@"ruffReady.png" alphaThreshold:0];
 		_ruffSprite.position = ccp(100, 275);
         [self addChild: _ruffSprite z:1];
+        
+        // get black platform on the screen
+        _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
+		_blackPlatform.position = ccp(800, 402.5); //(_ruffSprite.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_ruffSprite.pixelMaskHeight + _blackPlatform.pixelMaskHeight)));
+		[self addChild: _blackPlatform z:2 tag:1];
+   
+        // get green platform on the screen
+        _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
+		_greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + 0.5f /CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
+		[self addChild: _greenPlatform z:0 tag:2];
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
