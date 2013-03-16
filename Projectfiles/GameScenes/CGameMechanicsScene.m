@@ -45,38 +45,40 @@
         /*
         // get background on the screen
 		CCSprite* background = [CCSprite spriteWithFile:@"title_screen_bg_02.png"];
-        background.position = CGPointMake(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
+        background.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
 		[self addChild: background];
         */
         
         // get black platform on the screen
         _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
-		_blackPlatform.position = CGPointMake(800, 400);
+		_blackPlatform.position = ccp(800, 400);
 		[self addChild: _blackPlatform z:2 tag:1];
    
         // get green platform on the screen
         _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
-		_greenPlatform.position = CGPointMake(_blackPlatform.position.x, _blackPlatform.position.y + 0.25f * ( _blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
+		_greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + 0.5f /CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
 		[self addChild: _greenPlatform z:0 tag:2];
+        
+        
         
         // get ruff on the screen
         _ruffSprite = [[[CYoungRuff alloc] initRuff:0] initWithFile:@"ruffReady.png" alphaThreshold:0];
-		_ruffSprite.position = CGPointMake(100, 275);
+		_ruffSprite.position = ccp(100, 275);
         [self addChild: _ruffSprite z:1];
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
-        health.position = CGPointMake(0.5 * health.contentSize.width, director.screenSize.height - (0.5f * health.contentSize.height));
+        health.position = ccp(0.5 * health.contentSize.width, director.screenSize.height - (0.5f * health.contentSize.height));
         health.color = ccBLACK;
         [self addChild: health];
         
         // position of health bar
-        _healthBarOrigin = CGPointMake(2.0f , director.screenSize.height - health.contentSize.height);
-        _healthBarDestination = CGPointMake(300.0f , director.screenSize.height - health.contentSize.height - 40.0f);
+        _healthBarOrigin = ccp(2.0f , director.screenSize.height - health.contentSize.height);
+        _healthBarDestination = ccp(300.0f , director.screenSize.height - health.contentSize.height - 40.0f);
         
         // position of gesture control circles on left and right of screen
-        _leftCirclePosition = CGPointMake(101.0f , 101.0f);
-        _rightCirclePosition = CGPointMake(director.screenSize.width - 101.0f , 101.0f);
+        _leftCirclePosition = ccp(101.0f , 101.0f);
+        _rightCirclePosition = ccp(director.screenSize.width - 101.0f , 101.0f);
         
         // update the screen based on fps
         [self scheduleUpdate];
@@ -240,11 +242,11 @@
         
 	if (positionOfRuff.x <= halfOfRuffsWidth)
         {
-		positionOfRuff = CGPointMake(halfOfRuffsWidth, positionOfRuff.y);
+		positionOfRuff = ccp(halfOfRuffsWidth, positionOfRuff.y);
         }
 	else if (positionOfRuff.x >= screenSize.width - halfOfRuffsWidth)
         {
-		positionOfRuff = CGPointMake(screenSize.width - halfOfRuffsWidth, positionOfRuff.y);
+		positionOfRuff = ccp(screenSize.width - halfOfRuffsWidth, positionOfRuff.y);
         }
 
     return positionOfRuff;
@@ -281,10 +283,10 @@
         }
     
     if ([_ruffSprite pixelMaskIntersectsNode:_greenPlatform]  &&
-        (lastRuffMovementPosition.y - (0.25f * _ruffSprite.pixelMaskHeight) >= _blackPlatform.position.y + (0.25f * _blackPlatform.size.height)))
+        (lastRuffMovementPosition.y - (0.5f / CC_CONTENT_SCALE_FACTOR() * _ruffSprite.pixelMaskHeight) >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))
         {
         CCLOG(@"green platform");
-        _ruffBaseY = _blackPlatform.position.y + 0.25f * (_blackPlatform.pixelMaskHeight + _ruffSprite.pixelMaskHeight);
+        _ruffBaseY = _blackPlatform.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _ruffSprite.pixelMaskHeight);
         }
     else if (_ruffBaseY != 275)
         {
