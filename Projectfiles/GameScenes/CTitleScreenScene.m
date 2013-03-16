@@ -51,7 +51,7 @@
         // explicitly set the background color of the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
-        self.menuLayer.isTouchEnabled = YES;
+        self.menuLayer.touchEnabled = YES;
         
         [self addMainMenuLabelsToLayer: self];
         
