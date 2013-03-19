@@ -33,5 +33,8 @@
     @property    ccTime             lastJumpTime;
     @property    ccTime             initialJumpTime;
 
+    // ruff's jump animation
+    @property    CCAnimation*       ruffLandingAnimation;
+    @property    id                 ruffLandingAction;
 
 @end

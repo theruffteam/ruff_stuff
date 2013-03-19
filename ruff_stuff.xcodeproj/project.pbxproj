@@ -22,6 +22,7 @@
 		684546EA16C8057200AD018E /* RuffSide-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 684546E916C8057200AD018E /* RuffSide-ipad.png */; };
 		686CD76716BB826500E1D733 /* intro_256.caf in Resources */ = {isa = PBXBuildFile; fileRef = 686CD76616BB826500E1D733 /* intro_256.caf */; };
 		686CD76916BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 686CD76816BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 */; };
+		687BA00716F8153300CECAB6 /* KKMutablePixelMaskSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 687BA00516F8153300CECAB6 /* KKMutablePixelMaskSprite.m */; };
 		687C2F3416B7DD2B00E231F9 /* title_screen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3316B7DD2B00E231F9 /* title_screen.caf */; };
 		687C2F3916B7F67F00E231F9 /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3516B7F67F00E231F9 /* assets.plist */; };
 		687C2F3A16B7F67F00E231F9 /* graphics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3616B7F67F00E231F9 /* graphics.plist */; };
@@ -31,6 +32,10 @@
 		687C2F5216B8BAB200E231F9 /* title_screen_bg_01-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */; };
 		687C2F5316B8BAB200E231F9 /* title_screen_bg_02-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */; };
 		68A4C67F16D5FA38001E1934 /* CLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A4C67E16D5FA38001E1934 /* CLevel.m */; };
+		68A60B1916F6A6F900EB7970 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 68A60B1516F6A6F900EB7970 /* ruff-sprite-sheet-ipad.pvr.ccz */; };
+		68A60B1A16F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 68A60B1616F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz */; };
+		68A60B1B16F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68A60B1716F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist */; };
+		68A60B1C16F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68A60B1816F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.plist */; };
 		68BD608A16EC7FE800E1D70D /* blackPlatform-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BD608816EC7FE800E1D70D /* blackPlatform-ipad.png */; };
 		68BD608B16EC7FE800E1D70D /* blackPlatform-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BD608916EC7FE800E1D70D /* blackPlatform-ipadhd.png */; };
 		68E8918D16F1A37300CDEED6 /* greenPlatform-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E8918B16F1A37300CDEED6 /* greenPlatform-ipad.png */; };
@@ -99,6 +104,8 @@
 		684546E916C8057200AD018E /* RuffSide-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RuffSide-ipad.png"; sourceTree = "<group>"; };
 		686CD76616BB826500E1D733 /* intro_256.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro_256.caf; sourceTree = "<group>"; };
 		686CD76816BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "young_ruff_dash_attack-ipadhd.mp4"; sourceTree = "<group>"; };
+		687BA00516F8153300CECAB6 /* KKMutablePixelMaskSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KKMutablePixelMaskSprite.m; path = ExtendedClasses/KKMutablePixelMaskSprite.m; sourceTree = "<group>"; };
+		687BA00616F8153300CECAB6 /* KKMutablePixelMaskSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KKMutablePixelMaskSprite.h; path = ExtendedClasses/KKMutablePixelMaskSprite.h; sourceTree = "<group>"; };
 		687C2F3316B7DD2B00E231F9 /* title_screen.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = title_screen.caf; sourceTree = "<group>"; };
 		687C2F3516B7F67F00E231F9 /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
 		687C2F3616B7F67F00E231F9 /* graphics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graphics.plist; sourceTree = "<group>"; };
@@ -111,6 +118,10 @@
 		687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_screen_bg_02-ipad.png"; sourceTree = "<group>"; };
 		68A4C67D16D5FA38001E1934 /* CLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLevel.h; sourceTree = "<group>"; };
 		68A4C67E16D5FA38001E1934 /* CLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLevel.m; sourceTree = "<group>"; };
+		68A60B1516F6A6F900EB7970 /* ruff-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		68A60B1616F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
+		68A60B1716F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		68A60B1816F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
 		68BD608816EC7FE800E1D70D /* blackPlatform-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackPlatform-ipad.png"; sourceTree = "<group>"; };
 		68BD608916EC7FE800E1D70D /* blackPlatform-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackPlatform-ipadhd.png"; sourceTree = "<group>"; };
 		68E8918B16F1A37300CDEED6 /* greenPlatform-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenPlatform-ipad.png"; sourceTree = "<group>"; };
@@ -214,6 +225,15 @@
 			name = ActorClasses;
 			sourceTree = "<group>";
 		};
+		687BA00816F8153B00CECAB6 /* ExtendedClasses */ = {
+			isa = PBXGroup;
+			children = (
+				687BA00616F8153300CECAB6 /* KKMutablePixelMaskSprite.h */,
+				687BA00516F8153300CECAB6 /* KKMutablePixelMaskSprite.m */,
+			);
+			name = ExtendedClasses;
+			sourceTree = "<group>";
+		};
 		687C2F3E16B7F73300E231F9 /* Configuration Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +271,25 @@
 				684546E416C8053900AD018E /* title_screen_bg_02-ipadhd.png */,
 			);
 			name = "HD Files";
+			sourceTree = "<group>";
+		};
+		68A60AF216F54D7500EB7970 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				68A60AF316F54D8000EB7970 /* Ruff */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
+		68A60AF316F54D8000EB7970 /* Ruff */ = {
+			isa = PBXGroup;
+			children = (
+				68A60B1516F6A6F900EB7970 /* ruff-sprite-sheet-ipad.pvr.ccz */,
+				68A60B1616F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz */,
+				68A60B1716F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist */,
+				68A60B1816F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.plist */,
+			);
+			name = Ruff;
 			sourceTree = "<group>";
 		};
 		BA2DF34B16B3A1340013DE12 /* EmiBear */ = {
@@ -348,6 +387,7 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				687BA00816F8153B00CECAB6 /* ExtendedClasses */,
 				684546DB16C794B600AD018E /* ActorClasses */,
 				687C2F4A16B89DF300E231F9 /* GameScenes */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
@@ -369,6 +409,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68A60AF216F54D7500EB7970 /* Animations */,
 				687C2F3E16B7F73300E231F9 /* Configuration Files */,
 				687C2F5416B8BAB900E231F9 /* HD Files */,
 				682E5E2416DB3DE200820D6A /* ruffReady-ipad.png */,
@@ -515,6 +556,10 @@
 				68E8918E16F1A37300CDEED6 /* greenPlatform-ipadhd.png in Resources */,
 				68E8919116F43DA300CDEED6 /* floor-ipad.png in Resources */,
 				68E8919216F43DA300CDEED6 /* floor-ipadhd.png in Resources */,
+				68A60B1916F6A6F900EB7970 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */,
+				68A60B1A16F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */,
+				68A60B1B16F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist in Resources */,
+				68A60B1C16F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +592,7 @@
 				684546D816C7949800AD018E /* CYoungRuff.m in Sources */,
 				684546DE16C79CD100AD018E /* CGameMechanicsScene.m in Sources */,
 				68A4C67F16D5FA38001E1934 /* CLevel.m in Sources */,
+				687BA00716F8153300CECAB6 /* KKMutablePixelMaskSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
