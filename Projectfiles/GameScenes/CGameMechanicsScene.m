@@ -358,6 +358,7 @@
     _gameTime += delta;
     _jumpTime = _gameTime;
     
+    [_ruffSprite updatePixelMask];
     
     [self gestureRecognitionWithPositionOfRuff: lastRuffMovementPosition];
     

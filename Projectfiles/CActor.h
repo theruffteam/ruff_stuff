@@ -9,9 +9,9 @@
 // =============================================================================
 
 #import <Foundation/Foundation.h>
-#import "kobold2d.h"
+#import "KKMutablePixelMaskSprite.h"
 
-@interface CActor : KKPixelMaskSprite
+@interface CActor : KKMutablePixelMaskSprite
     //@property    CCSprite*        boundingBox; // hitBox
     @property    CGRect           attackHitBox;
     @property    int              hitPoints;
