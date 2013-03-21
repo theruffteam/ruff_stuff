@@ -388,6 +388,8 @@
 
 -(void) update:(ccTime)delta
 {
+//    [self addChild:[_ruffSprite updatePixelMask] z:11];
+    
     CGPoint lastRuffMovementPosition = _ruffSprite.position;
 
     _gameTimeDelta = delta;
@@ -611,7 +613,7 @@
 //        //[image release];
 //        image = nil;
 //        }
-//    
+//
 //    //return self;
 //}
 
