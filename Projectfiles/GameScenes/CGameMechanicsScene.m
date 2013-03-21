@@ -11,6 +11,7 @@
 #import "CCAnimationExtensions.h"
 #import "CGameMechanicsScene.h"
 #import "CWorld.h"
+#import "CCSpriteFrameExtended.h"
 
 #define RUFF_JUMP_SPEED 1493.598f
 #define RUFF_FALL_SPEED 0.0f
@@ -34,6 +35,41 @@
     
 	if ((self = [super init]))
         {
+        // must use this when click premultiplied alpha in texture packer
+        [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+        
+        // add ruff's sprite sheet to the sprite cache
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"ruff-sprite-sheet.plist"];
+        
+        // get ruff on the screen
+        _ruffSprite = [[CYoungRuff alloc] initRuff:0];
+		_ruffSprite.anchorPoint = ccp(0,0);
+        _ruffSprite.position = ccp(100, 205);// 205);
+        [self addChild: _ruffSprite z:1];
+
+        
+        
+        
+
+        // now let's look at the plist which loaded ruff's spritesheet, and grab all the sprite frame names
+        // so that we can extend them with the pixel mask, and re-add them to the frame cache
+        NSDictionary* dictionaryOfRuffsSpriteSheet = [NSDictionary dictionaryWithContentsOfFile: [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:@"ruff-sprite-sheet.plist"]];
+
+        NSDictionary* dictionaryOfRuffsSpriteFrameNames = [NSDictionary dictionaryWithDictionary:[dictionaryOfRuffsSpriteSheet objectForKey:@"frames"]];
+        
+        for (NSString* frameName in dictionaryOfRuffsSpriteFrameNames)
+            {
+            [_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+            
+            CCSpriteFrameExtended* pixelMaskFrame = [_ruffSprite createPixelMaskWithCurrentFrame];
+            
+            //pixelMaskFrame = (CCSpriteFrame*)(_ruffSprite.displayFrame);
+            
+            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name: frameName];
+            }
+        
+        [_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
+
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
         
@@ -43,20 +79,20 @@
         // explicitly set the background color of the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
-        // add ruff's sprite sheet to the sprite cache
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"ruff-sprite-sheet.plist"];
-        
+                
         // get floor on the screen
 		CCSprite* floor = [CCSprite spriteWithFile:@"floor.png"];
         floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
 		[self addChild: floor z:-5];
         
-        
+
         // get ruff on the screen
         _ruffSprite = [[[CYoungRuff alloc] initRuff:0] initWithSpriteFrameName:@"ruff-ready-01.png"];
 		_ruffSprite.anchorPoint = ccp(0,0);
         _ruffSprite.position = ccp(100, 205);// 205);
         [self addChild: _ruffSprite z:1];
+        
+        
         
         // get black platform on the screen
         _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
@@ -358,7 +394,7 @@
     _gameTime += delta;
     _jumpTime = _gameTime;
     
-    [_ruffSprite updatePixelMask];
+    //[_ruffSprite updatePixelMask];
     
     [self gestureRecognitionWithPositionOfRuff: lastRuffMovementPosition];
     
@@ -389,7 +425,7 @@
         CCLOG(@"anyTouchEndedThisFrame");
         }
     
-    if ([ _ruffSprite pixelMaskIntersectsNode:_greenPlatform]  &&
+    if ([ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
         (lastRuffMovementPosition.y - (0.5f / CC_CONTENT_SCALE_FACTOR() * _ruffSprite.pixelMaskHeight) >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))
         {
         CCLOG(@"green platform");
@@ -406,7 +442,7 @@
             _initialJumpTime = _lastJumpTime;
             }
         }
-    
+        
 
 	lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
@@ -415,6 +451,10 @@
     _ruffSprite.previousPosition = _ruffSprite.position;
 
     _lastJumpTime = _gameTime;
+    
+    
+
+    
 }
 
 

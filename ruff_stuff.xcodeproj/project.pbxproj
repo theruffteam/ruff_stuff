@@ -23,6 +23,8 @@
 		686CD76716BB826500E1D733 /* intro_256.caf in Resources */ = {isa = PBXBuildFile; fileRef = 686CD76616BB826500E1D733 /* intro_256.caf */; };
 		686CD76916BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 686CD76816BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 */; };
 		687BA00716F8153300CECAB6 /* KKMutablePixelMaskSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 687BA00516F8153300CECAB6 /* KKMutablePixelMaskSprite.m */; };
+		687BA00A16F95D5800CECAB6 /* ruff-jump-12-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 687BA00916F95D5800CECAB6 /* ruff-jump-12-ipadhd.png */; };
+		687BA00D16F99A5900CECAB6 /* CCSpriteFrameExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 687BA00B16F99A5900CECAB6 /* CCSpriteFrameExtended.m */; };
 		687C2F3416B7DD2B00E231F9 /* title_screen.caf in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3316B7DD2B00E231F9 /* title_screen.caf */; };
 		687C2F3916B7F67F00E231F9 /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3516B7F67F00E231F9 /* assets.plist */; };
 		687C2F3A16B7F67F00E231F9 /* graphics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F3616B7F67F00E231F9 /* graphics.plist */; };
@@ -106,6 +108,9 @@
 		686CD76816BBB4F700E1D733 /* young_ruff_dash_attack-ipadhd.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "young_ruff_dash_attack-ipadhd.mp4"; sourceTree = "<group>"; };
 		687BA00516F8153300CECAB6 /* KKMutablePixelMaskSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KKMutablePixelMaskSprite.m; path = ExtendedClasses/KKMutablePixelMaskSprite.m; sourceTree = "<group>"; };
 		687BA00616F8153300CECAB6 /* KKMutablePixelMaskSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KKMutablePixelMaskSprite.h; path = ExtendedClasses/KKMutablePixelMaskSprite.h; sourceTree = "<group>"; };
+		687BA00916F95D5800CECAB6 /* ruff-jump-12-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ruff-jump-12-ipadhd.png"; sourceTree = "<group>"; };
+		687BA00B16F99A5900CECAB6 /* CCSpriteFrameExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCSpriteFrameExtended.m; path = ExtendedClasses/CCSpriteFrameExtended.m; sourceTree = "<group>"; };
+		687BA00C16F99A5900CECAB6 /* CCSpriteFrameExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCSpriteFrameExtended.h; path = ExtendedClasses/CCSpriteFrameExtended.h; sourceTree = "<group>"; };
 		687C2F3316B7DD2B00E231F9 /* title_screen.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = title_screen.caf; sourceTree = "<group>"; };
 		687C2F3516B7F67F00E231F9 /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
 		687C2F3616B7F67F00E231F9 /* graphics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = graphics.plist; sourceTree = "<group>"; };
@@ -228,6 +233,8 @@
 		687BA00816F8153B00CECAB6 /* ExtendedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				687BA00C16F99A5900CECAB6 /* CCSpriteFrameExtended.h */,
+				687BA00B16F99A5900CECAB6 /* CCSpriteFrameExtended.m */,
 				687BA00616F8153300CECAB6 /* KKMutablePixelMaskSprite.h */,
 				687BA00516F8153300CECAB6 /* KKMutablePixelMaskSprite.m */,
 			);
@@ -284,6 +291,7 @@
 		68A60AF316F54D8000EB7970 /* Ruff */ = {
 			isa = PBXGroup;
 			children = (
+				687BA00916F95D5800CECAB6 /* ruff-jump-12-ipadhd.png */,
 				68A60B1516F6A6F900EB7970 /* ruff-sprite-sheet-ipad.pvr.ccz */,
 				68A60B1616F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz */,
 				68A60B1716F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist */,
@@ -560,6 +568,7 @@
 				68A60B1A16F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */,
 				68A60B1B16F6A6F900EB7970 /* ruff-sprite-sheet-ipad.plist in Resources */,
 				68A60B1C16F6A6F900EB7970 /* ruff-sprite-sheet-ipadhd.plist in Resources */,
+				687BA00A16F95D5800CECAB6 /* ruff-jump-12-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +602,7 @@
 				684546DE16C79CD100AD018E /* CGameMechanicsScene.m in Sources */,
 				68A4C67F16D5FA38001E1934 /* CLevel.m in Sources */,
 				687BA00716F8153300CECAB6 /* KKMutablePixelMaskSprite.m in Sources */,
+				687BA00D16F99A5900CECAB6 /* CCSpriteFrameExtended.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

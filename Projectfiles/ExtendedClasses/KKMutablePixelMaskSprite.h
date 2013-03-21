@@ -6,10 +6,10 @@
  */
 
 #import "KKPixelMaskSprite.h"
-
+#import "CCSpriteFrameExtended.h"
 
 @interface KKMutablePixelMaskSprite : KKPixelMaskSprite
 
--(void) updatePixelMask;
-
+-(void) updatePixelMaskWithSpriteFrame: (CCSpriteFrameExtended*) spriteFrame;
+-(CCSpriteFrameExtended*) createPixelMaskWithCurrentFrame;
 @end
