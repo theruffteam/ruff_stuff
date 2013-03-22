@@ -6,8 +6,35 @@
  */
 
 #import "CCSpriteFrameExtended.h"
+#import "KKMutablePixelMaskSprite.h"
+@interface KKMutablePixelMaskSprite()
+    #if KK_PIXELMASKSPRITE_USE_BITARRAY
+    @property (readwrite, copy) bit_array_t* pixelMask;
+    #else
+    @property (nonatomic, readwrite) BOOL* pixelMask;
+    #endif
+
+    @property (nonatomic, readwrite) NSUInteger pixelMaskWidth;
+    @property (nonatomic, readwrite) NSUInteger pixelMaskHeight;
+    @property (nonatomic, readwrite) NSUInteger pixelMaskSize;
+@end
+
+
+@interface CCSpriteFrameExtended()
+#if KK_PIXELMASKSPRITE_USE_BITARRAY
+@property (readwrite, copy) bit_array_t* pixelMask;
+#else
+@property (nonatomic, readwrite) BOOL* pixelMask;
+#endif
+
+@property (nonatomic, readwrite) NSUInteger pixelMaskWidth;
+@property (nonatomic, readwrite) NSUInteger pixelMaskHeight;
+@property (nonatomic, readwrite) NSUInteger pixelMaskSize;
+@end
 
 
 @implementation CCSpriteFrameExtended
+
+
 
 @end

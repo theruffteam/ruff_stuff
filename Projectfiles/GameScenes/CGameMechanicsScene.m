@@ -44,12 +44,8 @@
         // get ruff on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
-        _ruffSprite.position = ccp(100, 205);// 205);
+        _ruffSprite.position = ccp(100, 205);
         [self addChild: _ruffSprite z:1];
-
-        
-        
-        
 
         // now let's look at the plist which loaded ruff's spritesheet, and grab all the sprite frame names
         // so that we can extend them with the pixel mask, and re-add them to the frame cache
@@ -69,7 +65,7 @@
             }
         
         [_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
-
+        
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
         
@@ -84,15 +80,6 @@
 		CCSprite* floor = [CCSprite spriteWithFile:@"floor.png"];
         floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
 		[self addChild: floor z:-5];
-        
-
-        // get ruff on the screen
-        _ruffSprite = [[[CYoungRuff alloc] initRuff:0] initWithSpriteFrameName:@"ruff-ready-01.png"];
-		_ruffSprite.anchorPoint = ccp(0,0);
-        _ruffSprite.position = ccp(100, 205);// 205);
-        [self addChild: _ruffSprite z:1];
-        
-        
         
         // get black platform on the screen
         _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
@@ -141,24 +128,14 @@
         _lastJumpTime = 0;
         _initialJumpSpeed = 0;
         _initialJumpTime = 0;
-        
-    
     
     NSMutableArray* animationFrames = [NSMutableArray array];
+    
     
     for(int i = 1; i <= 18; ++i)
         {
         [animationFrames addObject: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"ruff-jump-%02d.png", i]]];
         }
-    
-    //_ruffJumpAnimation = [CCAnimation animationWithSpriteFrames:animationFrames delay:0.1f];
-    
-    //_ruffJumpAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation: _ruffJumpAnimation]];
-    
-    //[_ruffSprite runAction: [CCAnimate actionWithAnimation:[CCAnimation animationWithAnimationFrames:@" ruff-jump" delayPerUnit:0.1f loops:1]]];
-    
-    //[_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
-    
 
     return self;
 }
@@ -283,8 +260,8 @@
                           ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (velocity * (_lastJumpTime-_initialJumpTime)));
         projectedY = currentYOfRuff + changeOfY;
 
-
-        _isJumping = (projectedY > baseY); // turns the jump flag on for falling to prevent mid-fall jump
+        // turns the jump flag on for falling to prevent mid-fall jump
+        _isJumping = (projectedY > baseY);
 
         if (projectedY <= baseY)
             {
@@ -293,9 +270,6 @@
             _isJumping = NO;
             
             // play ruff's landing animation
-            //[_ruffSprite playAnimWithFormat:@"ruff-jump-%02d.png" numFrames:2 firstIndex:17 delay:0.04167f animateTag:2 restoreOriginalFrame: NO];
-            
-            
             NSMutableArray* animationFrames = [[NSMutableArray alloc] initWithCapacity: 2];
             
             for(int i = 17; i < 19; ++i)
@@ -320,8 +294,6 @@
         if ( _jumpTime == _initialJumpTime)
             {
             // play ruff's takeoff animation
-            //[_ruffSprite playAnimWithFormat:@"ruff-jump-%02d.png" numFrames:16 firstIndex:1 delay:0.04167f animateTag:1 restoreOriginalFrame: NO];
-
             NSMutableArray* animationTakeoffFrames = [[NSMutableArray alloc] initWithCapacity:2];
             
             for(int i = 1; i < 3; ++i)
@@ -387,27 +359,14 @@
 
 
 -(void) update:(ccTime)delta
-{
-//    [self addChild:[_ruffSprite updatePixelMask] z:11];
-    
+{    
     CGPoint lastRuffMovementPosition = _ruffSprite.position;
 
     _gameTimeDelta = delta;
     _gameTime += delta;
     _jumpTime = _gameTime;
-    
-    //[_ruffSprite updatePixelMask];
-    
+
     [self gestureRecognitionWithPositionOfRuff: lastRuffMovementPosition];
-    
-        
-//    if (_isJumping  &&  ! _isJumpingAnimationRunning)
-//        {
-//        // ruff's jump
-//        [_ruffSprite playAnimWithFormat:@"ruff-jump-%02d.png" numFrames:15 firstIndex:2 delay:0.041667f animateTag: 2 restoreOriginalFrame: YES];
-//
-//        _isJumpingAnimationRunning = YES;
-//        }
 
     // check for jump FIRST, then moving
     if (_isJumping)
@@ -427,11 +386,13 @@
         CCLOG(@"anyTouchEndedThisFrame");
         }
     
+    //[_ruffSprite updatePixelMaskWithSpriteFrame:(CCSpriteFrameExtended*)[_ruffSprite displayFrame]];
+    
     if ([ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
-        (lastRuffMovementPosition.y - (0.5f / CC_CONTENT_SCALE_FACTOR() * _ruffSprite.pixelMaskHeight) >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))
+        (lastRuffMovementPosition.y >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))
         {
         CCLOG(@"green platform");
-        _ruffBaseY = _blackPlatform.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _ruffSprite.pixelMaskHeight);
+        _ruffBaseY = _blackPlatform.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight);
         }
     else if (_ruffBaseY != 205)
         {
@@ -444,7 +405,6 @@
             _initialJumpTime = _lastJumpTime;
             }
         }
-        
 
 	lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
@@ -453,10 +413,6 @@
     _ruffSprite.previousPosition = _ruffSprite.position;
 
     _lastJumpTime = _gameTime;
-    
-    
-
-    
 }
 
 
@@ -516,106 +472,4 @@
             }
         }
 }
-
-
-//-(void) initWithSpriteFrame:(CCSpriteFrame *)spriteFrame alphaThreshold:(UInt8)alphaThreshold
-//{
-//    KKPixelMaskSprite* temp = [[KKPixelMaskSprite alloc] initWithSpriteFrame:spriteFrame];
-//    
-//    if (true)//(self = [super initWithSpriteFrameName:frameName]))
-//        {
-//        //if (PixelMaskSpriteClass == nil)
-//          //  {
-//			//PixelMaskSpriteClass = [KKPixelMaskSprite class];
-//            //}
-//        
-//        int tx = temp.contentSize.width;
-//        int ty = temp.contentSize.height;
-//        
-//        
-//        CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:tx height:ty];
-//        
-//        temp.anchorPoint = CGPointZero;
-//        
-//        [renderer begin];
-//        [temp visit];
-//        [renderer end];
-//        
-//#if KK_PLATFORM_IOS
-//        UIImage* image = [renderer getUIImage];
-//#elif KK_PLATFORM_MAC
-//        NSImage* image = [[NSImage alloc] init];
-//#endif
-//        
-//        // get all the image information we need
-//        _ruffSprite.pixelMaskWidth = image.size.width;
-//        _ruffSprite.pixelMaskHeight = image.size.height;
-//        _ruffSprite.pixelMaskSize = _ruffSprite.pixelMaskWidth * _ruffSprite.pixelMaskHeight;
-//        
-//#if defined(__arm__) && !defined(__ARM_NEON__)
-//        NSAssert3(isPowerOfTwo(pixelMaskWidth) && isPowerOfTwo(pixelMaskHeight),
-//                  @"Image '%@' size (%u, %u): pixel mask image must have power of two dimensions on 1st & 2nd gen devices.",
-//                  filename, pixelMaskWidth, pixelMaskHeight);
-//#endif
-//        
-//        // allocate and clear the pixelMask buffer
-//#if KK_PIXELMASKSPRITE_USE_BITARRAY
-//        pixelMask = BitArrayCreate(pixelMaskSize);
-//        BitArrayClearAll(pixelMask);
-//#else
-//        _ruffSprite.pixelMask = malloc(_ruffSprite.pixelMaskSize * sizeof(BOOL));
-//        memset(_ruffSprite.pixelMask, 0, _ruffSprite.pixelMaskSize * sizeof(BOOL));
-//#endif
-//        
-//        // get the pixel data (more correctly: texels) as 32-Bit unsigned integers
-//#if KK_PLATFORM_IOS
-//        CGImageRef cgImage = image.CGImage;
-//#elif KK_PLATFORM_MAC
-//        CGImageRef cgImage = [image CGImageForProposedRect:NULL
-//                                                   context:[NSGraphicsContext currentContext]
-//                                                     hints:[NSDictionary dictionary]];
-//#endif
-//        CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
-//        const UInt32* imagePixels = (const UInt32*)CFDataGetBytePtr(imageData);
-//        UInt32 alphaValue = 0, x = 0, y = (UInt32)(_ruffSprite.pixelMaskHeight - 1);
-//        UInt8 alpha = 0;
-//        
-//        for (NSUInteger i = 0; i < _ruffSprite.pixelMaskSize; i++)
-//            {
-//            // ensure that the pixelMask is created in the normal orientation (default would be upside down)
-//            NSUInteger index = y * _ruffSprite.pixelMaskWidth + x;
-//            x++;
-//            if (x == _ruffSprite.pixelMaskWidth)
-//                {
-//                x = 0;
-//                y--;
-//                }
-//            
-//            // mask out the colors so that only the alpha value remains (upper 8 bits)
-//            alphaValue = imagePixels[i] & 0xff000000;
-//            if (alphaValue > 0)
-//                {
-//                // get the 8-Bit alpha value, then compare it with the alpha threshold
-//                alpha = (UInt8)(alphaValue >> 24);
-//                if (alpha >= alphaThreshold)
-//                    {
-//#if KK_PIXELMASKSPRITE_USE_BITARRAY
-//                    BitArraySetBit(pixelMask, index);
-//#else
-//                    _ruffSprite.pixelMask[index] = YES;
-//#endif
-//                    }
-//                }
-//            }
-//        
-//        CFRelease(imageData);
-//        imageData = nil;
-//        //[image release];
-//        image = nil;
-//        }
-//
-//    //return self;
-//}
-
-
 @end

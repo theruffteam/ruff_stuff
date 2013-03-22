@@ -6,7 +6,6 @@
  */
 
 #import "KKMutablePixelMaskSprite.h"
-#import "KKPixelMaskSprite.h"
 
 // caching the class for faster access
 //static Class PixelMaskSpriteClass = nil;
@@ -25,6 +24,20 @@
 
 @end
 
+@interface CCSpriteFrameExtended ()
+
+#if KK_PIXELMASKSPRITE_USE_BITARRAY
+@property (readwrite, copy) bit_array_t* pixelMask;
+#else
+@property (nonatomic, readwrite) BOOL* pixelMask;
+#endif
+
+@property (nonatomic, readwrite) NSUInteger pixelMaskWidth;
+@property (nonatomic, readwrite) NSUInteger pixelMaskHeight;
+@property (nonatomic, readwrite) NSUInteger pixelMaskSize;
+
+@end
+
 
 
 @implementation KKMutablePixelMaskSprite
@@ -34,10 +47,18 @@ static Class PixelMaskSpriteClass = nil;
 
 -(void) updatePixelMaskWithSpriteFrame: (CCSpriteFrameExtended*) spriteFrame
 {
-    pixelMask = spriteFrame.pixelMask;
     pixelMaskHeight = spriteFrame.pixelMaskHeight;
     pixelMaskWidth = spriteFrame.pixelMaskWidth;
     pixelMaskSize = spriteFrame.pixelMaskSize;
+    pixelMask = spriteFrame.pixelMask;
+    
+    //free(pixelMask);
+    
+    //pixelMask = malloc(spriteFrame.pixelMaskSize * sizeof(BOOL));
+    
+    //memset(spriteFrame.pixelMask, 0, spriteFrame.pixelMaskSize * sizeof(BOOL));
+    
+    //memmove(pixelMask, spriteFrame.pixelMask, spriteFrame.pixelMaskSize * sizeof(BOOL));
 }
 
 
@@ -49,7 +70,7 @@ static Class PixelMaskSpriteClass = nil;
         }
     CCSpriteFrame* spriteFrame = [self displayFrame];
     
-    CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] init];
+    CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] initWithTexture:spriteFrame.texture rect:spriteFrame.rect];
     
     
     
