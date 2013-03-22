@@ -16,9 +16,7 @@
 #define RUFF_JUMP_SPEED 1493.598f
 #define RUFF_FALL_SPEED 0.0f
 #define GRAVITY -1991.465f
-#define RUFF_SPEED 500.0f
-#define RUFF_FREE_FALL_SPEED 150.0f
-
+#define RUFF_SPEED 480.0f
 
 @interface CGameMechanicsScene (PrivateMethods)
 
@@ -77,7 +75,7 @@
         
                 
         // get floor on the screen
-		CCSprite* floor = [CCSprite spriteWithFile:@"floor.png"];
+		CCSprite* floor = [CCSprite spriteWithFile:@"titleFixed.png"];
         floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
 		[self addChild: floor z:-5];
         
@@ -128,6 +126,7 @@
         _lastJumpTime = 0;
         _initialJumpSpeed = 0;
         _initialJumpTime = 0;
+        _isRunning = NO;
     
     NSMutableArray* animationFrames = [NSMutableArray array];
     
@@ -270,6 +269,8 @@
             _isJumping = NO;
             
             // play ruff's landing animation
+            [_ruffSprite stopAllActions];
+            
             NSMutableArray* animationFrames = [[NSMutableArray alloc] initWithCapacity: 2];
             
             for(int i = 17; i < 19; ++i)
@@ -293,6 +294,8 @@
         {
         if ( _jumpTime == _initialJumpTime)
             {
+            [_ruffSprite stopAllActions];
+            
             // play ruff's takeoff animation
             NSMutableArray* animationTakeoffFrames = [[NSMutableArray alloc] initWithCapacity:2];
             
@@ -304,8 +307,7 @@
             CCAnimation* ruffTakeoffAnimation = [CCAnimation animationWithSpriteFrames:animationTakeoffFrames delay:0.04167f];
             
             id ruffTakeoffAction = [CCAnimate actionWithAnimation: ruffTakeoffAnimation];
-            
-            
+
             
             NSMutableArray* animationJumpFrames = [[NSMutableArray alloc] initWithCapacity:14];
             
@@ -331,6 +333,32 @@
     
     return projectedY;
 }
+
+
+-(void) run
+{
+    if (!_isRunning)
+        {
+    // play ruff's running animation
+    NSMutableArray* animationFrames = [[NSMutableArray alloc] initWithCapacity: 2];
+    
+    for(int i = 1; i < 9; ++i)
+        {
+        [animationFrames addObject: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"ruff-run-%02d.png", i]]];
+        }
+    
+    CCAnimation* ruffRunAnimation = [[CCAnimation alloc] initWithSpriteFrames:animationFrames delay:1.0f/12.0f];
+    
+    id ruffRunAction = [[CCAnimate alloc] initWithAnimation:ruffRunAnimation];
+        
+    CCSequence *seq = [CCSequence actions:
+                       ruffRunAction,
+                       nil];
+    
+    [_ruffSprite runAction: [CCRepeatForever actionWithAction:seq]];
+        }
+}
+
 
 
 -(CGPoint) keepRuffBetweenScreenBorders: (CGPoint) positionOfRuff
@@ -360,6 +388,15 @@
     // update his frame visually
     [_ruffSprite setDisplayFrame: frame];    
 
+    [self setRuffsPixelMaskWithFrame:frame];
+}
+
+
+-(void)setRuffsPixelMaskWithFrame: (CCSpriteFrameExtended*)frame
+{
+    // update his frame visually
+    [_ruffSprite setDisplayFrame: frame];
+    
     // update his pixel mask to match his updated frame
     [_ruffSprite updatePixelMaskWithSpriteFrame: frame];
 }
@@ -378,7 +415,26 @@
     // check for jump FIRST, then moving
     if (_isJumping)
         {
+        _isRunning = NO;
+        
         lastRuffMovementPosition.y = [self makeRuffJump: lastRuffMovementPosition.y withVelocity: _initialJumpSpeed];
+        }
+    
+    // not jumping and not running
+    if (!_isJumping  &&  !_isRunning  &&  _isMoving)
+        {
+        [_ruffSprite stopAllActions];
+        
+        [self run];
+        
+        _isRunning = YES;
+        }
+    
+    if (!_isJumping  && !_isMoving)
+        {
+        [self resetRuffsReadyFrame];
+
+        _isRunning = NO;
         }
     
     if (_isMoving)
@@ -408,6 +464,15 @@
             _isJumping = YES;
             _initialJumpSpeed = RUFF_FALL_SPEED;
             _initialJumpTime = _lastJumpTime;
+
+            [_ruffSprite stopAllActions];
+            
+            // hold the extended leg frame until he lands on something
+            CCSpriteFrameExtended* frame = (CCSpriteFrameExtended*)([[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-jump-16.png"]);
+            
+            [_ruffSprite setDisplayFrame: frame];
+            
+            [self setRuffsPixelMaskWithFrame: frame];
             }
         }
 

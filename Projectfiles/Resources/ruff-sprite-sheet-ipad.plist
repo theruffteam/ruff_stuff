@@ -7,241 +7,241 @@
             <key>ruff-jump-01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{240,530},{115,136}}</string>
+                <string>{{369,550},{123,142}}</string>
                 <key>offset</key>
-                <string>{-4,-3}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,6},{115,136}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,671},{103,140}}</string>
+                <string>{{246,550},{123,142}}</string>
                 <key>offset</key>
-                <string>{-9,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,2},{103,140}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,655},{113,142}}</string>
+                <string>{{123,541},{123,142}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,0},{113,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,655},{113,142}}</string>
+                <string>{{123,541},{123,142}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,0},{113,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,655},{113,142}}</string>
+                <string>{{123,541},{123,142}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,0},{113,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,655},{113,142}}</string>
+                <string>{{123,541},{123,142}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,0},{113,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,655},{113,142}}</string>
+                <string>{{123,541},{123,142}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,0},{113,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,529},{117,142}}</string>
+                <string>{{0,541},{123,142}}</string>
                 <key>offset</key>
-                <string>{-3,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{117,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-09.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{121,521},{119,134}}</string>
+                <string>{{369,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{-2,4}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{119,134}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,262},{123,128}}</string>
+                <string>{{246,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{0,7}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{123,128}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,262},{123,128}}</string>
+                <string>{{246,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{0,7}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{123,128}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,262},{123,128}}</string>
+                <string>{{246,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{0,7}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{123,128}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,262},{123,128}}</string>
+                <string>{{246,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{0,7}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{123,128}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,262},{123,128}}</string>
+                <string>{{246,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{0,7}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{123,128}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-15.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,262},{123,128}}</string>
+                <string>{{246,408},{123,142}}</string>
                 <key>offset</key>
-                <string>{0,7}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{123,128}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{154,379},{121,142}}</string>
+                <string>{{123,399},{123,142}}</string>
                 <key>offset</key>
-                <string>{-1,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{121,142}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{275,390},{119,140}}</string>
+                <string>{{0,399},{123,142}}</string>
                 <key>offset</key>
-                <string>{-2,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,2},{119,140}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-jump-18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,389},{121,140}}</string>
+                <string>{{336,266},{123,142}}</string>
                 <key>offset</key>
-                <string>{-1,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,2},{121,140}}</string>
+                <string>{{0,0},{123,142}}</string>
                 <key>sourceSize</key>
                 <string>{123,142}</string>
             </dict>
             <key>ruff-ready-01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{394,390},{117,142}}</string>
+                <string>{{0,683},{117,142}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,104 +254,104 @@
             <key>ruff-run-01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{330,0},{160,133}}</string>
+                <string>{{168,266},{168,133}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{160,133}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,0},{164,123}}</string>
+                <string>{{0,266},{168,133}}</string>
                 <key>offset</key>
-                <string>{-2,4}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,1},{164,123}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{166,133}}</string>
+                <string>{{336,133},{168,133}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,0},{166,133}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,133},{154,133}}</string>
+                <string>{{168,133},{168,133}}</string>
                 <key>offset</key>
-                <string>{7,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{14,0},{154,133}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{154,250},{154,129}}</string>
+                <string>{{0,133},{168,133}}</string>
                 <key>offset</key>
-                <string>{7,-2}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{14,4},{154,129}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,266},{154,123}}</string>
+                <string>{{336,0},{168,133}}</string>
                 <key>offset</key>
-                <string>{4,4}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{11,1},{154,123}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,123},{158,127}}</string>
+                <string>{{168,0},{168,133}}</string>
                 <key>offset</key>
-                <string>{3,-3}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{8,6},{158,127}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
             <key>ruff-run-08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{324,133},{154,129}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>offset</key>
-                <string>{4,-2}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{11,4},{154,129}}</string>
+                <string>{{0,0},{168,133}}</string>
                 <key>sourceSize</key>
                 <string>{168,133}</string>
             </dict>
@@ -365,7 +365,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:02b3b95a8fd6f4096816a8e1a8d773a6$</string>
+            <string>$TexturePacker:SmartUpdate:836443464be69cd871d407fc8c34a7b6$</string>
             <key>textureFileName</key>
             <string>ruff-sprite-sheet-ipad.pvr.ccz</string>
         </dict>
