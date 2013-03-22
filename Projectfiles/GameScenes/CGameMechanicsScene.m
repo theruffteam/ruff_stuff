@@ -354,7 +354,14 @@
 
 -(void) resetRuffsReadyFrame
 {
-    [_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
+    // pull from the cache the frame we want ruff to reset back to
+    CCSpriteFrameExtended* frame = (CCSpriteFrameExtended*)([[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]);
+    
+    // update his frame visually
+    [_ruffSprite setDisplayFrame: frame];    
+
+    // update his pixel mask to match his updated frame
+    [_ruffSprite updatePixelMaskWithSpriteFrame: frame];
 }
 
 
@@ -385,8 +392,6 @@
         {
         CCLOG(@"anyTouchEndedThisFrame");
         }
-    
-    //[_ruffSprite updatePixelMaskWithSpriteFrame:(CCSpriteFrameExtended*)[_ruffSprite displayFrame]];
     
     if ([ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
         (lastRuffMovementPosition.y >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))
