@@ -33,6 +33,8 @@
     @property    ccTime             gameTimeDelta;
     @property    ccTime             lastJumpTime;
     @property    ccTime             initialJumpTime;
+    @property    ccTime             landingTime;
+
 
     // ruff's jump animation
     @property    CCAnimation*       ruffLandingAnimation;

@@ -127,6 +127,7 @@
         _initialJumpSpeed = 0;
         _initialJumpTime = 0;
         _isRunning = NO;
+        _landingTime = 0;
     
     NSMutableArray* animationFrames = [NSMutableArray array];
     
@@ -174,7 +175,7 @@
             ! CGPointEqualToPoint(touch.location, CGPointZero))
             {
             // check if we need to jump
-            if (!_isJumping  &&  touch.location.y >= 0.65f * (_rightCirclePosition.y + 100))
+            if (!_isJumping  &&  touch.location.y >= 0.65f * (_rightCirclePosition.y + 100)  &&  (_gameTime - _landingTime) > 3.0f * 0.04167f)
                 {
                 _isJumping = YES;
                 _initialJumpSpeed = RUFF_JUMP_SPEED;
@@ -284,9 +285,12 @@
                         
             CCSequence *seq = [CCSequence actions:
                                _ruffLandingAction,
-                               [CCCallFunc actionWithTarget:self selector:@selector(resetRuffsReadyFrame)],
+                               //[CCCallFunc actionWithTarget:self selector:@selector(resetRuffsReadyFrame)],
                                nil];
           
+            // take note of the time of landing
+            _landingTime = _gameTime;
+            
             [_ruffSprite runAction: seq];
             }
         }
@@ -420,21 +424,28 @@
         lastRuffMovementPosition.y = [self makeRuffJump: lastRuffMovementPosition.y withVelocity: _initialJumpSpeed];
         }
     
-    // not jumping and not running
-    if (!_isJumping  &&  !_isRunning  &&  _isMoving)
+    // not jumping and not moving
+    if (!_isJumping  &&  !_isMoving)
         {
-        [_ruffSprite stopAllActions];
-        
-        [self run];
-        
-        _isRunning = YES;
+        // if we have exceeded the time it takes to finish the landing animation
+        if ((_gameTime - _landingTime) > 3.0f * 0.04167f)
+            {
+            [_ruffSprite stopAllActions];
+            
+            if (!_isRunning)
+                {
+                [self resetRuffsReadyFrame];
+                }
+            
+            _isRunning = NO;
+            }
         }
     
-    if (!_isJumping  && !_isMoving)
+    if (!_isJumping  &&  _isMoving)
         {
-        [self resetRuffsReadyFrame];
-
-        _isRunning = NO;
+        [self run];
+    
+        _isRunning = YES;
         }
     
     if (_isMoving)
