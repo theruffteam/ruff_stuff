@@ -341,25 +341,27 @@
 
 -(void) run
 {
+    
     if (!_isRunning)
         {
-    // play ruff's running animation
-    NSMutableArray* animationFrames = [[NSMutableArray alloc] initWithCapacity: 2];
+        [_ruffSprite stopAllActions];
+        // play ruff's running animation
+        NSMutableArray* animationFrames = [[NSMutableArray alloc] initWithCapacity: 2];
     
     for(int i = 1; i < 9; ++i)
         {
         [animationFrames addObject: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"ruff-run-%02d.png", i]]];
         }
     
-    CCAnimation* ruffRunAnimation = [[CCAnimation alloc] initWithSpriteFrames:animationFrames delay:1.0f/12.0f];
+        CCAnimation* ruffRunAnimation = [[CCAnimation alloc] initWithSpriteFrames:animationFrames delay:1.0f/12.0f];
     
-    id ruffRunAction = [[CCAnimate alloc] initWithAnimation:ruffRunAnimation];
+        id ruffRunAction = [[CCAnimate alloc] initWithAnimation:ruffRunAnimation];
         
-    CCSequence *seq = [CCSequence actions:
+        CCSequence *seq = [CCSequence actions:
                        ruffRunAction,
                        nil];
     
-    [_ruffSprite runAction: [CCRepeatForever actionWithAction:seq]];
+        [_ruffSprite runAction: [CCRepeatForever actionWithAction:seq]];
         }
 }
 
