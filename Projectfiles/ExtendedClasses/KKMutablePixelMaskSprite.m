@@ -132,8 +132,6 @@ static Class PixelMaskSpriteClass = nil;
     //[image release];
     image = nil;
     
-    _frame = extendedSpriteFrameWithPixelMask;
-    
     return (CCSpriteFrameExtended*)extendedSpriteFrameWithPixelMask;
 }
 
