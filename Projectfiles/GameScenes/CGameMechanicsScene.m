@@ -35,7 +35,8 @@
         {
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
-        
+            
+    // All ruff stuff
         // add ruff's sprite sheet to the sprite cache
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"ruff-sprite-sheet.plist"];
         
@@ -62,8 +63,47 @@
             [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name: frameName];
             }
         
-        [_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
-        
+        [_ruffSprite setDisplayFrame: (CCSpriteFrameExtended*)[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
+            
+            
+            
+    // end ruff stuff
+            
+            // Test code
+            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"platforms-sprite-sheet.plist"];
+            // get ruff on the screen
+            _platform3 = [[KKMutablePixelMaskSprite alloc] init];
+            _platform3.anchorPoint = ccp(0,0);
+            _platform3.position = ccp(500, 210);
+            [self addChild: _platform3 z:3];
+            
+            // now let's look at the plist which loaded ruff's spritesheet, and grab all the sprite frame names
+            // so that we can extend them with the pixel mask, and re-add them to the frame cache
+            NSDictionary* dictionaryOfPlatformsSpriteSheet = [NSDictionary dictionaryWithContentsOfFile: [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:@"platforms-sprite-sheet.plist"]];
+            
+            NSDictionary* dictionaryOfPlatformsSpriteFrameNames = [NSDictionary dictionaryWithDictionary:[dictionaryOfPlatformsSpriteSheet objectForKey:@"frames"]];
+            
+            for (NSString* frameName in dictionaryOfPlatformsSpriteFrameNames)
+            {
+                [_platform3 setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+                
+                CCSpriteFrameExtended* pixelMaskFrame = [_platform3 createPixelMaskWithCurrentFrame];
+                
+                //pixelMaskFrame = (CCSpriteFrame*)(_ruffSprite.displayFrame);
+                
+                [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name: frameName];
+            }
+            
+            //[_platform3 setDisplayFrame: (CCSpriteFrameExtended*)[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ground.png"]];
+            
+            // hold the extended leg frame until he lands on something
+            CCSpriteFrameExtended* frame = (CCSpriteFrameExtended*)([[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ground.png"]);
+            
+            [_platform3 setDisplayFrame: frame];
+            
+            [self setPlatform3PixelMaskWithFrame: frame];
+            // end test
+            
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
         
@@ -371,15 +411,15 @@
 {
 	CCDirector*    director = [CCDirector sharedDirector];
 	CGSize         screenSize = director.screenSize;
-    CGFloat        halfOfRuffsWidth = 0.5f * _ruffSprite.contentSize.width;
+    CGFloat        ruffsWidth = [_ruffSprite boundingBox].size.width;
         
-	if (positionOfRuff.x <= halfOfRuffsWidth)
+	if (positionOfRuff.x <= 0)
         {
-		positionOfRuff = ccp(halfOfRuffsWidth, positionOfRuff.y);
+		positionOfRuff = ccp( 0, positionOfRuff.y);
         }
-	else if (positionOfRuff.x >= screenSize.width - halfOfRuffsWidth)
+	else if (positionOfRuff.x >= screenSize.width - ruffsWidth)
         {
-		positionOfRuff = ccp(screenSize.width - halfOfRuffsWidth, positionOfRuff.y);
+		positionOfRuff = ccp(screenSize.width - ruffsWidth, positionOfRuff.y);
         }
 
     return positionOfRuff;
@@ -397,6 +437,14 @@
     [self setRuffsPixelMaskWithFrame:frame];
 }
 
+-(void)setPlatform3PixelMaskWithFrame: (CCSpriteFrameExtended*)frame
+{
+    // update his frame visually
+    [_platform3 setDisplayFrame: frame];
+    
+    // update his pixel mask to match his updated frame
+    [_platform3 updatePixelMaskWithSpriteFrame: frame];
+}
 
 -(void)setRuffsPixelMaskWithFrame: (CCSpriteFrameExtended*)frame
 {
@@ -461,6 +509,12 @@
         {
         CCLOG(@"anyTouchEndedThisFrame");
         }
+
+    if ([ _ruffSprite pixelMaskIntersectsNode: _platform3])
+        {
+            CCLOG(@"blue platform");
+        }
+
     
     if ([ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
         (lastRuffMovementPosition.y >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))

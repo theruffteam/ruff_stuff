@@ -7,38 +7,6 @@
 
 #import "KKMutablePixelMaskSprite.h"
 
-// caching the class for faster access
-//static Class PixelMaskSpriteClass = nil;
-
-@interface KKPixelMaskSprite ()
-
-    #if KK_PIXELMASKSPRITE_USE_BITARRAY
-    @property (readwrite, copy) bit_array_t* pixelMask;
-    #else
-    @property (nonatomic, readwrite) BOOL* pixelMask;
-    #endif
-
-    @property (nonatomic, readwrite) NSUInteger pixelMaskWidth;
-    @property (nonatomic, readwrite) NSUInteger pixelMaskHeight;
-    @property (nonatomic, readwrite) NSUInteger pixelMaskSize;
-
-@end
-
-@interface CCSpriteFrameExtended ()
-
-#if KK_PIXELMASKSPRITE_USE_BITARRAY
-@property (readwrite, copy) bit_array_t* pixelMask;
-#else
-@property (nonatomic, readwrite) BOOL* pixelMask;
-#endif
-
-@property (nonatomic, readwrite) NSUInteger pixelMaskWidth;
-@property (nonatomic, readwrite) NSUInteger pixelMaskHeight;
-@property (nonatomic, readwrite) NSUInteger pixelMaskSize;
-
-@end
-
-
 
 @implementation KKMutablePixelMaskSprite
 
@@ -164,15 +132,19 @@ static Class PixelMaskSpriteClass = nil;
     //[image release];
     image = nil;
     
+    _frame = extendedSpriteFrameWithPixelMask;
     
-    
-//    extendedSpriteFrameWithPixelMask.pixelMask = pixelMask;
-//    extendedSpriteFrameWithPixelMask.pixelMaskHeight = pixelMaskHeight;
-//    extendedSpriteFrameWithPixelMask.pixelMaskWidth = pixelMaskWidth;
-//    extendedSpriteFrameWithPixelMask.pixelMaskSize = pixelMaskSize;
-    
-    
-    return extendedSpriteFrameWithPixelMask;
+    return (CCSpriteFrameExtended*)extendedSpriteFrameWithPixelMask;
 }
+
+//-(void)setDisplayFrame:(CCSpriteFrameExtended *)newFrame
+//{
+//    pixelMaskHeight = newFrame.pixelMaskHeight;
+//    pixelMaskWidth = newFrame.pixelMaskWidth;
+//    pixelMaskSize = newFrame.pixelMaskSize;
+//    pixelMask = newFrame.pixelMask;
+//    
+//    [(CCSprite*)self setDisplayFrame:newFrame];
+//}
 
 @end

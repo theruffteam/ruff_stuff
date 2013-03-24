@@ -9,4 +9,14 @@
 
 @interface CCSpriteFrameExtended : CCSpriteFrame
 
+#if KK_PIXELMASKSPRITE_USE_BITARRAY
+@property bit_array_t* pixelMask;
+#else
+@property BOOL* pixelMask;
+#endif
+
+@property NSUInteger pixelMaskWidth;
+@property NSUInteger pixelMaskHeight;
+@property NSUInteger pixelMaskSize;
+
 @end

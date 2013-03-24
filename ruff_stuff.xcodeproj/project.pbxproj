@@ -86,6 +86,10 @@
 		DCF95CD213A97EC500AE3B80 /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CC913A97EC500AE3B80 /* libcocos2d-mac.a */; };
 		DCF95CD413A97EC500AE3B80 /* libkobold2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */; };
 		E618D31916B5E40900CEF65F /* CActor.m in Sources */ = {isa = PBXBuildFile; fileRef = E618D31816B5E40900CEF65F /* CActor.m */; };
+		E654E3FE16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = E654E3FA16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.plist */; };
+		E654E3FF16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = E654E3FB16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.pvr.ccz */; };
+		E654E40016FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = E654E3FC16FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.plist */; };
+		E654E40116FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = E654E3FD16FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.pvr.ccz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +190,10 @@
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
 		E618D2DB16B5E2B400CEF65F /* CActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActor.h; sourceTree = "<group>"; };
 		E618D31816B5E40900CEF65F /* CActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CActor.m; sourceTree = "<group>"; };
+		E654E3FA16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "platforms-sprite-sheet-ipad.plist"; path = "../../../../../Dropbox/Shared Folders/Ruff Stuff (1)/For Troy/Ground/Resized/platforms-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		E654E3FB16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "platforms-sprite-sheet-ipad.pvr.ccz"; path = "../../../../../Dropbox/Shared Folders/Ruff Stuff (1)/For Troy/Ground/Resized/platforms-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		E654E3FC16FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "platforms-sprite-sheet-ipadhd.plist"; path = "../../../../../Dropbox/Shared Folders/Ruff Stuff (1)/For Troy/Ground/Resized/platforms-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
+		E654E3FD16FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "platforms-sprite-sheet-ipadhd.pvr.ccz"; path = "../../../../../Dropbox/Shared Folders/Ruff Stuff (1)/For Troy/Ground/Resized/platforms-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +426,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E654E3F916FEAF130057B533 /* Platforms */,
 				68A1412C16FC446500470272 /* titleFixed-ipad.png */,
 				68A1412A16FC43F400470272 /* titleFixed-ipadhd.png */,
 				68A60AF216F54D7500EB7970 /* Animations */,
@@ -459,6 +468,17 @@
 				DC9C33E813B5024400931BF2 /* BuildSettings-Mac.xcconfig */,
 			);
 			path = BuildSettings;
+			sourceTree = "<group>";
+		};
+		E654E3F916FEAF130057B533 /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				E654E3FA16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.plist */,
+				E654E3FB16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.pvr.ccz */,
+				E654E3FC16FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.plist */,
+				E654E3FD16FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.pvr.ccz */,
+			);
+			name = Platforms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,6 +593,10 @@
 				68A1412916FC41DC00470272 /* ruff-sprite-sheet-ipadhd.plist in Resources */,
 				68A1412B16FC43F400470272 /* titleFixed-ipadhd.png in Resources */,
 				68A1412D16FC446500470272 /* titleFixed-ipad.png in Resources */,
+				E654E3FE16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.plist in Resources */,
+				E654E3FF16FEAF3F0057B533 /* platforms-sprite-sheet-ipad.pvr.ccz in Resources */,
+				E654E40016FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.plist in Resources */,
+				E654E40116FEAF3F0057B533 /* platforms-sprite-sheet-ipadhd.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

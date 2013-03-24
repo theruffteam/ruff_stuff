@@ -18,6 +18,7 @@
     @property    CYoungRuff*        ruffSprite;
     @property    KKPixelMaskSprite* blackPlatform;
     @property    KKPixelMaskSprite* greenPlatform;
+    @property    KKMutablePixelMaskSprite*        platform3;
     @property    CGFloat            initialJumpSpeed;
     @property    CGPoint            leftCirclePosition;
     @property    CGPoint            rightCirclePosition;
