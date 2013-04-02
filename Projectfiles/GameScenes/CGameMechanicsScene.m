@@ -27,6 +27,41 @@
 
 @implementation CGameMechanicsScene
 
+-(void) setupExtendedSprite: (KKMutablePixelMaskSprite*)sprite withSpritesheet: (NSString*)spriteSheetName andInitialFrameName: (NSString*)initialFrameName
+{
+    // add sprite sheet to the sprite cache
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: spriteSheetName];
+    
+    // now let's look at the plist which loaded the spritesheet, and grab all the sprite frame names
+    // so that we can extend them with the pixel mask, and re-add them to the frame cache
+    NSDictionary* dictionaryOfSpriteSheet = [NSDictionary dictionaryWithContentsOfFile: [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:spriteSheetName]];
+    
+    NSDictionary* dictionaryOfSpriteFrameNames = [NSDictionary dictionaryWithDictionary:[dictionaryOfSpriteSheet objectForKey:@"frames"]];
+    
+    for (NSString* frameName in dictionaryOfSpriteFrameNames)
+        {
+        [sprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+        
+        CCSpriteFrameExtended* pixelMaskFrame = [sprite createPixelMaskWithCurrentFrame];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name:frameName];
+        }
+    
+    [self setupExtendedSprite:sprite withInitialFrame:initialFrameName];
+}
+
+
+-(void) setupExtendedSprite: (KKMutablePixelMaskSprite*)sprite withInitialFrame: (NSString*)initialFrameName
+{
+    CCSpriteFrameExtended* initialFrame = (CCSpriteFrameExtended*)[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:initialFrameName];
+    
+    [sprite setDisplayFrame:initialFrame];
+    
+    // update pixel mask to match his updated frame
+    [sprite updatePixelMaskWithSpriteFrame: initialFrame];
+}
+
+
 -(id) init
 {
     CCLOG(@"%s", __PRETTY_FUNCTION__);
@@ -35,74 +70,21 @@
         {
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
-            
-    // All ruff stuff
-        // add ruff's sprite sheet to the sprite cache
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"ruff-sprite-sheet.plist"];
         
-        // get ruff on the screen
+        // get ruff sprite on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
         _ruffSprite.position = ccp(100, 205);
+        [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
         [self addChild: _ruffSprite z:1];
-
-        // now let's look at the plist which loaded ruff's spritesheet, and grab all the sprite frame names
-        // so that we can extend them with the pixel mask, and re-add them to the frame cache
-        NSDictionary* dictionaryOfRuffsSpriteSheet = [NSDictionary dictionaryWithContentsOfFile: [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:@"ruff-sprite-sheet.plist"]];
-
-        NSDictionary* dictionaryOfRuffsSpriteFrameNames = [NSDictionary dictionaryWithDictionary:[dictionaryOfRuffsSpriteSheet objectForKey:@"frames"]];
         
-        for (NSString* frameName in dictionaryOfRuffsSpriteFrameNames)
-            {
-            [_ruffSprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-            
-            CCSpriteFrameExtended* pixelMaskFrame = [_ruffSprite createPixelMaskWithCurrentFrame];
-            
-            //pixelMaskFrame = (CCSpriteFrame*)(_ruffSprite.displayFrame);
-            
-            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name: frameName];
-            }
-        
-        [_ruffSprite setDisplayFrame: (CCSpriteFrameExtended*)[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ruff-ready-01.png"]];
-            
-            
-            
-    // end ruff stuff
-            
-            // Test code
-            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"platforms-sprite-sheet.plist"];
-            // get ruff on the screen
-            _platform3 = [[KKMutablePixelMaskSprite alloc] init];
-            _platform3.anchorPoint = ccp(0,0);
-            _platform3.position = ccp(500, 210);
-            [self addChild: _platform3 z:3];
-            
-            // now let's look at the plist which loaded ruff's spritesheet, and grab all the sprite frame names
-            // so that we can extend them with the pixel mask, and re-add them to the frame cache
-            NSDictionary* dictionaryOfPlatformsSpriteSheet = [NSDictionary dictionaryWithContentsOfFile: [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:@"platforms-sprite-sheet.plist"]];
-            
-            NSDictionary* dictionaryOfPlatformsSpriteFrameNames = [NSDictionary dictionaryWithDictionary:[dictionaryOfPlatformsSpriteSheet objectForKey:@"frames"]];
-            
-            for (NSString* frameName in dictionaryOfPlatformsSpriteFrameNames)
-            {
-                [_platform3 setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-                
-                CCSpriteFrameExtended* pixelMaskFrame = [_platform3 createPixelMaskWithCurrentFrame];
-                
-                //pixelMaskFrame = (CCSpriteFrame*)(_ruffSprite.displayFrame);
-                
-                [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name: frameName];
-            }
-            
-            //[_platform3 setDisplayFrame: (CCSpriteFrameExtended*)[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ground.png"]];
-            
-            // hold the extended leg frame until he lands on something
-            CCSpriteFrameExtended* frame = (CCSpriteFrameExtended*)([[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ground.png"]);
-            
-            [_platform3 setDisplayFrame: frame];
-            
-            [self setPlatform3PixelMaskWithFrame: frame];
-            // end test
+        // get blue ground platform on the screen
+        _platform3 = [[KKMutablePixelMaskSprite alloc] init];
+        _platform3.anchorPoint = ccp(0,0);
+        _platform3.position = ccp(500, 190);
+        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
+        [self addChild: _platform3 z: 3];
+
             
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
@@ -287,8 +269,8 @@
     
     if ((_jumpTime - _initialJumpTime) >= (2.0f * 0.04167f))
         {
-        _jumpTime -= 2.0 * 0.04167;
-        _lastJumpTime -= 2.0 * 0.04167;
+        _jumpTime -= 2.0 * 0.04167f;
+        _lastJumpTime -= 2.0 * 0.04167f;
         
         // here b/c we probably need a function to detect if ground below has changed our baseY
         // from where we first started our jump

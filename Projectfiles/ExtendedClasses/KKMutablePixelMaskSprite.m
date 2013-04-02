@@ -15,18 +15,52 @@ static Class PixelMaskSpriteClass = nil;
 
 -(void) updatePixelMaskWithSpriteFrame: (CCSpriteFrameExtended*) spriteFrame
 {
-    pixelMaskHeight = spriteFrame.pixelMaskHeight;
-    pixelMaskWidth = spriteFrame.pixelMaskWidth;
-    pixelMaskSize = spriteFrame.pixelMaskSize;
-    pixelMask = spriteFrame.pixelMask;
+    NSDictionary* dictionaryOfPixelMaskContents;
     
-    //free(pixelMask);
+    // facing right
+    if (! self.flipX)
+        {
+        dictionaryOfPixelMaskContents = [[NSDictionary alloc] initWithDictionary: [[spriteFrame dictionaryOfPixelMasks] valueForKey:@"pixelMaskX"]];
+        }
+    // facing left
+    else
+        {
+        dictionaryOfPixelMaskContents = [[NSDictionary alloc] initWithDictionary: [[spriteFrame dictionaryOfPixelMasks] objectForKey:@"pixelMaskFlipX"]];
+        }
     
-    //pixelMask = malloc(spriteFrame.pixelMaskSize * sizeof(BOOL));
+    pixelMaskHeight = spriteFrame.pixelMaskHeight; //[[dictionaryOfPixelMaskContents valueForKey:@"pixelMaskHeight"] unsignedIntegerValue];
+    pixelMaskWidth = spriteFrame.pixelMaskWidth; //[[dictionaryOfPixelMaskContents valueForKey:@"pixelMaskWidth"] unsignedIntegerValue];
+    pixelMaskSize = spriteFrame.pixelMaskSize; //[[dictionaryOfPixelMaskContents valueForKey:@"pixelMaskSize"] unsignedIntegerValue];
+    pixelMask = (BOOL*)[[dictionaryOfPixelMaskContents valueForKey:@"pixelMask"] bytes];
     
-    //memset(spriteFrame.pixelMask, 0, spriteFrame.pixelMaskSize * sizeof(BOOL));
-    
-    //memmove(pixelMask, spriteFrame.pixelMask, spriteFrame.pixelMaskSize * sizeof(BOOL));
+//    NSMutableString* text = [[NSMutableString alloc] init];
+//    
+//    UInt32 x = 0, y = (UInt32)(pixelMaskHeight - 1);
+//    
+//    for (NSUInteger i = 0; i < pixelMaskSize; i++)
+//        {
+//        // ensure that the pixelMask is created in the normal orientation (default would be upside down)
+//        NSUInteger index = y * pixelMaskWidth + x;
+//        x++;
+//        
+//        if (pixelMask[index])
+//            {
+//            [text appendString:@"1"];
+//            }
+//        else
+//            {
+//            [text appendString:@"0"];
+//            }
+//        
+//        if (x == pixelMaskWidth  && i != pixelMaskSize -1)
+//            {
+//            [text appendString:@"\n"];
+//            x = 0;
+//            y--;
+//            }
+//        }
+//    
+//    CCLOG(@"\n%@", text);
 }
 
 
@@ -36,22 +70,15 @@ static Class PixelMaskSpriteClass = nil;
         {
         PixelMaskSpriteClass = [KKPixelMaskSprite class];
         }
+    
     CCSpriteFrame* spriteFrame = [self displayFrame];
     
     CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] initWithTexture:spriteFrame.texture rect:spriteFrame.rect];
+        
+    UInt8 alphaThreshold = 50;
     
     
-    
-    
-    //extendedSpriteFrameWithPixelMask = [self displayFrame];
-    
-    UInt8 alphaThreshold = 0;
-    
-    int tx = _contentSize.width;
-    int ty = _contentSize.height;
-    
-    
-    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:tx height:ty];
+    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:_contentSize.width height:_contentSize.height];
     
     _anchorPoint = CGPointZero;
     
@@ -65,11 +92,12 @@ static Class PixelMaskSpriteClass = nil;
     NSImage* image = [[NSImage alloc] init];
 #endif
     
-    //[extendedSpriteFrameWithPixelMask setPixelMaskWidth: spriteFrame.originalSizeInPixels.width];
     // get all the image information we need
     extendedSpriteFrameWithPixelMask.pixelMaskWidth = spriteFrame.originalSizeInPixels.width;//image.size.width * (float)CC_CONTENT_SCALE_FACTOR();
     extendedSpriteFrameWithPixelMask.pixelMaskHeight = spriteFrame.originalSizeInPixels.height;//image.size.height * (float)CC_CONTENT_SCALE_FACTOR();
     extendedSpriteFrameWithPixelMask.pixelMaskSize = extendedSpriteFrameWithPixelMask.pixelMaskWidth * extendedSpriteFrameWithPixelMask.pixelMaskHeight;
+    
+    NSUInteger pixelMaskBOOLSize = extendedSpriteFrameWithPixelMask.pixelMaskSize * sizeof(BOOL);
     
 #if defined(__arm__) && !defined(__ARM_NEON__)
     NSAssert3(isPowerOfTwo(pixelMaskWidth) && isPowerOfTwo(pixelMaskHeight),
@@ -82,8 +110,11 @@ static Class PixelMaskSpriteClass = nil;
     pixelMask = BitArrayCreate(pixelMaskSize);
     BitArrayClearAll(pixelMask);
 #else
-    extendedSpriteFrameWithPixelMask.pixelMask = malloc(extendedSpriteFrameWithPixelMask.pixelMaskSize * sizeof(BOOL));
-    memset(extendedSpriteFrameWithPixelMask.pixelMask, 0, extendedSpriteFrameWithPixelMask.pixelMaskSize * sizeof(BOOL));
+    BOOL* pixelMaskX = malloc(pixelMaskBOOLSize);
+    BOOL* pixelMaskFlipX = malloc(pixelMaskBOOLSize);
+    
+    memset(pixelMaskX, 0, pixelMaskBOOLSize);
+    memset(pixelMaskFlipX, 0, pixelMaskBOOLSize);
 #endif
     
     // get the pixel data (more correctly: texels) as 32-Bit unsigned integers
@@ -99,13 +130,19 @@ static Class PixelMaskSpriteClass = nil;
     UInt32 alphaValue = 0, x = 0, y = (UInt32)(extendedSpriteFrameWithPixelMask.pixelMaskHeight - 1);
     UInt8 alpha = 0;
     
+    UInt32 flipX = (UInt32)extendedSpriteFrameWithPixelMask.pixelMaskWidth;
+    
     for (NSUInteger i = 0; i < extendedSpriteFrameWithPixelMask.pixelMaskSize; i++)
         {
+        flipX--;
         // ensure that the pixelMask is created in the normal orientation (default would be upside down)
         NSUInteger index = y * extendedSpriteFrameWithPixelMask.pixelMaskWidth + x;
+        NSUInteger indexFlipX = y * extendedSpriteFrameWithPixelMask.pixelMaskWidth + flipX;
+
         x++;
         if (x == extendedSpriteFrameWithPixelMask.pixelMaskWidth)
             {
+            flipX = x;
             x = 0;
             y--;
             }
@@ -121,7 +158,8 @@ static Class PixelMaskSpriteClass = nil;
 #if KK_PIXELMASKSPRITE_USE_BITARRAY
                 BitArraySetBit(pixelMask, index);
 #else
-                extendedSpriteFrameWithPixelMask.pixelMask[index] = YES;
+                pixelMaskX[index] = YES;
+                pixelMaskFlipX[indexFlipX] = YES;
 #endif
                 }
             }
@@ -129,11 +167,40 @@ static Class PixelMaskSpriteClass = nil;
     
     CFRelease(imageData);
     imageData = nil;
-    //[image release];
     image = nil;
+    
+    
+    NSMutableDictionary* dictionaryForPixelMaskX = [[NSMutableDictionary alloc] init];
+    
+//    [rightFacing setObject:[NSNumber numberWithUnsignedInteger:extendedSpriteFrameWithPixelMask.pixelMaskHeight] forKey:@"pixelMaskHeight"];
+//    [rightFacing setObject:[NSNumber numberWithUnsignedInteger:extendedSpriteFrameWithPixelMask.pixelMaskWidth] forKey:@"pixelMaskWidth"];
+//    [rightFacing setObject:[NSNumber numberWithUnsignedInteger:extendedSpriteFrameWithPixelMask.pixelMaskSize] forKey:@"pixelMaskSize"];
+    [dictionaryForPixelMaskX setObject:[NSData dataWithBytes:pixelMaskX length:pixelMaskBOOLSize] forKey:@"pixelMask"];
+    
+    free(pixelMaskX);
+    
+    
+    NSMutableDictionary* dictionaryForPixelMaskFlipX = [[NSMutableDictionary alloc] init];
+    
+//    [leftFacing setObject:[NSNumber numberWithUnsignedInteger:extendedSpriteFrameWithPixelMask.pixelMaskHeight] forKey:@"pixelMaskHeight"];
+//    [leftFacing setObject:[NSNumber numberWithUnsignedInteger:extendedSpriteFrameWithPixelMask.pixelMaskWidth] forKey:@"pixelMaskWidth"];
+//    [leftFacing setObject:[NSNumber numberWithUnsignedInteger:extendedSpriteFrameWithPixelMask.pixelMaskSize] forKey:@"pixelMaskSize"];
+    [dictionaryForPixelMaskFlipX setObject:[NSData dataWithBytes:pixelMaskFlipX length:pixelMaskBOOLSize] forKey:@"pixelMask"];
+    
+    free(pixelMaskFlipX);
+    
+    
+    extendedSpriteFrameWithPixelMask.dictionaryOfPixelMasks = [NSDictionary dictionaryWithObjectsAndKeys:dictionaryForPixelMaskX, @"pixelMaskX", dictionaryForPixelMaskFlipX, @"pixelMaskFlipX", nil];
     
     return (CCSpriteFrameExtended*)extendedSpriteFrameWithPixelMask;
 }
+
+
+
+
+
+
+
 
 //-(void)setDisplayFrame:(CCSpriteFrameExtended *)newFrame
 //{

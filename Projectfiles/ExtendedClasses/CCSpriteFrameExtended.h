@@ -12,7 +12,9 @@
 #if KK_PIXELMASKSPRITE_USE_BITARRAY
 @property bit_array_t* pixelMask;
 #else
-@property BOOL* pixelMask;
+// holds BOOL* pixelMasks for:
+// x, flip x, y, flip y, flip x flip y
+@property NSDictionary* dictionaryOfPixelMasks;
 #endif
 
 @property NSUInteger pixelMaskWidth;
