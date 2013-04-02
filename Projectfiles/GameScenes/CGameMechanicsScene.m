@@ -1,3 +1,4 @@
+
 // =============================================================================
 // File      : CTitleScreenScene.m
 // Project   : Ruff
@@ -79,45 +80,62 @@
         // get ruff sprite on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
-        _ruffSprite.position = ccp(100, 205);
+        _ruffSprite.position = ccp(100, 400);
         
         [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
         [self addChild: _ruffSprite z:1];
         
-        
+        CCDirector* director = [CCDirector sharedDirector];
+            
+        _defaultGround = 0;
+        _grounds = [[NSMutableArray alloc] init];
+        _platforms = [[NSMutableArray alloc] init];
+            
         // get blue ground platform on the screen
-        _platform3 = [[KKMutablePixelMaskSprite alloc] init];
-        _platform3.anchorPoint = ccp(0,0);
-        _platform3.position = ccp(500, 190);
+            for ( int plat_x = 0; plat_x <= director.winSize.width; )
+            {
+                _platform3 = [[KKMutablePixelMaskSprite alloc] init];
+                _platform3.anchorPoint = ccp(0,0);
+                _platform3.position = ccp(plat_x, 150);
         
-        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
-        [self addChild: _platform3 z: 3];
-
+                [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
+                [self addChild: _platform3 z: 3];
+                
+                plat_x += _platform3.contentSize.width;
+                _platform3.tag = 3;
+                [_grounds addObject:_platform3];
+            }
         
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
         
-        CCDirector* director = [CCDirector sharedDirector];
+        
         KKInput* input = [KKInput sharedInput];
         
         // explicitly set the background color of the screen to black
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         
                 
-        // get floor on the screen
+        // get background on the screen
 		CCSprite* floor = [CCSprite spriteWithFile:@"titleFixed.png"];
         floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
 		[self addChild: floor z:-5];
         
-        // get black platform on the screen
-        _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
-		_blackPlatform.position = ccp(800, 402.5); //(_ruffSprite.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_ruffSprite.pixelMaskHeight + _blackPlatform.pixelMaskHeight)));
-		[self addChild: _blackPlatform z:2 tag:1];
-   
-        // get green platform on the screen
-        _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
-		_greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + 0.5f /CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
-		[self addChild: _greenPlatform z:0 tag:2];
+            for (int i = 0; i < 3; i++)
+            {
+                // get black platform on the screen
+                _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
+                _blackPlatform.position = ccp(800, 402.5 + ( i * 1.5 *  140)) ; //(_ruffSprite.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_ruffSprite.pixelMaskHeight + _blackPlatform.pixelMaskHeight)));
+                [self addChild: _blackPlatform z:2 tag:1];
+           
+                // get green platform on the screen
+                _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
+                _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + 0.5f /CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
+                [self addChild: _greenPlatform z:0 tag:2];
+                
+                _greenPlatform.tag = 2;
+                [_platforms addObject:_greenPlatform];
+            }
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
@@ -159,10 +177,6 @@
         _isRunning = NO;
         _landingTime = 0;
 
-    
-    
-//    CCFollow *follow = [CCFollow actionWithTarget:_ruffSprite];
-//    [self runAction:follow];
     
     
     return self;
@@ -443,9 +457,44 @@
     [_ruffSprite updatePixelMaskWithSpriteFrame: frame];
 }
 
+-(float) getRuffsBaseY
+{
+    for (CCSprite *ground in _grounds)
+    {
+        if (_ruffSprite.position.x >= ground.position.x && ground.position.x <= (_ruffSprite.position.x + _ruffSprite.contentSize.width) )
+        {
+            _defaultGround = ground.position.y + ground.contentSize.height;
+
+            return _defaultGround;
+        }
+        
+    }
+    
+    return _ruffBaseY;
+}
+
+-(BOOL) didRuffCollideWithAPlatform: (CGPoint) lastRuffMovementPosition
+{
+    for (KKPixelMaskSprite* platform in _platforms)
+    {
+        if ((lastRuffMovementPosition.y >= (int)(platform.position.y - 0.5f / CC_CONTENT_SCALE_FACTOR() * platform.contentSize.height)))
+        {
+            if ([ _ruffSprite pixelMaskIntersectsNode: platform])
+            {
+                _ruffBaseY =  platform.position.y - 0.5f / CC_CONTENT_SCALE_FACTOR() * platform.contentSize.height;
+                _defaultGround = _ruffBaseY;
+                return YES;
+            }
+            
+        }
+    }
+    
+    return NO;
+}
+
 
 -(void) update:(ccTime)delta
-{    
+{
     CGPoint lastRuffMovementPosition = _ruffSprite.position;
 
     _gameTimeDelta = delta;
@@ -504,15 +553,16 @@
         }
 
     
-    if ([ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
-        (lastRuffMovementPosition.y >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height)))
+    if ( [self didRuffCollideWithAPlatform:lastRuffMovementPosition] ) /*[ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
+        (lastRuffMovementPosition.y >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height))) */
         {
         CCLOG(@"green platform");
-        _ruffBaseY = _blackPlatform.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight);
+        //_ruffBaseY = _blackPlatform.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight);
         }
-    else if (_ruffBaseY != 205)
+    else if (_ruffBaseY != [self getRuffsBaseY] )
         {
-        _ruffBaseY = 205;
+
+            _ruffBaseY = [self getRuffsBaseY] ;
         
         if (!_isJumping)
             {

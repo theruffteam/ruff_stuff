@@ -14,7 +14,7 @@
 #else
 // holds BOOL* pixelMasks for:
 // x, flip x, y, flip y, flip x flip y
-@property NSDictionary* dictionaryOfPixelMasks;
+@property (nonatomic, strong) NSDictionary* dictionaryOfPixelMasks;
 #endif
 
 @property NSUInteger pixelMaskWidth;
