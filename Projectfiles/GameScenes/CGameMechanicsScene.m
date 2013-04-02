@@ -93,7 +93,7 @@
         [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
         [self addChild: _platform3 z: 3];
 
-            
+        
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
         
@@ -158,15 +158,13 @@
         _initialJumpTime = 0;
         _isRunning = NO;
         _landingTime = 0;
-    
-    NSMutableArray* animationFrames = [NSMutableArray array];
-    
-    
-    for(int i = 1; i <= 18; ++i)
-        {
-        [animationFrames addObject: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"ruff-jump-%02d.png", i]]];
-        }
 
+    
+    
+//    CCFollow *follow = [CCFollow actionWithTarget:_ruffSprite];
+//    [self runAction:follow];
+    
+    
     return self;
 }
 
