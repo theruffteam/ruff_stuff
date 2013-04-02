@@ -27,6 +27,11 @@
 
 @implementation CGameMechanicsScene
 
+-(void) addPixelMaskSpriteFramesToSpriteCacheWithSpritesheet: (NSString*)spriteSheetName
+{
+}
+
+
 -(void) setupExtendedSprite: (KKMutablePixelMaskSprite*)sprite withSpritesheet: (NSString*)spriteSheetName andInitialFrameName: (NSString*)initialFrameName
 {
     // add sprite sheet to the sprite cache
@@ -75,13 +80,16 @@
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
         _ruffSprite.position = ccp(100, 205);
+        
         [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
         [self addChild: _ruffSprite z:1];
+        
         
         // get blue ground platform on the screen
         _platform3 = [[KKMutablePixelMaskSprite alloc] init];
         _platform3.anchorPoint = ccp(0,0);
         _platform3.position = ccp(500, 190);
+        
         [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
         [self addChild: _platform3 z: 3];
 

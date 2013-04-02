@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:deb1efcad29867a996713872039bdb99$</string>
+            <string>$TexturePacker:SmartUpdate:8a0c33fae2ccf716c4c72917124a7dfa$</string>
             <key>textureFileName</key>
             <string>platforms-sprite-sheet-ipad.pvr.ccz</string>
         </dict>
