@@ -94,20 +94,35 @@
         _defaultGround = 0;
         _grounds = [[NSMutableArray alloc] init];
         _platforms = [[NSMutableArray alloc] init];
-            
+        
+        _platform3 = [[KKMutablePixelMaskSprite alloc] init];
+        _platform3.anchorPoint = ccp(0,0);
+        _platform3.position = ccp(0,0);
+        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
+        
         // get blue ground platform on the screen
             for ( int plat_x = 0; plat_x <= director.winSize.width; )
             {
-                _platform3 = [[KKMutablePixelMaskSprite alloc] init];
-                _platform3.anchorPoint = ccp(0,0);
-                _platform3.position = ccp(plat_x, 150);
+            
+                CCSprite* grass = [[CCSprite alloc] initWithSpriteFrameName:[NSString stringWithFormat:@"platform-%02d.png", (1 + arc4random()%5) ]];
+                                   
+            
+                KKMutablePixelMaskSprite* platform3 = [[KKMutablePixelMaskSprite alloc] init];
+                platform3.anchorPoint = ccp(0,0);
+                platform3.position = ccp(plat_x, 150);
+                [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
+
         
-                [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
-                [self addChild: _platform3 z: 3];
-                
-                plat_x += _platform3.contentSize.width;
-                _platform3.tag = 3;
-                [_grounds addObject:_platform3];
+            
+                grass.anchorPoint = platform3.anchorPoint;
+                grass.position = platform3.position;
+            
+            
+                [self addChild: platform3 z: 3];
+                [self addChild: grass z: 4];
+                plat_x += platform3.contentSize.width;
+                platform3.tag = 3;
+                [_grounds addObject:platform3];
             }
         
         
@@ -129,12 +144,14 @@
             {
                 // get black platform on the screen
                 _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
-                _blackPlatform.position = ccp(800, 402.5 + ( i * 1.5 *  140)) ; //(_ruffSprite.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_ruffSprite.pixelMaskHeight + _blackPlatform.pixelMaskHeight)));
+                _blackPlatform.anchorPoint = ccp(0,0);
+                _blackPlatform.position = ccp(800, 402.5 + ( i * 1.5 *  140));
                 [self addChild: _blackPlatform z:2 tag:1];
            
                 // get green platform on the screen
                 _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
-                _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + 0.5f /CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight + _greenPlatform.pixelMaskHeight));
+                _greenPlatform.anchorPoint = ccp(0,0);
+                _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + _blackPlatform.contentSize.height);
                 [self addChild: _greenPlatform z:0 tag:2];
                 
                 _greenPlatform.tag = 2;
@@ -484,11 +501,11 @@
 {
     for (KKPixelMaskSprite* platform in _platforms)
     {
-        if ((lastRuffMovementPosition.y >= (int)(platform.position.y - 0.5f / CC_CONTENT_SCALE_FACTOR() * platform.contentSize.height)))
+        if ((lastRuffMovementPosition.y >= (int)(platform.position.y )))
         {
             if ([ _ruffSprite pixelMaskIntersectsNode: platform])
             {
-                _ruffBaseY =  platform.position.y - 0.5f / CC_CONTENT_SCALE_FACTOR() * platform.contentSize.height;
+            _ruffBaseY =  platform.position.y;
                 _defaultGround = _ruffBaseY;
                 return YES;
             }
@@ -560,11 +577,9 @@
         }
 
     
-    if ( [self didRuffCollideWithAPlatform:lastRuffMovementPosition] ) /*[ _ruffSprite pixelMaskIntersectsNode: _greenPlatform]  &&
-        (lastRuffMovementPosition.y >= _blackPlatform.position.y + (0.5f / CC_CONTENT_SCALE_FACTOR() * _blackPlatform.size.height))) */
+    if ( [self didRuffCollideWithAPlatform:lastRuffMovementPosition] )
         {
         CCLOG(@"green platform");
-        //_ruffBaseY = _blackPlatform.position.y + 0.5f / CC_CONTENT_SCALE_FACTOR() * (_blackPlatform.pixelMaskHeight);
         }
     else if (_ruffBaseY != [self getRuffsBaseY] )
         {

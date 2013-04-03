@@ -38,7 +38,7 @@
     @property    CGPoint                        backgroundPosition;
     @property    NSMutableArray*                grounds;
     @property    NSMutableArray*                platforms;
-    @property    int                          defaultGround;
+    @property    int                            defaultGround;
 
 
     // ruff's jump animation
