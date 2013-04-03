@@ -78,11 +78,11 @@ static Class PixelMaskSpriteClass = nil;
     UInt8 alphaThreshold = 50;
     
     
-    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:_contentSize.width height:_contentSize.height];
+    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:ceil(_contentSize.width) height:ceil(_contentSize.height)];
     
     _anchorPoint = CGPointZero;
     
-    [renderer begin];
+    [renderer beginWithClear:0 g:0 b:0 a:0];
     [self draw];
     [renderer end];
     
@@ -93,8 +93,8 @@ static Class PixelMaskSpriteClass = nil;
 #endif
     
     // get all the image information we need
-    extendedSpriteFrameWithPixelMask.pixelMaskWidth = spriteFrame.originalSizeInPixels.width;//image.size.width * (float)CC_CONTENT_SCALE_FACTOR();
-    extendedSpriteFrameWithPixelMask.pixelMaskHeight = spriteFrame.originalSizeInPixels.height;//image.size.height * (float)CC_CONTENT_SCALE_FACTOR();
+    extendedSpriteFrameWithPixelMask.pixelMaskWidth = CGImageGetWidth(image.CGImage);// image.size.width * image.scale;//spriteFrame.originalSizeInPixels.width;//image.size.width * (float)CC_CONTENT_SCALE_FACTOR();
+    extendedSpriteFrameWithPixelMask.pixelMaskHeight = CGImageGetHeight(image.CGImage);//image.size.height * image.scale;//spriteFrame.originalSizeInPixels.height;//image.size.height * (float)CC_CONTENT_SCALE_FACTOR();
     extendedSpriteFrameWithPixelMask.pixelMaskSize = extendedSpriteFrameWithPixelMask.pixelMaskWidth * extendedSpriteFrameWithPixelMask.pixelMaskHeight;
     
     NSUInteger pixelMaskBOOLSize = extendedSpriteFrameWithPixelMask.pixelMaskSize * sizeof(BOOL);
@@ -135,6 +135,7 @@ static Class PixelMaskSpriteClass = nil;
     for (NSUInteger i = 0; i < extendedSpriteFrameWithPixelMask.pixelMaskSize; i++)
         {
         flipX--;
+        
         // ensure that the pixelMask is created in the normal orientation (default would be upside down)
         NSUInteger index = y * extendedSpriteFrameWithPixelMask.pixelMaskWidth + x;
         NSUInteger indexFlipX = y * extendedSpriteFrameWithPixelMask.pixelMaskWidth + flipX;
@@ -146,7 +147,7 @@ static Class PixelMaskSpriteClass = nil;
             x = 0;
             y--;
             }
-        
+
         // mask out the colors so that only the alpha value remains (upper 8 bits)
         alphaValue = imagePixels[i] & 0xff000000;
         if (alphaValue > 0)

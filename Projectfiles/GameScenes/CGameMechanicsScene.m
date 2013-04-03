@@ -45,6 +45,10 @@
     
     for (NSString* frameName in dictionaryOfSpriteFrameNames)
         {
+        if ([frameName isEqualToString: @"platform-02.png"])
+            {
+            CCLOG(@"");
+            }
         [sprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
         
         CCSpriteFrameExtended* pixelMaskFrame = [sprite createPixelMaskWithCurrentFrame];
@@ -90,7 +94,7 @@
         _platform3.anchorPoint = ccp(0,0);
         _platform3.position = ccp(500, 190);
         
-        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
+        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"platform-02.png"];
         [self addChild: _platform3 z: 3];
 
         
@@ -161,8 +165,7 @@
 
     
     
-//    CCFollow *follow = [CCFollow actionWithTarget:_ruffSprite];
-//    [self runAction:follow];
+
     
     
     return self;
