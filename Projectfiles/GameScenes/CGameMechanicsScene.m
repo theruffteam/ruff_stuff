@@ -46,6 +46,10 @@
     
     for (NSString* frameName in dictionaryOfSpriteFrameNames)
         {
+        if ([frameName isEqualToString: @"platform-02.png"])
+            {
+            CCLOG(@"");
+            }
         [sprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
         
         CCSpriteFrameExtended* pixelMaskFrame = [sprite createPixelMaskWithCurrentFrame];
