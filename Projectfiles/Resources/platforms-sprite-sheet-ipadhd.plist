@@ -7,80 +7,80 @@
             <key>ground.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{602,36}}</string>
+                <string>{{2,2},{604,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{602,36}}</string>
+                <string>{{0,0},{604,38}}</string>
                 <key>sourceSize</key>
-                <string>{602,36}</string>
+                <string>{604,38}</string>
             </dict>
             <key>platform-01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,36},{602,111}}</string>
+                <string>{{2,46},{604,103}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,-5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{602,111}}</string>
+                <string>{{0,10},{604,103}}</string>
                 <key>sourceSize</key>
-                <string>{602,111}</string>
+                <string>{604,113}</string>
             </dict>
             <key>platform-02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,147},{602,113}}</string>
+                <string>{{2,155},{604,105}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,-5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{602,113}}</string>
+                <string>{{0,10},{604,105}}</string>
                 <key>sourceSize</key>
-                <string>{602,113}</string>
+                <string>{604,115}</string>
             </dict>
             <key>platform-03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,260},{602,179}}</string>
+                <string>{{2,266},{604,175}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,-3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{602,179}}</string>
+                <string>{{0,6},{604,175}}</string>
                 <key>sourceSize</key>
-                <string>{602,179}</string>
+                <string>{604,181}</string>
             </dict>
             <key>platform-04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,439},{602,123}}</string>
+                <string>{{2,447},{604,107}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,-9}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{602,123}}</string>
+                <string>{{0,18},{604,107}}</string>
                 <key>sourceSize</key>
-                <string>{602,123}</string>
+                <string>{604,125}</string>
             </dict>
             <key>platform-05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,562},{602,117}}</string>
+                <string>{{2,560},{604,97}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,-11}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{602,117}}</string>
+                <string>{{0,22},{604,97}}</string>
                 <key>sourceSize</key>
-                <string>{602,117}</string>
+                <string>{604,119}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:18aefc9d121d22be4fd55ccd409735a3$</string>
+            <string>$TexturePacker:SmartUpdate:7afbf94f14432d96e9966252b37a571c$</string>
             <key>textureFileName</key>
             <string>platforms-sprite-sheet-ipadhd.pvr.ccz</string>
         </dict>

@@ -110,6 +110,7 @@
                 KKMutablePixelMaskSprite* platform3 = [[KKMutablePixelMaskSprite alloc] init];
                 platform3.anchorPoint = ccp(0,0);
                 platform3.position = ccp(plat_x, 150);
+                
                 [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
 
         
@@ -119,7 +120,7 @@
             
             
                 [self addChild: platform3 z: 3];
-                [self addChild: grass z: 4];
+                [self addChild: grass z: -4];
                 plat_x += platform3.contentSize.width;
                 platform3.tag = 3;
                 [_grounds addObject:platform3];
@@ -248,7 +249,6 @@
                 //_initialJumpTime = _lastJumpTime;
                 _initialJumpTime = _gameTime;
                 
-                //_ruffBaseY = _ruffSprite.position.y; // commented out now. that we're working with collision detection we should have a function that calculates our base Y
                 }
             }
         }
@@ -487,7 +487,7 @@
     {
         if (_ruffSprite.position.x >= ground.position.x && ground.position.x <= (_ruffSprite.position.x + _ruffSprite.contentSize.width) )
         {
-            _defaultGround = ground.position.y + ground.contentSize.height;
+            _defaultGround = (ground.position.y + ground.contentSize.height);
 
             return _defaultGround;
         }
@@ -605,7 +605,7 @@
 
 	lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
-    _ruffSprite.position = lastRuffMovementPosition;
+    _ruffSprite.position = ccp((int)lastRuffMovementPosition.x, (int)lastRuffMovementPosition.y);
 
     _ruffSprite.previousPosition = _ruffSprite.position;
 
