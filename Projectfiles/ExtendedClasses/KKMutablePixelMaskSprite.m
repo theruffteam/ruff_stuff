@@ -201,8 +201,6 @@ static Class PixelMaskSpriteClass = nil;
 
 
 
-
-
 //-(void)setDisplayFrame:(CCSpriteFrameExtended *)newFrame
 //{
 //    pixelMaskHeight = newFrame.pixelMaskHeight;

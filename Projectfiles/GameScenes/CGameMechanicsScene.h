@@ -39,6 +39,8 @@
     @property    NSMutableArray*                grounds;
     @property    NSMutableArray*                platforms;
     @property    int                            defaultGround;
+    @property    CGPoint                        lastSelfMovementPosition;
+    @property    int                            levelWidth;
 
 
 @property CCLayer* hudLayer;

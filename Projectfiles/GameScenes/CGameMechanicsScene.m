@@ -88,7 +88,7 @@
         // get ruff sprite on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
-        _ruffSprite.position = ccp(100, 400);
+        _ruffSprite.position = ccp(500, 400);
         
         [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
         
@@ -171,6 +171,11 @@
             xPosition += floor.contentSize.width;
             
             ++x;
+            
+            if (x == 5)
+                {
+                width += floor.contentSize.width;
+                }
                 
             if (x == 10)
                 {
@@ -184,12 +189,13 @@
             if (nextBackgroundSlice == 50)
                 {
                 xPosition -= floor.contentSize.width;
+                _levelWidth = width;
                 }
             }
         
         
-        
-        [self addChild: _ruffSprite z:1];
+        [_hudLayer addChild:_ruffSprite];
+        [self addChild: _hudLayer z:1];
         
         
         
@@ -206,7 +212,7 @@
                 // get black platform on the screen
                 _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
                 _blackPlatform.anchorPoint = ccp(0,0);
-                _blackPlatform.position = ccp(800, 402.5 + ( i * 1.5 *  140));
+                _blackPlatform.position = ccp(800, 400 + ( i * 1.5 *  140));
                 [self addChild: _blackPlatform z:2 tag:1];
            
                 // get green platform on the screen
@@ -260,9 +266,10 @@
         _landingTime = 0;
 
     
-    
-    CCFollow* follow = [CCFollow actionWithTarget:_ruffSprite];
-    [self runAction:follow];
+    self.anchorPoint = ccp(0,0);
+    self.position = ccp(0,0);
+    //CCFollow* follow = [CCFollow actionWithTarget:_ruffSprite];
+    //[self runAction:follow];
     
     return self;
 }
@@ -283,7 +290,7 @@
         CGPoint normalizedTouch = [self convertToWorldSpace:touch.location];
         
         leftMovementTap = normalizedTouch.x < leftControlOfLeftCircle;
-        rightMovementTap = normalizedTouch.x > rightControlOfLeftCircle;
+        rightMovementTap = normalizedTouch.x > rightControlOfLeftCircle  &&  normalizedTouch.x < _leftCirclePosition.x + 100;
 
         // detect any touches within the left control circle
         if (normalizedTouch.x <= _leftCirclePosition.x + 100  &&
@@ -561,17 +568,23 @@
 
 -(BOOL) didRuffCollideWithAPlatform: (CGPoint) lastRuffMovementPosition
 {
+ //   NSMutableArray* tempSprites = [[NSMutableArray alloc] initWithArray:_platforms copyItems:YES];
+    
     for (KKPixelMaskSprite* platform in _platforms)
     {
         if ((lastRuffMovementPosition.y >= (int)(platform.position.y )))
         {
+//            CGPoint positionHolder = platform.position;
+//            platform.position = ccp(platform.position.x - self.position.x, platform.position.y - self.position.y );
             if ([ _ruffSprite pixelMaskIntersectsNode: platform])
             {
-            _ruffBaseY =  platform.position.y;
+         //       platform.position = positionHolder;
+                _ruffBaseY =  platform.position.y;
                 _defaultGround = _ruffBaseY;
                 return YES;
             }
-            
+
+            //platform.position = positionHolder;
         }
     }
     
@@ -623,9 +636,30 @@
     
     if (_isMoving)
         {
-        lastRuffMovementPosition.x += (int)_ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
-
+        lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
+        
+        if ( 0 < self.position.x )
+            {
+            self.position = ccp(0, self.position.y);
+            }
+        else if ( self.position.x + _levelWidth <  [[CCDirector sharedDirector] screenSize].width)
+            {
+            self.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, self.position.y);
+            }
+        
+        if ( (lastRuffMovementPosition.x  < 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ) && _ruffSprite.flipX)
+            {
+            self.position = ccp( self.position.x + (RUFF_SPEED * delta), self.position.y);
+            lastRuffMovementPosition.x = 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ;
+            }
+        else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - self.position.x  && !_ruffSprite.flipX)
+            {
+            self.position = ccp( self.position.x - (RUFF_SPEED * delta), self.position.y);
+            lastRuffMovementPosition.x = 0.9 * [[CCDirector sharedDirector] screenSize].width - _ruffSprite.contentSize.width - self.position.x ;
+            }
+        
         _isMoving = NO;
+        
         }
     
     if ([KKInput sharedInput].anyTouchEndedThisFrame)
@@ -669,9 +703,13 @@
     
     _ruffSprite.position = ccp((int)lastRuffMovementPosition.x, (int)lastRuffMovementPosition.y);
 
+    //self.position = ccp((int)_lastSelfMovementPosition.x, (int)_lastSelfMovementPosition.y);
+    
     _ruffSprite.previousPosition = _ruffSprite.position;
-
+    
     _lastJumpTime = _gameTime;
+    
+    //self.position = CGPointMake(self.position.x - 1, self.position.y);
 }
 
 
