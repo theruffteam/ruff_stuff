@@ -3,7 +3,7 @@
 // File      : CTitleScreenScene.m
 // Project   : Ruff
 // Author(s) : theruffteam
-// Version   : 0
+// Version   : 1.1
 // Updated   : 01/29/2013
 // =============================================================================
 // This is the implementation file for the "CTitleScreenScene" class.
