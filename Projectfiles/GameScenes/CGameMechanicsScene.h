@@ -41,6 +41,8 @@
     @property    int                            defaultGround;
 
 
+@property CCLayer* hudLayer;
+
     // ruff's jump animation
     @property    CCAnimation*       ruffLandingAnimation;
     @property    id                 ruffLandingAction;

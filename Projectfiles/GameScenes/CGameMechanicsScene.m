@@ -78,6 +78,10 @@
     
 	if ((self = [super init]))
         {
+         _hudLayer = [CCLayer node];
+        
+
+        
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
         
@@ -87,7 +91,6 @@
         _ruffSprite.position = ccp(100, 400);
         
         [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
-        [self addChild: _ruffSprite z:1];
         
         CCDirector* director = [CCDirector sharedDirector];
             
@@ -119,8 +122,8 @@
                 grass.position = platform3.position;
             
             
-                [self addChild: platform3 z: 3];
-                [self addChild: grass z: -4];
+                [self addChild: platform3 z: -6];
+                [self addChild: grass z: 4];
                 plat_x += platform3.contentSize.width;
                 platform3.tag = 3;
                 [_grounds addObject:platform3];
@@ -137,9 +140,66 @@
         
                 
         // get background on the screen
-		CCSprite* floor = [CCSprite spriteWithFile:@"titleFixed.png"];
-        floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
-		[self addChild: floor z:-5];
+		//CCSprite* floor = [CCSprite spriteWithFile:@"level-01-part-01.png"];
+        //floor.position = ccp(0.5f * director.screenSize.width, 0.5f * director.screenSize.height);
+		
+        // get background of entire game on the screen:
+        //level 1.1: 5 x 10 images, all the same dimensions
+        
+        int x = 0;
+        int y = 0;
+        int xPosition = 0;
+        int yPosition = 0;
+        int height = 0;
+        int width = 0;
+        
+        for (int nextBackgroundSlice = 1; nextBackgroundSlice < 51; ++nextBackgroundSlice)
+            {
+            CCSprite* floor = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"level-01-part-01_%02d.png", nextBackgroundSlice]];
+            
+            if (yPosition == 0  &&  x == 0  &&  y == 0)
+                {
+                y = 1;
+                yPosition = 3 * [floor boundingBox].size.height;
+                }
+            
+            floor.anchorPoint = ccp(0, 0);
+            floor.position = ccp(xPosition, yPosition);
+            
+            [self addChild:floor z:-5];
+            
+            xPosition += floor.contentSize.width;
+            
+            ++x;
+                
+            if (x == 10)
+                {
+                x = 0;
+                xPosition = 0;
+                width += floor.contentSize.width;
+                yPosition -= 1 * [floor boundingBox].size.height;
+                height += floor.contentSize.height;
+                }
+            
+            if (nextBackgroundSlice == 50)
+                {
+                xPosition -= floor.contentSize.width;
+                }
+            }
+        
+        
+        
+        [self addChild: _ruffSprite z:1];
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //[self addChild: floor z:-5];
         
             for (int i = 0; i < 3; i++)
             {
@@ -163,7 +223,7 @@
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
         health.position = ccp(0.5 * health.contentSize.width, director.screenSize.height - (0.5f * health.contentSize.height));
         health.color = ccBLACK;
-        [self addChild: health];
+        [_hudLayer addChild: health];
         
         // position of health bar
         _healthBarOrigin = ccp(2.0f , director.screenSize.height - health.contentSize.height);
@@ -201,8 +261,8 @@
 
     
     
-
-    
+    CCFollow* follow = [CCFollow actionWithTarget:_ruffSprite];
+    [self runAction:follow];
     
     return self;
 }
@@ -220,13 +280,15 @@
 
     CCARRAY_FOREACH(input.touches, touch)
         {
-        leftMovementTap = touch.location.x < leftControlOfLeftCircle;
-        rightMovementTap = touch.location.x > rightControlOfLeftCircle;
+        CGPoint normalizedTouch = [self convertToWorldSpace:touch.location];
+        
+        leftMovementTap = normalizedTouch.x < leftControlOfLeftCircle;
+        rightMovementTap = normalizedTouch.x > rightControlOfLeftCircle;
 
         // detect any touches within the left control circle
-        if (touch.location.x <= _leftCirclePosition.x + 100  &&
-            touch.location.y <= _leftCirclePosition.y + 100  &&
-            ! CGPointEqualToPoint(touch.location, CGPointZero))
+        if (normalizedTouch.x <= _leftCirclePosition.x + 100  &&
+            normalizedTouch.y <= _leftCirclePosition.y + 100  &&
+            ! CGPointEqualToPoint(normalizedTouch, CGPointZero))
             {
             if (!_isMoving  &&  (leftMovementTap  || rightMovementTap))
                 {
@@ -237,12 +299,12 @@
             }
 
         // detect any touches within the right control circle
-        if (touch.location.x >= _rightCirclePosition.x - 100  &&
-            touch.location.y <= _leftCirclePosition.y + 100  &&
-            ! CGPointEqualToPoint(touch.location, CGPointZero))
+        if (normalizedTouch.x >= _rightCirclePosition.x - 100  &&
+            normalizedTouch.y <= _leftCirclePosition.y + 100  &&
+            ! CGPointEqualToPoint(normalizedTouch, CGPointZero))
             {
             // check if we need to jump
-            if (!_isJumping  &&  touch.location.y >= 0.65f * (_rightCirclePosition.y + 100)  &&  (_gameTime - _landingTime) > 3.0f * 0.04167f)
+            if (!_isJumping  &&  normalizedTouch.y >= 0.65f * (_rightCirclePosition.y + 100)  &&  (_gameTime - _landingTime) > 3.0f * 0.04167f)
                 {
                 _isJumping = YES;
                 _initialJumpSpeed = RUFF_JUMP_SPEED;
@@ -532,7 +594,7 @@
         {
         _isRunning = NO;
         
-        lastRuffMovementPosition.y = [self makeRuffJump: lastRuffMovementPosition.y withVelocity: _initialJumpSpeed];
+        lastRuffMovementPosition.y = (int)[self makeRuffJump: lastRuffMovementPosition.y withVelocity: _initialJumpSpeed];
         }
     
     // not jumping and not moving
@@ -561,7 +623,7 @@
     
     if (_isMoving)
         {
-        lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
+        lastRuffMovementPosition.x += (int)_ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
 
         _isMoving = NO;
         }
@@ -603,7 +665,7 @@
             }
         }
 
-	lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
+	//lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
     _ruffSprite.position = ccp((int)lastRuffMovementPosition.x, (int)lastRuffMovementPosition.y);
 
@@ -634,6 +696,9 @@
 		KKTouch* touch;
 		CCARRAY_FOREACH(input.touches, touch)
             {
+            CGPoint normalizedTouch = [self convertToWorldSpace:touch.location];
+            CGPoint normalizedPreviousTouch = [self convertToWorldSpace:touch.previousLocation];
+
 			switch (color)
                 {
                     case 0:
@@ -657,10 +722,10 @@
                 }
 			color++;
 			
-			ccDrawCircle(touch.location, 60, 0, 16, NO);
-			ccDrawCircle(touch.previousLocation, 30, 0, 16, NO);
+			ccDrawCircle(normalizedTouch, 60, 0, 16, NO);
+			ccDrawCircle(normalizedPreviousTouch, 30, 0, 16, NO);
 			ccDrawColor4F(1, 1, 1, 1);
-			ccDrawLine(touch.location, touch.previousLocation);
+			ccDrawLine(normalizedTouch, normalizedPreviousTouch);
 			
 			if (CCRANDOM_0_1() > 0.98f)
                 {

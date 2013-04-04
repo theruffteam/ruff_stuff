@@ -78,7 +78,7 @@ static Class PixelMaskSpriteClass = nil;
     UInt8 alphaThreshold = 50;
     
     
-    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:ceil(_contentSize.width) height:ceil(_contentSize.height)];
+    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:ceil(_contentSize.width + .5) height:ceil(_contentSize.height + .5)];
     
     _anchorPoint = CGPointZero;
     

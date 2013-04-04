@@ -20,7 +20,7 @@
             <key>platform-01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{312,2},{304,55}}</string>
+                <string>{{2,29},{304,55}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>platform-02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{622,2},{304,56}}</string>
+                <string>{{2,90},{304,56}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>platform-03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,64},{304,89}}</string>
+                <string>{{2,152},{304,89}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>platform-04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{312,64},{304,53}}</string>
+                <string>{{2,247},{304,53}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>platform-05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{622,64},{304,50}}</string>
+                <string>{{2,306},{304,50}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -82,19 +82,6 @@
                 <key>sourceSize</key>
                 <string>{304,62}</string>
             </dict>
-            <key>platforms-sprite-sheet-ipadhd.pvr.ccz</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,159},{306,332}}</string>
-                <key>offset</key>
-                <string>{-104,92}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,0},{306,332}}</string>
-                <key>sourceSize</key>
-                <string>{516,516}</string>
-            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -103,9 +90,9 @@
             <key>realTextureFileName</key>
             <string>platforms-sprite-sheet-ipad.pvr.ccz</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:38fb6835a49ece22ad5176ee1b49b497$</string>
+            <string>$TexturePacker:SmartUpdate:efb1409f0f46e097a6723e59e7cbd169$</string>
             <key>textureFileName</key>
             <string>platforms-sprite-sheet-ipad.pvr.ccz</string>
         </dict>
