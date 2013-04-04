@@ -197,14 +197,6 @@
         [_hudLayer addChild:_ruffSprite];
         [self addChild: _hudLayer z:1];
         
-        
-        
-        
-        
-        
-        
-        
-        
         //[self addChild: floor z:-5];
         
             for (int i = 0; i < 3; i++)
@@ -649,13 +641,33 @@
         
         if ( (lastRuffMovementPosition.x  < 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ) && _ruffSprite.flipX)
             {
-            self.position = ccp( self.position.x + (RUFF_SPEED * delta), self.position.y);
-            lastRuffMovementPosition.x = 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ;
+                if ( 0 <= self.position.x )
+                {
+                    if ( _ruffSprite.position.x <= 0)
+                    {
+                        lastRuffMovementPosition.x = 0;
+                    }
+                }
+                else
+                {
+                    self.position = ccp( self.position.x + (RUFF_SPEED * delta), self.position.y);
+                    lastRuffMovementPosition.x = 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ;
+                }
             }
         else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - self.position.x  && !_ruffSprite.flipX)
             {
-            self.position = ccp( self.position.x - (RUFF_SPEED * delta), self.position.y);
-            lastRuffMovementPosition.x = 0.9 * [[CCDirector sharedDirector] screenSize].width - _ruffSprite.contentSize.width - self.position.x ;
+                if ( self.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
+                {
+                    if ( _ruffSprite.position.x + _ruffSprite.contentSize.width >= _levelWidth )
+                    {
+                        lastRuffMovementPosition.x = _levelWidth - _ruffSprite.contentSize.width;
+                    }
+                }
+                else
+                {
+                    self.position = ccp( self.position.x - (RUFF_SPEED * delta), self.position.y);
+                    lastRuffMovementPosition.x = 0.9 * [[CCDirector sharedDirector] screenSize].width - _ruffSprite.contentSize.width - self.position.x ;
+                }
             }
         
         _isMoving = NO;
