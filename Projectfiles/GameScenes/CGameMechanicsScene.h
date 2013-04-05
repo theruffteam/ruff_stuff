@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
 #import "CYoungRuff.h"
+#import "CHudLayer.h"
 
 
 @interface CGameMechanicsScene : CCLayer
@@ -45,8 +46,17 @@
     @property    int                            levelHeight;
     @property    float                          changeOfY;
 
+    // level layers
+    @property    CCLayer*                       backgroundLayer;
+    @property    CCLayer*                       foregroundLayer;
+    @property    CCLayer*                       enemiesLayer;
+    @property    CCLayer*                       levelObjectsLayer;
+    @property    CCLayer*                       stageAssistorsLayer;
+    @property    CHudLayer*                     hudLayer;
+    @property    CCLayer*                       ruffsLayer;
 
-@property CCLayer* hudLayer;
+
+
 
     // ruff's jump animation
     @property    CCAnimation*       ruffLandingAnimation;
