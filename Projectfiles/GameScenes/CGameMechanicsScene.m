@@ -103,37 +103,7 @@
         _platform3.position = ccp(0,0);
         [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
         
-        // get blue ground platform on the screen
-            for ( int plat_x = 0; plat_x < 5*director.screenSize.width; )
-            {
-                int grassPlacementY = 150;
-                
-                if ( plat_x > 2*director.screenSize.width )
-                {
-                    grassPlacementY = 75;
-                }
-            
-                CCSprite* grass = [[CCSprite alloc] initWithSpriteFrameName:[NSString stringWithFormat:@"platform-%02d.png", (1 + arc4random()%5) ]];
-                                   
-            
-                KKMutablePixelMaskSprite* platform3 = [[KKMutablePixelMaskSprite alloc] init];
-                platform3.anchorPoint = ccp(0,0);
-                platform3.position = ccp(plat_x, grassPlacementY);
-                
-                [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
 
-        
-            
-                grass.anchorPoint = platform3.anchorPoint;
-                grass.position = platform3.position;
-            
-            
-                [self addChild: platform3 z: 6];
-                [self addChild: grass z: 4];
-                plat_x += platform3.contentSize.width;
-                platform3.tag = 3;
-                [_grounds addObject:platform3];
-            }
         
         
         //CWorld* ruffsWorld = [[CWorld alloc] initWorldContentsFromPlist:
@@ -203,6 +173,39 @@
         
         [_hudLayer addChild:_ruffSprite];
         [self addChild: _hudLayer z:1];
+            
+            
+        // get blue ground platform on the screen
+        for ( int plat_x = 0; plat_x < _levelWidth; )
+        {
+            int grassPlacementY = 150;
+            
+            if ( plat_x > 0.5 * _levelWidth )
+            {
+                grassPlacementY = 75;
+            }
+            
+            CCSprite* grass = [[CCSprite alloc] initWithSpriteFrameName:[NSString stringWithFormat:@"platform-%02d.png", (1 + arc4random()%5) ]];
+            
+            
+            KKMutablePixelMaskSprite* platform3 = [[KKMutablePixelMaskSprite alloc] init];
+            platform3.anchorPoint = ccp(0,0);
+            platform3.position = ccp(plat_x, grassPlacementY);
+            
+            [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
+            
+            
+            
+            grass.anchorPoint = platform3.anchorPoint;
+            grass.position = platform3.position;
+            
+            
+            [self addChild: platform3 z: 6];
+            [self addChild: grass z: 4];
+            plat_x += platform3.contentSize.width;
+            platform3.tag = 3;
+            [_grounds addObject:platform3];
+        }
         
         //[self addChild: floor z:-5];
         
