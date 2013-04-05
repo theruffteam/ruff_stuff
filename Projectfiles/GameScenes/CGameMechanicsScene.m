@@ -13,6 +13,7 @@
 #import "CGameMechanicsScene.h"
 #import "CWorld.h"
 #import "CCSpriteFrameExtended.h"
+#import "CHudLayer.h"
 
 #define RUFF_JUMP_SPEED 1493.598f
 #define RUFF_FALL_SPEED 0.0f
@@ -78,9 +79,17 @@
     
 	if ((self = [super init]))
         {
-         _hudLayer = [CCLayer node];
+        // working on hud stuff
+        CHudLayer* hudLayer = [CHudLayer node];
+        [hudLayer scheduleUpdate];
+        [self addChild:hudLayer z:25];
         
-
+        
+        
+        
+        
+        
+         _hudLayer = [CCLayer node];
         
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
@@ -741,66 +750,5 @@
     _lastJumpTime = _gameTime;
     
     //self.position = CGPointMake(self.position.x - 1, self.position.y);
-}
-
-
--(void) draw
-{
-    // set circle drawing color
-    ccDrawColor4F( 0.0f, 0.0f, 0.0f, 1.0);
-    
-    //draw mock-up health bar for kicks
-    ccDrawRect(_healthBarOrigin, _healthBarDestination);    
-    
-    // left circle on screen
-    ccDrawCircle(_leftCirclePosition, 100, 0, 16, NO);
-    
-    // right circle on screen
-    ccDrawCircle(_rightCirclePosition, 100, 0, 16, NO);
-
-	KKInput* input = [KKInput sharedInput];
-	if (input.touchesAvailable)
-        {
-		NSUInteger color = 0;
-		KKTouch* touch;
-		CCARRAY_FOREACH(input.touches, touch)
-            {
-            CGPoint normalizedTouch = [self convertToWorldSpace:touch.location];
-            CGPoint normalizedPreviousTouch = [self convertToWorldSpace:touch.previousLocation];
-
-			switch (color)
-                {
-                    case 0:
-					ccDrawColor4F(0.2f, 1, 0.2f, 0.5f);
-					break;
-                    case 1:
-					ccDrawColor4F(0.2f, 0.2f, 1, 0.5f);
-					break;
-                    case 2:
-					ccDrawColor4F(1, 1, 0.2f, 0.5f);
-					break;
-                    case 3:
-					ccDrawColor4F(1, 0.2f, 0.2f, 0.5f);
-					break;
-                    case 4:
-					ccDrawColor4F(0.2f, 1, 1, 0.5f);
-					break;
-					
-                    default:
-					break;
-                }
-			color++;
-			
-			ccDrawCircle(normalizedTouch, 60, 0, 16, NO);
-			ccDrawCircle(normalizedPreviousTouch, 30, 0, 16, NO);
-			ccDrawColor4F(1, 1, 1, 1);
-			ccDrawLine(normalizedTouch, normalizedPreviousTouch);
-			
-			if (CCRANDOM_0_1() > 0.98f)
-                {
-				//[input removeTouch:touch];
-                }
-            }
-        }
 }
 @end

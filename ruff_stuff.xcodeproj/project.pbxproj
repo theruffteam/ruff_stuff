@@ -32,6 +32,7 @@
 		687C2F4D16B89EA300E231F9 /* CTitleScreenScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 687C2F4B16B89EA300E231F9 /* CTitleScreenScene.m */; };
 		687C2F5216B8BAB200E231F9 /* title_screen_bg_01-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */; };
 		687C2F5316B8BAB200E231F9 /* title_screen_bg_02-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */; };
+		68918B96170E94F30061320C /* CHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68918B94170E94F30061320C /* CHudLayer.m */; };
 		68A1412616FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412216FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz */; };
 		68A1412716FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412316FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz */; };
 		68A1412816FC41DC00470272 /* ruff-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412416FC41DC00470272 /* ruff-sprite-sheet-ipad.plist */; };
@@ -225,6 +226,8 @@
 		687C2F4C16B89EA300E231F9 /* CTitleScreenScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTitleScreenScene.h; path = GameScenes/CTitleScreenScene.h; sourceTree = "<group>"; };
 		687C2F4F16B8BAB100E231F9 /* title_screen_bg_01-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_screen_bg_01-ipad.png"; sourceTree = "<group>"; };
 		687C2F5016B8BAB100E231F9 /* title_screen_bg_02-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_screen_bg_02-ipad.png"; sourceTree = "<group>"; };
+		68918B94170E94F30061320C /* CHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHudLayer.m; path = GameScenes/CHudLayer.m; sourceTree = "<group>"; };
+		68918B95170E94F30061320C /* CHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHudLayer.h; path = GameScenes/CHudLayer.h; sourceTree = "<group>"; };
 		68A1412216FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
 		68A1412316FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
 		68A1412416FC41DC00470272 /* ruff-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 		687C2F4A16B89DF300E231F9 /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
+				68918B95170E94F30061320C /* CHudLayer.h */,
+				68918B94170E94F30061320C /* CHudLayer.m */,
 				684546DD16C79CD100AD018E /* CGameMechanicsScene.h */,
 				684546DC16C79CD100AD018E /* CGameMechanicsScene.m */,
 				687C2F4C16B89EA300E231F9 /* CTitleScreenScene.h */,
@@ -1047,6 +1052,7 @@
 				68A4C67F16D5FA38001E1934 /* CLevel.m in Sources */,
 				687BA00716F8153300CECAB6 /* KKMutablePixelMaskSprite.m in Sources */,
 				687BA00D16F99A5900CECAB6 /* CCSpriteFrameExtended.m in Sources */,
+				68918B96170E94F30061320C /* CHudLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
