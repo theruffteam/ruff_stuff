@@ -13,7 +13,6 @@
 #import "CGameMechanicsScene.h"
 #import "CWorld.h"
 #import "CCSpriteFrameExtended.h"
-#import "CHudLayer.h"
 
 #define RUFF_JUMP_SPEED 1493.598f
 #define RUFF_FALL_SPEED 0.0f
@@ -79,17 +78,17 @@
     
 	if ((self = [super init]))
         {
-        // working on hud stuff
-        CHudLayer* hudLayer = [CHudLayer node];
-        [hudLayer scheduleUpdate];
-        [self addChild:hudLayer z:25];
+        _backgroundLayer = [CCLayer node];
+        _foregroundLayer = [CCLayer node];
+        _enemiesLayer = [CCLayer node];
+        _levelObjectsLayer = [CCLayer node];
+        _stageAssistorsLayer = [CCLayer node];
+        _hudLayer = [CHudLayer node];
+        _ruffsLayer = [CCLayer node];
         
         
         
         
-        
-        
-         _hudLayer = [CCLayer node];
         
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
@@ -151,7 +150,7 @@
             floor.anchorPoint = ccp(0, 0);
             floor.position = ccp(xPosition, yPosition);
             
-            [self addChild:floor z:-5];
+            [_backgroundLayer addChild:floor z:-5];
             
             xPosition += floor.contentSize.width;
             
@@ -178,10 +177,6 @@
                     _levelHeight = height;
                 }
             }
-        
-        
-        [_hudLayer addChild:_ruffSprite];
-        [self addChild: _hudLayer z:1];
             
             
         // get blue ground platform on the screen
@@ -209,8 +204,8 @@
             grass.position = platform3.position;
             
             
-            [self addChild: platform3 z: 6];
-            [self addChild: grass z: 4];
+            [_levelObjectsLayer addChild: platform3 z: 6];
+            [_foregroundLayer addChild: grass z: 4];
             plat_x += platform3.contentSize.width;
             platform3.tag = 3;
             [_grounds addObject:platform3];
@@ -224,13 +219,13 @@
                 _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
                 _blackPlatform.anchorPoint = ccp(0,0);
                 _blackPlatform.position = ccp(800, 400 + ( i * 1.5 *  140));
-                [self addChild: _blackPlatform z:2 tag:1];
+                [_levelObjectsLayer addChild: _blackPlatform z:2 tag:1];
            
                 // get green platform on the screen
                 _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
                 _greenPlatform.anchorPoint = ccp(0,0);
                 _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + _blackPlatform.contentSize.height);
-                [self addChild: _greenPlatform z:0 tag:2];
+                [_levelObjectsLayer addChild: _greenPlatform z:0 tag:2];
                 
                 _greenPlatform.tag = 2;
                 [_platforms addObject:_greenPlatform];
@@ -240,7 +235,7 @@
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
         health.position = ccp(0.5 * health.contentSize.width, director.screenSize.height - (0.5f * health.contentSize.height));
         health.color = ccBLACK;
-        [_hudLayer addChild: health];
+        //[_hudLayer addChild: health];
         
         // position of health bar
         _healthBarOrigin = ccp(2.0f , director.screenSize.height - health.contentSize.height);
@@ -259,7 +254,7 @@
 		//input.gestureDoubleTapEnabled = input.gesturesAvailable;
 		//input.gestureSwipeEnabled = input.gesturesAvailable;
         //input.gestureLongPressEnabled = input.gesturesAvailable;
-        }
+        
     
         // set to zero, mod to add images
         _placeRuffOnScreen = 2;
@@ -275,14 +270,48 @@
         _initialJumpTime = 0;
         _isRunning = NO;
         _landingTime = 0;
+        
+        self.anchorPoint = ccp(0,0);
+        self.position = ccp(0,0);
+        
+        _backgroundLayer.anchorPoint = ccp(0,0);
+        _backgroundLayer.position = ccp(0,0);
 
-    
-    self.anchorPoint = ccp(0,0);
-    self.position = ccp(0,0);
-    //CCFollow* follow = [CCFollow actionWithTarget:_ruffSprite];
-    //[self runAction:follow];
+        _foregroundLayer.anchorPoint = ccp(0,0);
+        _foregroundLayer.position = ccp(0,0);
+
+        _enemiesLayer.anchorPoint = ccp(0,0);
+        _enemiesLayer.position = ccp(0,0);
+
+        _levelObjectsLayer.anchorPoint = ccp(0,0);
+        _levelObjectsLayer.position = ccp(0,0);
+
+        _stageAssistorsLayer.anchorPoint = ccp(0,0);
+        _stageAssistorsLayer.position = ccp(0,0);
+
+        _hudLayer.anchorPoint = ccp(0,0);
+        _hudLayer.position = ccp(0,0);
+
+        [self addChild: _backgroundLayer z: 1];
+        [self addChild: _levelObjectsLayer z: 2];
+        [self addChild: _stageAssistorsLayer z: 3];
+        [self addChild: _enemiesLayer z: 4];
+        [_ruffsLayer addChild: _ruffSprite];
+        [self addChild: _ruffsLayer z: 5];
+        [self addChild: _foregroundLayer z: 6];
+        [self addChild: _hudLayer z: 7];
+        }
     
     return self;
+}
+
+-(void)updateLevelLayerPositions
+{
+    _foregroundLayer.position = _backgroundLayer.position;
+    _enemiesLayer.position = _backgroundLayer.position;
+    _levelObjectsLayer.position = _backgroundLayer.position;
+    _stageAssistorsLayer.position = _backgroundLayer.position;
+    _ruffsLayer.position = _backgroundLayer.position;;
 }
 
 
@@ -298,7 +327,7 @@
 
     CCARRAY_FOREACH(input.touches, touch)
         {
-        CGPoint normalizedTouch = [self convertToWorldSpace:touch.location];
+        CGPoint normalizedTouch = [_hudLayer convertToWorldSpace:touch.location];
         
         leftMovementTap = normalizedTouch.x < leftControlOfLeftCircle;
         rightMovementTap = normalizedTouch.x > rightControlOfLeftCircle  &&  normalizedTouch.x < _leftCirclePosition.x + 100;
@@ -651,18 +680,18 @@
         {
         lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
         
-        if ( 0 < self.position.x )
+        if ( 0 < _backgroundLayer.position.x )
             {
-            self.position = ccp(0, self.position.y);
+            _backgroundLayer.position = ccp(0, _backgroundLayer.position.y);
             }
-        else if ( self.position.x + _levelWidth <  [[CCDirector sharedDirector] screenSize].width)
+        else if ( _backgroundLayer.position.x + _levelWidth <  [[CCDirector sharedDirector] screenSize].width)
             {
-            self.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, self.position.y);
+            _backgroundLayer.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, _backgroundLayer.position.y);
             }
         
-        if ( (lastRuffMovementPosition.x  < 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ) && _ruffSprite.flipX)
+        if ( (lastRuffMovementPosition.x  < 0.1 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ) && _ruffSprite.flipX)
             {
-                if ( 0 <= self.position.x )
+                if ( 0 <= _backgroundLayer.position.x )
                 {
                     if ( _ruffSprite.position.x <= 0)
                     {
@@ -671,13 +700,13 @@
                 }
                 else
                 {
-                    self.position = ccp( self.position.x + (RUFF_SPEED * delta), self.position.y);
-                    lastRuffMovementPosition.x = 0.1 * [[CCDirector sharedDirector] screenSize].width - self.position.x ;
+                    _backgroundLayer.position = ccp( _backgroundLayer.position.x + (RUFF_SPEED * delta), _backgroundLayer.position.y);
+                    lastRuffMovementPosition.x = 0.1 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ;
                 }
             }
-        else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - self.position.x  && !_ruffSprite.flipX)
+        else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x  && !_ruffSprite.flipX)
             {
-                if ( self.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
+                if ( _backgroundLayer.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
                 {
                     if ( _ruffSprite.position.x + _ruffSprite.contentSize.width >= _levelWidth )
                     {
@@ -686,8 +715,8 @@
                 }
                 else
                 {
-                    self.position = ccp( self.position.x - (RUFF_SPEED * delta), self.position.y);
-                    lastRuffMovementPosition.x = 0.9 * [[CCDirector sharedDirector] screenSize].width - _ruffSprite.contentSize.width - self.position.x ;
+                    _backgroundLayer.position = ccp( _backgroundLayer.position.x - (RUFF_SPEED * delta), _backgroundLayer.position.y);
+                    lastRuffMovementPosition.x = 0.9 * [[CCDirector sharedDirector] screenSize].width - _ruffSprite.contentSize.width - _backgroundLayer.position.x ;
                 }
             }
         
@@ -733,19 +762,24 @@
             }
         }
     
-    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.8 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
+    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.8 * [[CCDirector sharedDirector] screenSize].height - _backgroundLayer.position.y )
     {
-        self.position = ccp( (int)self.position.x, (int)(self.position.y - _changeOfY) );
+        _backgroundLayer.position = ccp( (int)_backgroundLayer.position.x, (int)(_backgroundLayer.position.y - _changeOfY) );
     }
-    if ( lastRuffMovementPosition.y  < 0.2 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
+    if ( lastRuffMovementPosition.y  < 0.2 * [[CCDirector sharedDirector] screenSize].height - _backgroundLayer.position.y )
     {
-        self.position = ccp( (int)self.position.x, (int)(self.position.y - _changeOfY) );
+        _backgroundLayer.position = ccp( (int)_backgroundLayer.position.x, (int)(_backgroundLayer.position.y - _changeOfY) );
     }
 
+    
 	//lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
+
     _ruffSprite.position = ccp((int)lastRuffMovementPosition.x, (int)lastRuffMovementPosition.y);
 
+    // updates all level layers positions with the background layers position
+    [self updateLevelLayerPositions];
+    
     //self.position = ccp((int)_lastSelfMovementPosition.x, (int)_lastSelfMovementPosition.y);
     
     _ruffSprite.previousPosition = _ruffSprite.position;
