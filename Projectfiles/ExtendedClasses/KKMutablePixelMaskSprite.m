@@ -32,35 +32,6 @@ static Class PixelMaskSpriteClass = nil;
     pixelMaskWidth = spriteFrame.pixelMaskWidth; //[[dictionaryOfPixelMaskContents valueForKey:@"pixelMaskWidth"] unsignedIntegerValue];
     pixelMaskSize = spriteFrame.pixelMaskSize; //[[dictionaryOfPixelMaskContents valueForKey:@"pixelMaskSize"] unsignedIntegerValue];
     pixelMask = (BOOL*)[[dictionaryOfPixelMaskContents valueForKey:@"pixelMask"] bytes];
-    
-//    NSMutableString* text = [[NSMutableString alloc] init];
-//    
-//    UInt32 x = 0, y = (UInt32)(pixelMaskHeight - 1);
-//    
-//    for (NSUInteger i = 0; i < pixelMaskSize; i++)
-//        {
-//        // ensure that the pixelMask is created in the normal orientation (default would be upside down)
-//        NSUInteger index = y * pixelMaskWidth + x;
-//        x++;
-//        
-//        if (pixelMask[index])
-//            {
-//            [text appendString:@"1"];
-//            }
-//        else
-//            {
-//            [text appendString:@"0"];
-//            }
-//        
-//        if (x == pixelMaskWidth  && i != pixelMaskSize -1)
-//            {
-//            [text appendString:@"\n"];
-//            x = 0;
-//            y--;
-//            }
-//        }
-//    
-//    CCLOG(@"\n%@", text);
 }
 
 
@@ -73,12 +44,12 @@ static Class PixelMaskSpriteClass = nil;
     
     CCSpriteFrame* spriteFrame = [self displayFrame];
     
-    CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] initWithTexture:spriteFrame.texture rect:spriteFrame.rect];
+    CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] initWithTexture:spriteFrame.texture rect:spriteFrame.rectInPixels];
         
     UInt8 alphaThreshold = 50;
     
     
-    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:ceil(_contentSize.width + .5) height:ceil(_contentSize.height + .5)];
+    CCRenderTexture* renderer = [CCRenderTexture renderTextureWithWidth:[self boundingBox].size.width + 0.5f height:[self boundingBox].size.height + 0.5f];
     
     _anchorPoint = CGPointZero;
     
@@ -93,8 +64,8 @@ static Class PixelMaskSpriteClass = nil;
 #endif
     
     // get all the image information we need
-    extendedSpriteFrameWithPixelMask.pixelMaskWidth = CGImageGetWidth(image.CGImage);// image.size.width * image.scale;//spriteFrame.originalSizeInPixels.width;//image.size.width * (float)CC_CONTENT_SCALE_FACTOR();
-    extendedSpriteFrameWithPixelMask.pixelMaskHeight = CGImageGetHeight(image.CGImage);//image.size.height * image.scale;//spriteFrame.originalSizeInPixels.height;//image.size.height * (float)CC_CONTENT_SCALE_FACTOR();
+    extendedSpriteFrameWithPixelMask.pixelMaskWidth = (NSUInteger)(CGImageGetWidth(image.CGImage) + 0.5f);// image.size.width * image.scale;//spriteFrame.originalSizeInPixels.width;//image.size.width * (float)CC_CONTENT_SCALE_FACTOR();
+    extendedSpriteFrameWithPixelMask.pixelMaskHeight = (NSUInteger)(CGImageGetHeight(image.CGImage) + 0.5f);//image.size.height * image.scale;//spriteFrame.originalSizeInPixels.height;//image.size.height * (float)CC_CONTENT_SCALE_FACTOR();
     extendedSpriteFrameWithPixelMask.pixelMaskSize = extendedSpriteFrameWithPixelMask.pixelMaskWidth * extendedSpriteFrameWithPixelMask.pixelMaskHeight;
     
     NSUInteger pixelMaskBOOLSize = extendedSpriteFrameWithPixelMask.pixelMaskSize * sizeof(BOOL);
