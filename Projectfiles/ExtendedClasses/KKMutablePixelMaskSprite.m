@@ -44,7 +44,7 @@ static Class PixelMaskSpriteClass = nil;
     
     CCSpriteFrame* spriteFrame = [self displayFrame];
     
-    CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] initWithTexture:spriteFrame.texture rect:spriteFrame.rectInPixels];
+    CCSpriteFrameExtended* extendedSpriteFrameWithPixelMask = [[CCSpriteFrameExtended alloc] initWithTexture:spriteFrame.texture rect:spriteFrame.rect];
         
     UInt8 alphaThreshold = 50;
     
