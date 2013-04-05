@@ -41,6 +41,8 @@
     @property    int                            defaultGround;
     @property    CGPoint                        lastSelfMovementPosition;
     @property    int                            levelWidth;
+    @property    int                            levelHeight;
+    @property    float                          changeOfY;
 
 
 @property CCLayer* hudLayer;

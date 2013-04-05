@@ -189,7 +189,8 @@
             if (nextBackgroundSlice == 50)
                 {
                 xPosition -= floor.contentSize.width;
-                _levelWidth = width;
+                    _levelWidth = width;
+                    _levelHeight = height;
                 }
             }
         
@@ -372,6 +373,8 @@
 {
     float projectedY = currentYOfRuff;
     
+    _changeOfY = 0;
+    
     if ((_jumpTime - _initialJumpTime) >= (2.0f * 0.04167f))
         {
         _jumpTime -= 2.0 * 0.04167f;
@@ -383,9 +386,9 @@
         int baseY = _ruffBaseY;
 
         // here is how we're calculating the change of y: (At^2 + vt) - (At0^2 + vt0)
-        float changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (velocity * (_jumpTime-_initialJumpTime)))  -
+        _changeOfY = ((GRAVITY * (_jumpTime-_initialJumpTime) * (_jumpTime-_initialJumpTime)) + (velocity * (_jumpTime-_initialJumpTime)))  -
                           ((GRAVITY * (_lastJumpTime-_initialJumpTime) * (_lastJumpTime-_initialJumpTime)) + (velocity * (_lastJumpTime-_initialJumpTime)));
-        projectedY = currentYOfRuff + changeOfY;
+        projectedY = currentYOfRuff + _changeOfY;
 
         // turns the jump flag on for falling to prevent mid-fall jump
         _isJumping = (projectedY > baseY);
@@ -461,6 +464,14 @@
             [_ruffSprite runAction: sequence];
             }
         }
+    
+//    if ( projectedY + _ruffSprite.contentSize.height > 0.80 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
+//    {
+//        self.position = ccp( self.position.x, self.position.y - changeOfY );
+//    }
+    
+//else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - self.position.x  && !_ruffSprite.flipX)
+//self.position = ccp( self.position.x + (RUFF_SPEED * delta), self.position.y);
     
     return projectedY;
 }
@@ -710,6 +721,11 @@
             [self setRuffsPixelMaskWithFrame: frame];
             }
         }
+    
+    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.80 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
+    {
+        self.position = ccp( (int)self.position.x, (int)(self.position.y - _changeOfY) );
+    }
 
 	//lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
