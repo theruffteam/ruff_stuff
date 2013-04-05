@@ -104,15 +104,21 @@
         [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
         
         // get blue ground platform on the screen
-            for ( int plat_x = 0; plat_x <= director.winSize.width; )
+            for ( int plat_x = 0; plat_x < 5*director.screenSize.width; )
             {
+                int grassPlacementY = 150;
+                
+                if ( plat_x > 2*director.screenSize.width )
+                {
+                    grassPlacementY = 75;
+                }
             
                 CCSprite* grass = [[CCSprite alloc] initWithSpriteFrameName:[NSString stringWithFormat:@"platform-%02d.png", (1 + arc4random()%5) ]];
                                    
             
                 KKMutablePixelMaskSprite* platform3 = [[KKMutablePixelMaskSprite alloc] init];
                 platform3.anchorPoint = ccp(0,0);
-                platform3.position = ccp(plat_x, 150);
+                platform3.position = ccp(plat_x, grassPlacementY);
                 
                 [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
 
@@ -122,7 +128,7 @@
                 grass.position = platform3.position;
             
             
-                [self addChild: platform3 z: -6];
+                [self addChild: platform3 z: 6];
                 [self addChild: grass z: 4];
                 plat_x += platform3.contentSize.width;
                 platform3.tag = 3;
@@ -465,14 +471,6 @@
             }
         }
     
-//    if ( projectedY + _ruffSprite.contentSize.height > 0.80 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
-//    {
-//        self.position = ccp( self.position.x, self.position.y - changeOfY );
-//    }
-    
-//else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - self.position.x  && !_ruffSprite.flipX)
-//self.position = ccp( self.position.x + (RUFF_SPEED * delta), self.position.y);
-    
     return projectedY;
 }
 
@@ -557,7 +555,7 @@
 {
     for (CCSprite *ground in _grounds)
     {
-        if (_ruffSprite.position.x >= ground.position.x && ground.position.x <= (_ruffSprite.position.x + _ruffSprite.contentSize.width) )
+        if (_ruffSprite.position.x <= ground.position.x && ground.position.x <= (_ruffSprite.position.x + ground.contentSize.width) )
         {
             _defaultGround = (ground.position.y + ground.contentSize.height);
 
@@ -685,22 +683,23 @@
         
         }
     
-    if ([KKInput sharedInput].anyTouchEndedThisFrame)
-        {
-        CCLOG(@"anyTouchEndedThisFrame");
-        }
+//    if ([KKInput sharedInput].anyTouchEndedThisFrame)
+//        {
+//        CCLOG(@"anyTouchEndedThisFrame");
+//        }
 
     if ([ _ruffSprite pixelMaskIntersectsNode: _platform3])
         {
             CCLOG(@"blue platform");
         }
 
+    float testY = [self getRuffsBaseY];
     
     if ( [self didRuffCollideWithAPlatform:lastRuffMovementPosition] )
         {
         CCLOG(@"green platform");
         }
-    else if (_ruffBaseY != [self getRuffsBaseY] )
+    else if (_ruffBaseY != testY )
         {
 
             _ruffBaseY = [self getRuffsBaseY] ;
@@ -722,7 +721,11 @@
             }
         }
     
-    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.80 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
+    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.8 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
+    {
+        self.position = ccp( (int)self.position.x, (int)(self.position.y - _changeOfY) );
+    }
+    if ( lastRuffMovementPosition.y  < 0.2 * [[CCDirector sharedDirector] screenSize].height - self.position.y )
     {
         self.position = ccp( (int)self.position.x, (int)(self.position.y - _changeOfY) );
     }
