@@ -357,7 +357,6 @@
                 _initialJumpSpeed = RUFF_JUMP_SPEED;
                 //_initialJumpTime = _lastJumpTime;
                 _initialJumpTime = _gameTime;
-                
                 }
             }
         }
@@ -636,8 +635,10 @@
 
 -(void) update:(ccTime)delta
 {
+    float ruffContentWidth = !_isJumping && !_ruffSprite.flipX ? _ruffSprite.contentSize.width : 167;
     CGPoint lastRuffMovementPosition = _ruffSprite.position;
 
+    _isJumpStarting = NO;
     _gameTimeDelta = delta;
     _gameTime += delta;
     _jumpTime = _gameTime;
@@ -680,6 +681,7 @@
         {
         lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
         
+        
         if ( 0 < _backgroundLayer.position.x )
             {
             _backgroundLayer.position = ccp(0, _backgroundLayer.position.y);
@@ -689,11 +691,11 @@
             _backgroundLayer.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, _backgroundLayer.position.y);
             }
         
-        if ( (lastRuffMovementPosition.x  < 0.1 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ) && _ruffSprite.flipX)
+        if ( (lastRuffMovementPosition.x  < 0.2 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ) && _ruffSprite.flipX)
             {
                 if ( 0 <= _backgroundLayer.position.x )
                 {
-                    if ( _ruffSprite.position.x <= 0)
+                    if ( lastRuffMovementPosition.x <= 0)
                     {
                         lastRuffMovementPosition.x = 0;
                     }
@@ -701,14 +703,14 @@
                 else
                 {
                     _backgroundLayer.position = ccp( _backgroundLayer.position.x + (RUFF_SPEED * delta), _backgroundLayer.position.y);
-                    lastRuffMovementPosition.x = 0.1 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ;
+                    lastRuffMovementPosition.x = 0.2 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ;
                 }
             }
-        else if (lastRuffMovementPosition.x + _ruffSprite.contentSize.width > 0.9 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x  && !_ruffSprite.flipX)
+        else if (lastRuffMovementPosition.x + ruffContentWidth > 0.8 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x  && !_ruffSprite.flipX)
             {
                 if ( _backgroundLayer.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
                 {
-                    if ( _ruffSprite.position.x + _ruffSprite.contentSize.width >= _levelWidth )
+                    if ( lastRuffMovementPosition.x + _ruffSprite.contentSize.width >= _levelWidth )
                     {
                         lastRuffMovementPosition.x = _levelWidth - _ruffSprite.contentSize.width;
                     }
@@ -716,7 +718,7 @@
                 else
                 {
                     _backgroundLayer.position = ccp( _backgroundLayer.position.x - (RUFF_SPEED * delta), _backgroundLayer.position.y);
-                    lastRuffMovementPosition.x = 0.9 * [[CCDirector sharedDirector] screenSize].width - _ruffSprite.contentSize.width - _backgroundLayer.position.x ;
+                    lastRuffMovementPosition.x = 0.8 * [[CCDirector sharedDirector] screenSize].width - ruffContentWidth - _backgroundLayer.position.x ;
                 }
             }
         
