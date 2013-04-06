@@ -638,7 +638,6 @@
     float ruffContentWidth = !_isJumping && !_ruffSprite.flipX ? _ruffSprite.contentSize.width : 167;
     CGPoint lastRuffMovementPosition = _ruffSprite.position;
 
-    _isJumpStarting = NO;
     _gameTimeDelta = delta;
     _gameTime += delta;
     _jumpTime = _gameTime;
