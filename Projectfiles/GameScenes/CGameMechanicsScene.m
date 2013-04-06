@@ -211,25 +211,23 @@
             [_grounds addObject:platform3];
         }
         
-        //[self addChild: floor z:-5];
-        
-            for (int i = 0; i < 3; i++)
-            {
-                // get black platform on the screen
-                _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
-                _blackPlatform.anchorPoint = ccp(0,0);
-                _blackPlatform.position = ccp(800, 400 + ( i * 1.5 *  140));
-                [_levelObjectsLayer addChild: _blackPlatform z:2 tag:1];
-           
-                // get green platform on the screen
-                _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
-                _greenPlatform.anchorPoint = ccp(0,0);
-                _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + _blackPlatform.contentSize.height);
-                [_levelObjectsLayer addChild: _greenPlatform z:0 tag:2];
-                
-                _greenPlatform.tag = 2;
-                [_platforms addObject:_greenPlatform];
-            }
+        for (int i = 0; i < 3; i++)
+        {
+            // get black platform on the screen
+            _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
+            _blackPlatform.anchorPoint = ccp(0,0);
+            _blackPlatform.position = ccp(800 + i * 350, 400 + ( i * 1.5 *  140));
+            [_levelObjectsLayer addChild: _blackPlatform z:2 tag:1];
+       
+            // get green platform on the screen
+            _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
+            _greenPlatform.anchorPoint = ccp(0,0);
+            _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + _blackPlatform.contentSize.height);
+            [_levelObjectsLayer addChild: _greenPlatform z:0 tag:2];
+            
+            _greenPlatform.tag = 2;
+            [_platforms addObject:_greenPlatform];
+        }
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
