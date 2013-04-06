@@ -39,6 +39,7 @@
     @property    CGPoint                        backgroundPosition;
     @property    NSMutableArray*                grounds;
     @property    NSMutableArray*                platforms;
+    @property    NSMutableArray*                walls;
     @property    int                            defaultGround;
     @property    CGPoint                        lastSelfMovementPosition;
     @property    int                            levelWidth;
