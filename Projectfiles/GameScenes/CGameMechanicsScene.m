@@ -596,7 +596,7 @@
 {
     for (CCSprite *ground in _grounds)
     {
-        if (_ruffSprite.position.x <= ground.position.x && ground.position.x <= (_ruffSprite.position.x + ground.contentSize.width) )
+        if (_ruffSprite.position.x >= ground.position.x && ground.position.x + ground.contentSize.width >= _ruffSprite.position.x )
         {
             _defaultGround = (ground.position.y + ground.contentSize.height);
 
