@@ -29,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DCC1A0E213A94ED5005BD75D"
+            BuildableName = "ruff_stuff-iOS.app"
+            BlueprintName = "ruff_stuff-iOS"
+            ReferencedContainer = "container:ruff_stuff.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"

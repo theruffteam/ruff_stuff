@@ -78,14 +78,17 @@
     
 	if ((self = [super init]))
         {
+        _invisibleObjectsLayer = [CCLayer node];
+        _skyBackgroundLayer = [CCLayer node];
+        _farBackgroundLayer = [CCLayer node];
         _backgroundLayer = [CCLayer node];
-        _foregroundLayer = [CCLayer node];
-        _enemiesLayer = [CCLayer node];
+        _midGroundLayer = [CCLayer node];
         _levelObjectsLayer = [CCLayer node];
         _stageAssistorsLayer = [CCLayer node];
-        _hudLayer = [CHudLayer node];
+        _enemiesLayer = [CCLayer node];
         _ruffsLayer = [CCLayer node];
-        
+        _foregroundLayer = [CCLayer node];
+        _hudLayer = [CHudLayer node];
         
         
         
@@ -132,54 +135,28 @@
         // get background of entire game on the screen:
         //level 1.1: 5 x 10 images, all the same dimensions
         
-        int x = 0;
-        int y = 0;
-        int xPosition = 0;
-        int yPosition = 0;
-        int height = 0;
-        int width = 0;
         
-        for (int nextBackgroundSlice = 1; nextBackgroundSlice < 51; ++nextBackgroundSlice)
-            {
-            CCSprite* floor = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"level-01-part-01_%02d.png", nextBackgroundSlice]];
-            
-            if (yPosition == 0  &&  x == 0  &&  y == 0)
-                {
-                y = 1;
-                yPosition = 3 * [floor boundingBox].size.height;
-                }
-            
-            floor.anchorPoint = ccp(0, 0);
-            floor.position = ccp(xPosition, yPosition);
-            
-            [_backgroundLayer addChild:floor z:-5];
-            
-            xPosition += floor.contentSize.width;
-            
-            ++x;
-            
-            if (x == 5)
-                {
-                width += floor.contentSize.width;
-                }
-                
-            if (x == 10)
-                {
-                x = 0;
-                xPosition = 0;
-                width += floor.contentSize.width;
-                yPosition -= 1 * [floor boundingBox].size.height;
-                height += floor.contentSize.height;
-                }
-            
-            if (nextBackgroundSlice == 50)
-                {
-                xPosition -= floor.contentSize.width;
-                    _levelWidth = width;
-                    _levelHeight = height;
-                }
-            }
-            
+        CGSize sizeOfLayer;
+        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_skyBackgroundLayer withImageName:@"act-01-level-01-part-01-skyBackground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        
+        _levelWidth = sizeOfLayer.width;
+        _levelHeight = sizeOfLayer.height;
+        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_farBackgroundLayer withImageName:@"act-01-level-01-part-01-farBackground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        
+        _farBackgroundWidth = sizeOfLayer.width;
+        _farBackgroundHeight = sizeOfLayer.height;
+        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_backgroundLayer withImageName:@"act-01-level-01-part-01-background-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        
+        _backgroundWidth = sizeOfLayer.width;
+        _backgroundHeight = sizeOfLayer.height;
+        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-foreground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midGround-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        
             
         // get blue ground platform on the screen
         // from from x = 0 to 2048 at height 1530
@@ -346,35 +323,59 @@
         _isRunning = NO;
         _landingTime = 0;
         
+        [_ruffsLayer addChild: _ruffSprite];
+        
         self.anchorPoint = ccp(0,0);
         self.position = ccp(0,0);
         
+        _invisibleObjectsLayer.anchorPoint = ccp(0,0);
+        _invisibleObjectsLayer.position = ccp(0,0);
+        
+        _skyBackgroundLayer.anchorPoint = ccp(0,0);
+        _skyBackgroundLayer.position = ccp(0,-1530);
+        
+        _farBackgroundLayer.anchorPoint = ccp(0,0);
+        _farBackgroundLayer.position = ccp(0,280);
+        
         _backgroundLayer.anchorPoint = ccp(0,0);
-        _backgroundLayer.position = ccp(0,0);
-
+        _backgroundLayer.position = ccp(0,0); // 40 is how far in the grass do we want ruff to be in
+        
+        _midGroundLayer.anchorPoint = ccp(0,0);
+        _midGroundLayer.position = ccp(0,-1530);
+        
         _foregroundLayer.anchorPoint = ccp(0,0);
-        _foregroundLayer.position = ccp(0,0);
-
+        _foregroundLayer.position = ccp(0, -1530);
+        
         _enemiesLayer.anchorPoint = ccp(0,0);
         _enemiesLayer.position = ccp(0,0);
-
+        
         _levelObjectsLayer.anchorPoint = ccp(0,0);
         _levelObjectsLayer.position = ccp(0,0);
-
+        
         _stageAssistorsLayer.anchorPoint = ccp(0,0);
         _stageAssistorsLayer.position = ccp(0,0);
-
+        
         _hudLayer.anchorPoint = ccp(0,0);
         _hudLayer.position = ccp(0,0);
-
-        [self addChild: _backgroundLayer z: 1];
-        [self addChild: _levelObjectsLayer z: 2];
-        [self addChild: _stageAssistorsLayer z: 3];
-        [self addChild: _enemiesLayer z: 4];
-        [_ruffsLayer addChild: _ruffSprite];
-        [self addChild: _ruffsLayer z: 5];
-        [self addChild: _foregroundLayer z: 6];
-        [self addChild: _hudLayer z: 7];
+        
+        _ruffsLayer.anchorPoint = ccp(0,0);
+        _ruffsLayer.position = ccp(0,0);
+        
+        [self addChild: _invisibleObjectsLayer z: 0];
+        
+        [self addChild: _skyBackgroundLayer z: 1];
+        [self addChild: _farBackgroundLayer z: 2];
+        [self addChild: _backgroundLayer z: 3];
+        [self addChild:_midGroundLayer z: 4];
+        
+        [self addChild: _levelObjectsLayer z: 5];
+        [self addChild: _stageAssistorsLayer z: 6];
+        
+        [self addChild: _enemiesLayer z: 7];
+        [self addChild: _ruffsLayer z: 7];
+        
+        [self addChild: _foregroundLayer z: 8];
+        [self addChild: _hudLayer z: 9];
         }
     
     return self;
@@ -396,11 +397,15 @@
 
 -(void)updateLevelLayerPositions
 {
-    _foregroundLayer.position = _backgroundLayer.position;
-    _enemiesLayer.position = _backgroundLayer.position;
-    _levelObjectsLayer.position = _backgroundLayer.position;
-    _stageAssistorsLayer.position = _backgroundLayer.position;
-    _ruffsLayer.position = _backgroundLayer.position;;
+    _invisibleObjectsLayer.position = _foregroundLayer.position;
+    _skyBackgroundLayer.position = _foregroundLayer.position;
+    _farBackgroundLayer.position = ccp(0.05 * _foregroundLayer.position.x, _farBackgroundLayer.position.y);
+    _backgroundLayer.position = ccp(0.10 * _foregroundLayer.position.x, _backgroundLayer.position.y);
+    _midGroundLayer.position = _foregroundLayer.position;
+    _enemiesLayer.position = _foregroundLayer.position;
+    _levelObjectsLayer.position = _foregroundLayer.position;
+    _stageAssistorsLayer.position = _foregroundLayer.position;
+    _ruffsLayer.position = _foregroundLayer.position;
 }
 
 
@@ -840,17 +845,17 @@
         // Claping the sides to the width of the level.
         if ( 0 < _backgroundLayer.position.x )
             {
-            _backgroundLayer.position = ccp(0, _backgroundLayer.position.y);
+            _foregroundLayer.position = ccp(0, _foregroundLayer.position.y);
             }
-        else if ( _backgroundLayer.position.x + _levelWidth <  [[CCDirector sharedDirector] screenSize].width)
+        else if ( _foregroundLayer.position.x + _levelWidth <  [[CCDirector sharedDirector] screenSize].width)
             {
-            _backgroundLayer.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, _backgroundLayer.position.y);
+            _foregroundLayer.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, _foregroundLayer.position.y);
             }
             
         // Moving the left side of the screen when ruff reaches a certain percentage of the screen.
         if ( (lastRuffMovementPosition.x  < 0.35 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ) && _ruffSprite.flipX)
             {
-                if ( 0 <= _backgroundLayer.position.x )
+                if ( 0 <= _foregroundLayer.position.x )
                 {
                     if ( lastRuffMovementPosition.x <= 0)
                     {
@@ -865,7 +870,7 @@
             }
         else if (lastRuffMovementPosition.x + ruffContentWidth > 0.65 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x  && !_ruffSprite.flipX)
             {
-                if ( _backgroundLayer.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
+                if ( _foregroundLayer.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
                 {
                     if ( lastRuffMovementPosition.x + _ruffSprite.contentSize.width >= _levelWidth )
                     {
@@ -918,15 +923,38 @@
             }
         }
     
-    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.8 * [[CCDirector sharedDirector] screenSize].height - _backgroundLayer.position.y )
+    if ( lastRuffMovementPosition.y + _ruffSprite.contentSize.height > 0.85 * [[CCDirector sharedDirector] screenSize].height - _foregroundLayer.position.y && _changeOfY > 0)
     {
-        _backgroundLayer.position = ccp( (int)_backgroundLayer.position.x, (int)(_backgroundLayer.position.y - _changeOfY) );
+        _foregroundLayer.position = ccp( (int)_foregroundLayer.position.x, (int)(_foregroundLayer.position.y - _changeOfY) );
     }
-    if ( lastRuffMovementPosition.y  < 0.2 * [[CCDirector sharedDirector] screenSize].height - _backgroundLayer.position.y )
+    
+    else if ( lastRuffMovementPosition.y  <= 205 - _foregroundLayer.position.y && _changeOfY < 0)
     {
-        _backgroundLayer.position = ccp( (int)_backgroundLayer.position.x, (int)(_backgroundLayer.position.y - _changeOfY) );
+        _foregroundLayer.position = ccp( (int)_foregroundLayer.position.x, (int)(_foregroundLayer.position.y - _changeOfY) );
+        _changeOfY = 0;
+        if ( lastRuffMovementPosition.y >= 205- _foregroundLayer.position.y)
+            {
+                _foregroundLayer.position = ccp( (int)_foregroundLayer.position.x, (int)(205- lastRuffMovementPosition.y) );
+            }
     }
+    else if ( lastRuffMovementPosition.y  > 205 - _foregroundLayer.position.y && !_isJumping)
+        {
+        
+        _foregroundLayer.position = ccp( (int)_foregroundLayer.position.x, (int)(_foregroundLayer.position.y - 7) );
 
+        if ( lastRuffMovementPosition.y <= 205- _foregroundLayer.position.y)
+            {
+            _foregroundLayer.position = ccp( (int)_foregroundLayer.position.x, (int)(205- lastRuffMovementPosition.y ));
+            }
+        }
+    
+    
+    
+
+    
+    
+    
+    //if ( _ruffBaseY )
     
 
     lastRuffMovementPosition.x = [ self didRuffCollideWithAWall: lastRuffMovementPosition.x];
