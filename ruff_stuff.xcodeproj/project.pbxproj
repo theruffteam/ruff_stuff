@@ -187,6 +187,10 @@
 		DCF95CD213A97EC500AE3B80 /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CC913A97EC500AE3B80 /* libcocos2d-mac.a */; };
 		DCF95CD413A97EC500AE3B80 /* libkobold2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */; };
 		E618D31916B5E40900CEF65F /* CActor.m in Sources */ = {isa = PBXBuildFile; fileRef = E618D31816B5E40900CEF65F /* CActor.m */; };
+		E66F8DA11710B3690015A28F /* platforms-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = E66F8D9D1710B3690015A28F /* platforms-sprite-sheet-ipad.plist */; };
+		E66F8DA21710B3690015A28F /* platforms-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = E66F8D9E1710B3690015A28F /* platforms-sprite-sheet-ipad.pvr.ccz */; };
+		E66F8DA31710B3690015A28F /* platforms-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = E66F8D9F1710B3690015A28F /* platforms-sprite-sheet-ipadhd.plist */; };
+		E66F8DA41710B3690015A28F /* platforms-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = E66F8DA01710B3690015A28F /* platforms-sprite-sheet-ipadhd.pvr.ccz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -387,12 +391,12 @@
 		DCF95CCB13A97EC500AE3B80 /* libkobold2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libkobold2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-iOS.xcconfig"; sourceTree = "<group>"; };
-		E60F1B23170EAB9B00E45C29 /* platforms-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "platforms-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
-		E60F1B24170EAB9B00E45C29 /* platforms-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "platforms-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
-		E60F1B25170EAB9B00E45C29 /* platforms-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "platforms-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
-		E60F1B26170EAB9B00E45C29 /* platforms-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "platforms-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
 		E618D2DB16B5E2B400CEF65F /* CActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActor.h; sourceTree = "<group>"; };
 		E618D31816B5E40900CEF65F /* CActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CActor.m; sourceTree = "<group>"; };
+		E66F8D9D1710B3690015A28F /* platforms-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "platforms-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		E66F8D9E1710B3690015A28F /* platforms-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "platforms-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		E66F8D9F1710B3690015A28F /* platforms-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "platforms-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
+		E66F8DA01710B3690015A28F /* platforms-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "platforms-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -790,10 +794,10 @@
 		E654E3F916FEAF130057B533 /* Platforms */ = {
 			isa = PBXGroup;
 			children = (
-				E60F1B23170EAB9B00E45C29 /* platforms-sprite-sheet-ipad.plist */,
-				E60F1B24170EAB9B00E45C29 /* platforms-sprite-sheet-ipad.pvr.ccz */,
-				E60F1B25170EAB9B00E45C29 /* platforms-sprite-sheet-ipadhd.plist */,
-				E60F1B26170EAB9B00E45C29 /* platforms-sprite-sheet-ipadhd.pvr.ccz */,
+				E66F8D9D1710B3690015A28F /* platforms-sprite-sheet-ipad.plist */,
+				E66F8D9E1710B3690015A28F /* platforms-sprite-sheet-ipad.pvr.ccz */,
+				E66F8D9F1710B3690015A28F /* platforms-sprite-sheet-ipadhd.plist */,
+				E66F8DA01710B3690015A28F /* platforms-sprite-sheet-ipadhd.pvr.ccz */,
 			);
 			name = Platforms;
 			sourceTree = "<group>";
@@ -1010,6 +1014,10 @@
 				68B827EA170C22D6005FD03E /* level-01-part-01_24-ipad.png in Resources */,
 				68B827EB170C22D6005FD03E /* level-01-part-01_25-ipad.png in Resources */,
 				68B827EC170C22D6005FD03E /* level-01-part-01_26-ipad.png in Resources */,
+				E66F8DA11710B3690015A28F /* platforms-sprite-sheet-ipad.plist in Resources */,
+				E66F8DA21710B3690015A28F /* platforms-sprite-sheet-ipad.pvr.ccz in Resources */,
+				E66F8DA31710B3690015A28F /* platforms-sprite-sheet-ipadhd.plist in Resources */,
+				E66F8DA41710B3690015A28F /* platforms-sprite-sheet-ipadhd.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

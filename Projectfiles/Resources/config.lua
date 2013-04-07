@@ -34,7 +34,7 @@ local config =
 
 		Enable2DProjection = NO,
 		EnableRetinaDisplaySupport = YES,
-		EnableGLViewNodeHitTesting = NO,
+		EnableGLViewNodeHitTesting = YES,
 		EnableStatusBar = NO,
 
 		-- Orientation & Autorotation
