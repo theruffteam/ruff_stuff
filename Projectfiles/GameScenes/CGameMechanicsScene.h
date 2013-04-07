@@ -44,16 +44,24 @@
     @property    CGPoint                        lastSelfMovementPosition;
     @property    int                            levelWidth;
     @property    int                            levelHeight;
+    @property    int                            farBackgroundWidth;
+    @property    int                            farBackgroundHeight;
+    @property    int                            backgroundWidth;
+    @property    int                            backgroundHeight;
     @property    float                          changeOfY;
 
     // level layers
+    @property    CCLayer*                       skyBackgroundLayer;
+    @property    CCLayer*                       farBackgroundLayer;
     @property    CCLayer*                       backgroundLayer;
+    @property    CCLayer*                       midGroundLayer;
     @property    CCLayer*                       foregroundLayer;
     @property    CCLayer*                       enemiesLayer;
     @property    CCLayer*                       levelObjectsLayer;
     @property    CCLayer*                       stageAssistorsLayer;
     @property    CHudLayer*                     hudLayer;
     @property    CCLayer*                       ruffsLayer;
+    @property    CCLayer*                       invisibleObjectsLayer;
 
 
 
