@@ -99,7 +99,7 @@
         // get ruff sprite on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
-        _ruffSprite.position = ccp(1, 400);
+        _ruffSprite.position = ccp(500, 2000);
         
         [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
         
@@ -394,6 +394,53 @@
     [_grounds addObject:platform3];
     return (int)platform3.contentSize.width;
 }
+
+
+
+-(CGSize) loadImageSlicesIntoLayer:(CCLayer*)layer withImageName:(NSString*)nameOfImage totalNumberOfSlices:(int)numberOfSlices totalNumberOfRows:(int)numberOfRows totalNumberOfColumnsPerRow:(int)numberOfColumnsPerRow
+{
+int yMax = numberOfRows;
+int x = 1;
+int y = yMax - 1;
+int xPosition = 0;
+int yPosition = 0;
+int height = 0;
+int width = 0;
+
+// 10 x 10 grid of background
+for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBackgroundSlice, ++x)
+    {
+    int index = numberOfSlices - ((yMax - y) * yMax) + x;
+    
+    CCSprite* furthestBackgroundSlice = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"%@%03d.png", nameOfImage, index]];
+    
+    furthestBackgroundSlice.anchorPoint = ccp(0, 0);
+    furthestBackgroundSlice.position = ccp(xPosition, yPosition);
+    
+    [layer addChild:furthestBackgroundSlice z:0];
+    
+    xPosition += furthestBackgroundSlice.contentSize.width;
+    
+    // if we have completed a row of slices, reset to the first cell of the next row to make
+    if (numberOfColumnsPerRow == x)
+        {
+        yPosition += furthestBackgroundSlice.contentSize.height;
+        
+        if (0 == y)
+            {
+            width = xPosition;
+            height = yPosition;
+            }
+        
+        xPosition = 0;
+        x = 0;
+        --y;
+        }
+    }
+    
+    return CGSizeMake(width, height);
+}
+
 
 -(void)updateLevelLayerPositions
 {
@@ -842,8 +889,7 @@
             lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
         }
         
-        // Claping the sides to the width of the level.
-        if ( 0 < _backgroundLayer.position.x )
+        if ( 0 < _foregroundLayer.position.x )
             {
             _foregroundLayer.position = ccp(0, _foregroundLayer.position.y);
             }
@@ -851,9 +897,8 @@
             {
             _foregroundLayer.position = ccp( -_levelWidth + [[CCDirector sharedDirector] screenSize].width, _foregroundLayer.position.y);
             }
-            
-        // Moving the left side of the screen when ruff reaches a certain percentage of the screen.
-        if ( (lastRuffMovementPosition.x  < 0.35 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ) && _ruffSprite.flipX)
+        
+        if ( (lastRuffMovementPosition.x  < 0.35 * [[CCDirector sharedDirector] screenSize].width - _foregroundLayer.position.x ) && _ruffSprite.flipX)
             {
                 if ( 0 <= _foregroundLayer.position.x )
                 {
@@ -864,11 +909,11 @@
                 }
                 else
                 {
-                    _backgroundLayer.position = ccp( _backgroundLayer.position.x + (RUFF_SPEED * delta), _backgroundLayer.position.y);
-                    lastRuffMovementPosition.x = 0.35 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x ;
+                    _foregroundLayer.position = ccp( _foregroundLayer.position.x + (RUFF_SPEED * delta), _foregroundLayer.position.y);
+                    lastRuffMovementPosition.x = 0.35 * [[CCDirector sharedDirector] screenSize].width - _foregroundLayer.position.x ;
                 }
             }
-        else if (lastRuffMovementPosition.x + ruffContentWidth > 0.65 * [[CCDirector sharedDirector] screenSize].width - _backgroundLayer.position.x  && !_ruffSprite.flipX)
+        else if (lastRuffMovementPosition.x + ruffContentWidth > 0.65 * [[CCDirector sharedDirector] screenSize].width - _foregroundLayer.position.x  && !_ruffSprite.flipX)
             {
                 if ( _foregroundLayer.position.x + _levelWidth <=  [[CCDirector sharedDirector] screenSize].width )
                 {
@@ -879,8 +924,8 @@
                 }
                 else
                 {
-                    _backgroundLayer.position = ccp( _backgroundLayer.position.x - (RUFF_SPEED * delta), _backgroundLayer.position.y);
-                    lastRuffMovementPosition.x = 0.65 * [[CCDirector sharedDirector] screenSize].width - ruffContentWidth - _backgroundLayer.position.x ;
+                    _foregroundLayer.position = ccp( _foregroundLayer.position.x - (RUFF_SPEED * delta), _foregroundLayer.position.y);
+                    lastRuffMovementPosition.x = 0.65 * [[CCDirector sharedDirector] screenSize].width - ruffContentWidth - _foregroundLayer.position.x ;
                 }
             }
         
@@ -955,6 +1000,8 @@
     
     
     //if ( _ruffBaseY )
+    
+	//lastRuffMovementPosition = [self keepRuffBetweenScreenBorders: lastRuffMovementPosition];
     
 
     lastRuffMovementPosition.x = [ self didRuffCollideWithAWall: lastRuffMovementPosition.x];
