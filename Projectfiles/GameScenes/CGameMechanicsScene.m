@@ -163,7 +163,7 @@
         for ( int plat_x = 0; plat_x < 2048/CC_CONTENT_SCALE_FACTOR(); )
         {
             int platformWidth = 0;
-            int platformPlacementY = 170;//1530/CC_CONTENT_SCALE_FACTOR();
+            int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
             CGPoint pointForPlatform = ccp(0, platformPlacementY);
             
             if ( plat_x + platformWidth < 2048/CC_CONTENT_SCALE_FACTOR())
@@ -189,7 +189,7 @@
         for ( int plat_x = 2048; plat_x < 3173/CC_CONTENT_SCALE_FACTOR(); )
         {
             int platformWidth = 0;
-            int platformPlacementY = 150;//3070/CC_CONTENT_SCALE_FACTOR();
+            int platformPlacementY = 3070/CC_CONTENT_SCALE_FACTOR();
             CGPoint pointForPlatform = ccp(0, platformPlacementY);
             
             if ( plat_x + platformWidth < 3173/CC_CONTENT_SCALE_FACTOR())
@@ -215,7 +215,7 @@
         for ( int plat_x = 3173; plat_x < 7038/CC_CONTENT_SCALE_FACTOR(); )
         {
             int platformWidth = 0;
-            int platformPlacementY = 140;//1530/CC_CONTENT_SCALE_FACTOR();
+            int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
             CGPoint pointForPlatform = ccp(0, platformPlacementY);
             
             if ( plat_x + platformWidth < 7038/CC_CONTENT_SCALE_FACTOR())
@@ -826,8 +826,6 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
     _gameTimeDelta = delta;
     _gameTime += delta;
     _jumpTime = _gameTime;
-    
-    _isMoving = YES;
 
     [self gestureRecognitionWithPositionOfRuff: lastRuffMovementPosition];
 
@@ -872,22 +870,8 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
     
     if (_isMoving)
         {
-        //lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta); //changes the x
+        lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta); //changes the x
         
-        if (_ruffSprite.position.x > _levelWidth - 300)
-        {
-            _ruffSprite.flipX = YES;
-            lastRuffMovementPosition.x -= (RUFF_SPEED * delta);
-        }
-        else if ( _ruffSprite.position.x < 300)
-        {
-            _ruffSprite.flipX = NO;
-            lastRuffMovementPosition.x += (RUFF_SPEED * delta);
-        }
-        else
-        {
-            lastRuffMovementPosition.x += _ruffSprite.flipX ? -(RUFF_SPEED * delta) : (RUFF_SPEED * delta);
-        }
         
         if ( 0 < _foregroundLayer.position.x )
             {
