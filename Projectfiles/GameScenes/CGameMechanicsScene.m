@@ -254,16 +254,57 @@
                 plat_x += platformWidth;
             }
             
-            if ( plat_x + platformWidth > 7038/CC_CONTENT_SCALE_FACTOR() )
-            {
-                plat_x = 7038/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createGroundWithPoint: pointForPlatform];
-                break;
-            }
-            
-            
-        }
+//        // get blue ground platform on the screen
+//        // from from x = 2048 to 3173 at height 3070
+//        for ( int plat_x = 2048; plat_x < 3173/CC_CONTENT_SCALE_FACTOR(); )
+//        {
+//            int platformWidth = 0;
+//            int platformPlacementY = 3070/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 3173/CC_CONTENT_SCALE_FACTOR())
+//            {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//            }
+//            
+//            if ( plat_x + platformWidth > 3173/CC_CONTENT_SCALE_FACTOR() )
+//            {
+//                plat_x = 3173/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//            }
+//            
+//            
+//        }
+//            
+//        // get blue ground platform on the screen
+//        // from from x = 3173 to 7038 at height 1530
+//        for ( int plat_x = 3173; plat_x < 7038/CC_CONTENT_SCALE_FACTOR(); )
+//        {
+//            int platformWidth = 0;
+//            int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 7038/CC_CONTENT_SCALE_FACTOR())
+//            {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//            }
+//            
+//            if ( plat_x + platformWidth > 7038/CC_CONTENT_SCALE_FACTOR() )
+//            {
+//                plat_x = 7038/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//            }
+//            
+//            
+//        }
         
         // get blue ground platform on the screen
         // from from x = 7038 to 10388 at height 1530
@@ -667,6 +708,31 @@
     return (int)platform.contentSize.width;
 }
 
+-(void) createResourceWithImage:(NSString*) imageName atHeight: (int) placementY fromXPosition: (int) startXposition toEndXPosition: (int) endXPosition intoList: listName
+{
+    for ( int plat_x = startXposition/CC_CONTENT_SCALE_FACTOR(); plat_x < endXPosition/CC_CONTENT_SCALE_FACTOR(); )
+    {
+        int platformWidth = 0;
+        int platformPlacementY = placementY/CC_CONTENT_SCALE_FACTOR();
+        CGPoint pointForPlatform = ccp(0, platformPlacementY);
+        
+        if ( plat_x + platformWidth < endXPosition/CC_CONTENT_SCALE_FACTOR())
+        {
+            pointForPlatform = ccp(plat_x, platformPlacementY);
+            platformWidth = [self createGroundWithPoint:ccp(plat_x, platformPlacementY) andImage:imageName inList:listName];
+            plat_x += platformWidth;
+        }
+        
+        if ( plat_x + platformWidth > endXPosition/CC_CONTENT_SCALE_FACTOR() )
+        {
+            plat_x = endXPosition/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+            pointForPlatform = ccp(plat_x, platformPlacementY);
+            [self createGroundWithPoint:ccp(plat_x, platformPlacementY) andImage:imageName inList:listName];
+            break;
+        }
+    }
+    
+}
 
 -(CGSize) loadImageSlicesIntoLayer:(CCLayer*)layer withImageName:(NSString*)nameOfImage totalNumberOfSlices:(int)numberOfSlices totalNumberOfRows:(int)numberOfRows totalNumberOfColumnsPerRow:(int)numberOfColumnsPerRow
 {
