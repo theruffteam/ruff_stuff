@@ -187,72 +187,35 @@
         sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midGround-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
         
             
-        // get blue ground platform on the screen
-        // from from x = 0 to 2048 at height 1530
-        for ( int plat_x = 0; plat_x < 2048/CC_CONTENT_SCALE_FACTOR(); )
-        {
-            int platformWidth = 0;
-            int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 2048/CC_CONTENT_SCALE_FACTOR())
-            {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createGroundWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-            }
-            
-            if ( plat_x + platformWidth > 2048/CC_CONTENT_SCALE_FACTOR() )
-            {
-                plat_x = 2048/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createGroundWithPoint: pointForPlatform];
-                break;
-            }
-
-            
-        }
-            
-        // get blue ground platform on the screen
-        // from from x = 2048 to 3173 at height 3070
-        for ( int plat_x = 2148/CC_CONTENT_SCALE_FACTOR(); plat_x < 3173/CC_CONTENT_SCALE_FACTOR(); )
-        {
-            int platformWidth = 0;
-            int platformPlacementY = 3070/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 3173/CC_CONTENT_SCALE_FACTOR())
-            {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createGroundWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-            }
-            
-            if ( plat_x + platformWidth > 3173/CC_CONTENT_SCALE_FACTOR() )
-            {
-                plat_x = 3173/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createGroundWithPoint: pointForPlatform];
-                break;
-            }
-            
-            
-        }
-            
-        // get blue ground platform on the screen
-        // from from x = 3173 to 7038 at height 1530
-        for ( int plat_x = 3173/CC_CONTENT_SCALE_FACTOR(); plat_x < 7038/CC_CONTENT_SCALE_FACTOR(); )
-        {
-            int platformWidth = 0;
-            int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 7038/CC_CONTENT_SCALE_FACTOR())
-            {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createGroundWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-            }
+//        // get blue ground platform on the screen
+//        // from from x = 0 to 2048 at height 1530
+//        for ( int plat_x = 0; plat_x < 2048/CC_CONTENT_SCALE_FACTOR(); )
+//        {
+//            int platformWidth = 0;
+//            int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 2048/CC_CONTENT_SCALE_FACTOR())
+//            {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//            }
+//            
+//            if ( plat_x + platformWidth > 2048/CC_CONTENT_SCALE_FACTOR() )
+//            {
+//                plat_x = 2048/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//            }
+//
+//            
+//        }
+//
+            [self createResourceWithImage:@"ground.png" atHeight:1530 fromXPosition:0 toEndXPosition:2048 intoList:_grounds];
+            [self createResourceWithImage:@"ground.png" atHeight:3070 fromXPosition:2048 toEndXPosition:3173 intoList:_grounds];
+            [self createResourceWithImage:@"ground.png" atHeight:1530 fromXPosition:3173 toEndXPosition:7038 intoList:_grounds];
             
 //        // get blue ground platform on the screen
 //        // from from x = 2048 to 3173 at height 3070
@@ -328,8 +291,7 @@
                 [self createGroundWithPoint: pointForPlatform];
                 break;
                 }
-            
-            
+
             }
         
 //        // get blue ground platform on the screen
@@ -434,112 +396,120 @@
             //}
         
 //        // Green blocks placed on top of your platforms.  Creating out collision and ground for platform.
-        for ( int plat_x = 1548/CC_CONTENT_SCALE_FACTOR(); plat_x < 2248/CC_CONTENT_SCALE_FACTOR(); )
-            {
-            int platformWidth = 0;
-            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 2048/CC_CONTENT_SCALE_FACTOR())
-                {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createPlatformWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-                }
-            
-            if ( plat_x + platformWidth > 2048/CC_CONTENT_SCALE_FACTOR() )
-                {
-                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createPlatformWithPoint: pointForPlatform];
-                break;
-                }
-            
-            }
+//        for ( int plat_x = 1548/CC_CONTENT_SCALE_FACTOR(); plat_x < 2248/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 2048/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 2048/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createPlatformWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            }
         
-        [self createPlatformWithPoint: ccp(3923/CC_CONTENT_SCALE_FACTOR(), 2340/CC_CONTENT_SCALE_FACTOR())];
-        [self createPlatformWithPoint: ccp(4913/CC_CONTENT_SCALE_FACTOR(), 2340/CC_CONTENT_SCALE_FACTOR())];
-        // not to scale
-        [self createPlatformWithPoint: ccp(7338/CC_CONTENT_SCALE_FACTOR(), 830/CC_CONTENT_SCALE_FACTOR())];
-        [self createPlatformWithPoint: ccp(10288/CC_CONTENT_SCALE_FACTOR(), 2790/CC_CONTENT_SCALE_FACTOR())];
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:1950 fromXPosition:1548 toEndXPosition:2248 intoList: _platforms];
+        [self createGroundWithPoint:ccp(3923, 2340) andImage:@"greenPlatform.png" inList:_platforms];
+        [self createGroundWithPoint:ccp(4913, 2340) andImage:@"greenPlatform.png" inList:_platforms];
+        [self createGroundWithPoint:ccp(7338, 2340) andImage:@"greenPlatform.png" inList:_platforms];
+        [self createGroundWithPoint:ccp(10288, 2340) andImage:@"greenPlatform.png" inList:_platforms];
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:2370 fromXPosition:7788 toEndXPosition:8538 intoList: _platforms];
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:2790 fromXPosition:8538 toEndXPosition:9488 intoList: _platforms];
         
-        // get blue ground platform on the screen
-        // from from x = 7038 to 7788 at height 1530
-        for ( int plat_x = 7038/CC_CONTENT_SCALE_FACTOR(); plat_x < 7788/CC_CONTENT_SCALE_FACTOR(); )
-            {
-            int platformWidth = 0;
-            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 7788/CC_CONTENT_SCALE_FACTOR())
-                {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createPlatformWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-                }
-            
-            if ( plat_x + platformWidth > 7788/CC_CONTENT_SCALE_FACTOR() )
-                {
-                plat_x = 7788/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createPlatformWithPoint: pointForPlatform];
-                break;
-                }
-            
-            
-            }
+//        [self createPlatformWithPoint: ccp(3923/CC_CONTENT_SCALE_FACTOR(), 2340/CC_CONTENT_SCALE_FACTOR())];
+//        [self createPlatformWithPoint: ccp(4913/CC_CONTENT_SCALE_FACTOR(), 2340/CC_CONTENT_SCALE_FACTOR())];
+//        // not to scale
+//        [self createPlatformWithPoint: ccp(7338/CC_CONTENT_SCALE_FACTOR(), 830/CC_CONTENT_SCALE_FACTOR())];
+//        [self createPlatformWithPoint: ccp(10288/CC_CONTENT_SCALE_FACTOR(), 2790/CC_CONTENT_SCALE_FACTOR())];
         
         // get blue ground platform on the screen
         // from from x = 7038 to 7788 at height 1530
-        for ( int plat_x = 7788/CC_CONTENT_SCALE_FACTOR(); plat_x < 8538/CC_CONTENT_SCALE_FACTOR(); )
-            {
-            int platformWidth = 0;
-            int platformPlacementY = 2370/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 8538/CC_CONTENT_SCALE_FACTOR())
-                {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createPlatformWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-                }
-            
-            if ( plat_x + platformWidth > 8538/CC_CONTENT_SCALE_FACTOR() )
-                {
-                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createPlatformWithPoint: pointForPlatform];
-                break;
-                }
-            
-            
-            }
+//        for ( int plat_x = 7038/CC_CONTENT_SCALE_FACTOR(); plat_x < 7788/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 7788/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 7788/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 7788/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createPlatformWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            
+//            }
         
         // get blue ground platform on the screen
         // from from x = 7038 to 7788 at height 1530
-        for ( int plat_x = 8538/CC_CONTENT_SCALE_FACTOR(); plat_x < 9488/CC_CONTENT_SCALE_FACTOR(); )
-            {
-            int platformWidth = 0;
-            int platformPlacementY = 2790/CC_CONTENT_SCALE_FACTOR();
-            CGPoint pointForPlatform = ccp(0, platformPlacementY);
-            
-            if ( plat_x + platformWidth < 9488/CC_CONTENT_SCALE_FACTOR())
-                {
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                platformWidth = [self createPlatformWithPoint: pointForPlatform];
-                plat_x += platformWidth;
-                }
-            
-            if ( plat_x + platformWidth > 9488/CC_CONTENT_SCALE_FACTOR() )
-                {
-                plat_x = 9488/CC_CONTENT_SCALE_FACTOR() - platformWidth;
-                pointForPlatform = ccp(plat_x, platformPlacementY);
-                [self createPlatformWithPoint: pointForPlatform];
-                break;
-                }
-            
-            
-            }
+//        for ( int plat_x = 7788/CC_CONTENT_SCALE_FACTOR(); plat_x < 8538/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 2370/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 8538/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 8538/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createPlatformWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            
+//            }
+//        
+//        // get blue ground platform on the screen
+//        // from from x = 7038 to 7788 at height 1530
+//        for ( int plat_x = 8538/CC_CONTENT_SCALE_FACTOR(); plat_x < 9488/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 2790/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 9488/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 9488/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 9488/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createPlatformWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            
+//            }
         
         
         
@@ -668,7 +638,7 @@
         [self addChild: _backgroundLayer z: 3];
         [self addChild: _midGroundLayer z: 4];
         
-        [self addChild: _levelObjectsLayer z: -5];
+        [self addChild: _levelObjectsLayer z: 15];
         [self addChild: _stageAssistorsLayer z: 6];
         
         [self addChild: _enemiesLayer z: 7];
@@ -687,7 +657,7 @@
     [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
     
     platform3.anchorPoint = ccp(0,0);
-    platform3.position = ccp(platformPoint.x, platformPoint.y - platform3.contentSize.height);
+    platform3.position = ccp(platformPoint.x, platformPoint.y);
     
     [_levelObjectsLayer addChild: platform3 z: 6];
     platform3.tag = 3;
@@ -695,17 +665,18 @@
     return (int)platform3.contentSize.width;
 }
 
--(int)createPlatformWithPoint:(CGPoint) platformPoint
+-(int)createGroundWithPoint:(CGPoint) platformPoint andImage: (NSString *) imageName inList: (NSMutableArray*) listName
 {
-    KKPixelMaskSprite* platform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
+    KKMutablePixelMaskSprite* platform3 = [[KKMutablePixelMaskSprite alloc] init];
+    [self setupExtendedSprite:platform3  withInitialFrame:imageName];
     
-    platform.anchorPoint = ccp(0,0);
-    platform.position = ccp(platformPoint.x, platformPoint.y);
+    platform3.anchorPoint = ccp(0,0);
+    platform3.position = ccp(platformPoint.x, platformPoint.y);
     
-    [_levelObjectsLayer addChild: platform z: 6];
-    platform.tag = 3;
-    [_platforms addObject:platform];
-    return (int)platform.contentSize.width;
+    [_levelObjectsLayer addChild: platform3 z: 6];
+    platform3.tag = 3;
+    [listName addObject:platform3];
+    return (int)platform3.contentSize.width;
 }
 
 -(void) createResourceWithImage:(NSString*) imageName atHeight: (int) placementY fromXPosition: (int) startXposition toEndXPosition: (int) endXPosition intoList: listName
@@ -747,16 +718,7 @@ int width = 0;
 // 10 x 10 grid of background
 for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBackgroundSlice, ++x)
     {
-    int index;
-    
-    if (numberOfRows > 1)
-        {
-        index = numberOfSlices - ((numberOfColumnsPerRow - y) * yMax) + x;
-        }
-    else
-        {
-        index = x - 1;
-        }
+    int index = numberOfSlices - ((numberOfColumnsPerRow - y) * yMax) + x;
         
     CCSprite* furthestBackgroundSlice = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"%@%03d.png", nameOfImage, index]];
     

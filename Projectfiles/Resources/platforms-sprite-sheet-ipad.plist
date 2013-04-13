@@ -4,10 +4,23 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>greenPlatform.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{104,144}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{104,144}}</string>
+                <key>sourceSize</key>
+                <string>{104,144}</string>
+            </dict>
             <key>ground.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{304,21}}</string>
+                <string>{{2,152},{304,21}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +33,7 @@
             <key>platform-01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,29},{304,55}}</string>
+                <string>{{2,179},{304,55}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -33,7 +46,7 @@
             <key>platform-02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,90},{304,56}}</string>
+                <string>{{2,240},{304,56}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -46,7 +59,7 @@
             <key>platform-03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,152},{304,89}}</string>
+                <string>{{2,302},{304,89}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -59,7 +72,7 @@
             <key>platform-04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,247},{304,53}}</string>
+                <string>{{2,397},{304,53}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -72,7 +85,7 @@
             <key>platform-05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,306},{304,50}}</string>
+                <string>{{2,456},{304,50}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -85,7 +98,7 @@
             <key>wall.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{312,306},{21,304}}</string>
+                <string>{{2,512},{21,304}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -103,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>platforms-sprite-sheet-ipad.pvr.ccz</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{310,818}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3e1977a2ab67c556781ff1a264ab76d3$</string>
+            <string>$TexturePacker:SmartUpdate:05348d851c146fb039dc121d718fe6ee$</string>
             <key>textureFileName</key>
             <string>platforms-sprite-sheet-ipad.pvr.ccz</string>
         </dict>
