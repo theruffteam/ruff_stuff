@@ -569,7 +569,7 @@
         
         // update the screen based on fps
         [self scheduleUpdate];
-        
+
 		// initialize KKInput
 		input.multipleTouchEnabled = YES;
 		input.gestureTapEnabled = input.gesturesAvailable;
