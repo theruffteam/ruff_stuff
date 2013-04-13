@@ -38,7 +38,16 @@
         _rightCirclePosition = ccp(director.screenSize.width - 101.0f , 101.0f);
         
         
-        [self addChild: health];
+        CCSprite* move = [[CCSprite alloc] initWithFile:@"Control_Move.png"];
+        move.position = ccp(101.0f , 101.0f);
+        
+        CCSprite* action = [[CCSprite alloc] initWithFile:@"Control_Left.png"];
+        action.position = ccp(director.screenSize.width - 101.0f , 101.0f);
+        
+        [self addChild: move z:10];
+        [self addChild: action z: 10];
+        
+        //[self addChild: health];
         }
     
     return self;
@@ -53,15 +62,15 @@
     // set circle drawing color
     ccDrawColor4F( 0.0f, 0.0f, 0.0f, 1.0);
     
-    //draw mock-up health bar for kicks
-    ccDrawRect(_healthBarOrigin, _healthBarDestination);
+//    //draw mock-up health bar for kicks
+//    ccDrawRect(_healthBarOrigin, _healthBarDestination);
     
-    // left circle on screen
-    ccDrawCircle(_leftCirclePosition, 100, 0, 16, NO);
+//    // left circle on screen
+//    ccDrawCircle(_leftCirclePosition, 100, 0, 16, NO);
+//    
+//    // right circle on screen
+//    ccDrawCircle(_rightCirclePosition, 100, 0, 16, NO);
     
-    // right circle on screen
-    ccDrawCircle(_rightCirclePosition, 100, 0, 16, NO);
-        
 	if (input.touchesAvailable)
         {
 		NSUInteger color = 0;

@@ -28,8 +28,37 @@
 
 @implementation CGameMechanicsScene
 
--(void) addPixelMaskSpriteFramesToSpriteCacheWithSpritesheet: (NSString*)spriteSheetName
+
+// addPixelMaskSpriteFramesToCacheWithFile =====================================
+// 
+// =============================================================================
+-(NSUInteger) addPixelMaskSpriteFramesToCacheWithFile: (NSString*)spriteSheetFilename
 {
+    //CCTexture2D* texture = [[CCTexture2D alloc] in]
+    
+    NSUInteger numberOfFrames = 0;
+    
+    // add the sprite sheet to the sprite cache
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: spriteSheetFilename];
+    
+    // now let's look at the plist which loaded the spritesheet, and grab all the sprite frame names
+    // so that we can extend them with the pixel mask, and re-add them to the frame cache
+    NSDictionary* dictionaryOfSpriteSheetContents = [NSDictionary dictionaryWithContentsOfFile: [[CCFileUtils sharedFileUtils] fullPathFromRelativePath:spriteSheetFilename]];
+    NSDictionary* dictionaryOfSpriteFrameNames = [NSDictionary dictionaryWithDictionary:[dictionaryOfSpriteSheetContents objectForKey:@"frames"]];
+    KKMutablePixelMaskSprite* dummySprite = [[KKMutablePixelMaskSprite alloc] init];
+    
+    for (NSString* nextFrameName in dictionaryOfSpriteFrameNames)
+        {
+        [dummySprite setDisplayFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:nextFrameName]];
+        
+        CCSpriteFrameExtended* pixelMaskFrame = [dummySprite createPixelMaskWithCurrentFrame];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame:pixelMaskFrame name:nextFrameName];
+
+        ++numberOfFrames;
+        }
+    
+    return numberOfFrames;
 }
 
 
@@ -138,7 +167,7 @@
         
         CGSize sizeOfLayer;
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_skyBackgroundLayer withImageName:@"act-01-level-01-part-01-skyBackground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_skyBackgroundLayer withImageName:@"act-01-level-01-part-01-skyBackground-" totalNumberOfSlices:6 totalNumberOfRows:2 totalNumberOfColumnsPerRow:3];
         
         _levelWidth = sizeOfLayer.width;
         _levelHeight = sizeOfLayer.height;
@@ -153,7 +182,7 @@
         _backgroundWidth = sizeOfLayer.width;
         _backgroundHeight = sizeOfLayer.height;
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-foreground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-floorForeground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midGround-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
         
@@ -186,7 +215,7 @@
             
         // get blue ground platform on the screen
         // from from x = 2048 to 3173 at height 3070
-        for ( int plat_x = 2048; plat_x < 3173/CC_CONTENT_SCALE_FACTOR(); )
+        for ( int plat_x = 2148/CC_CONTENT_SCALE_FACTOR(); plat_x < 3173/CC_CONTENT_SCALE_FACTOR(); )
         {
             int platformWidth = 0;
             int platformPlacementY = 3070/CC_CONTENT_SCALE_FACTOR();
@@ -212,7 +241,7 @@
             
         // get blue ground platform on the screen
         // from from x = 3173 to 7038 at height 1530
-        for ( int plat_x = 3173; plat_x < 7038/CC_CONTENT_SCALE_FACTOR(); )
+        for ( int plat_x = 3173/CC_CONTENT_SCALE_FACTOR(); plat_x < 7038/CC_CONTENT_SCALE_FACTOR(); )
         {
             int platformWidth = 0;
             int platformPlacementY = 1530/CC_CONTENT_SCALE_FACTOR();
@@ -236,52 +265,282 @@
             
         }
         
-        // Green blocks placed on top of your platforms.  Creating out collision and ground for platform.
+        // get blue ground platform on the screen
+        // from from x = 7038 to 10388 at height 1530
+        for ( int plat_x = 7038/CC_CONTENT_SCALE_FACTOR(); plat_x < 10388/CC_CONTENT_SCALE_FACTOR(); )
+            {
+            int platformWidth = 0;
+            int platformPlacementY = 410/CC_CONTENT_SCALE_FACTOR();
+            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+            
+            if ( plat_x + platformWidth < 10388/CC_CONTENT_SCALE_FACTOR())
+                {
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                platformWidth = [self createGroundWithPoint: pointForPlatform];
+                plat_x += platformWidth;
+                }
+            
+            if ( plat_x + platformWidth > 10388/CC_CONTENT_SCALE_FACTOR() )
+                {
+                plat_x = 10388/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                [self createGroundWithPoint: pointForPlatform];
+                break;
+                }
+            
+            
+            }
+        
+//        // get blue ground platform on the screen
+//        // from from x = 7038 to 7788 at height 1530
+//        for ( int plat_x = 7038/CC_CONTENT_SCALE_FACTOR(); plat_x < 7788/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 7788/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 7788/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 7788/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            
+//            }
+//        
+//        // get blue ground platform on the screen
+//        // from from x = 7038 to 7788 at height 1530
+//        for ( int plat_x = 7788/CC_CONTENT_SCALE_FACTOR(); plat_x < 8538/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 2370/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 8538/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 8538/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            
+//            }
+//        
+//        // get blue ground platform on the screen
+//        // from from x = 7038 to 7788 at height 1530
+//        for ( int plat_x = 8538/CC_CONTENT_SCALE_FACTOR(); plat_x < 9288/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 2790/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//            if ( plat_x + platformWidth < 9288/CC_CONTENT_SCALE_FACTOR())
+//                {
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+//                }
+//            
+//            if ( plat_x + platformWidth > 9288/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 9288/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//                }
+//            
+//            
+//            }
+        
+        // get blue ground platform on the screen
+        // from from x = 7038 to 7788 at height 1530
+//        for ( int plat_x = 10188/CC_CONTENT_SCALE_FACTOR(); plat_x < 10488/CC_CONTENT_SCALE_FACTOR(); )
+//            {
+//            int platformWidth = 0;
+//            int platformPlacementY = 2790/CC_CONTENT_SCALE_FACTOR();
+//            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+//            
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                platformWidth = [self createGroundWithPoint: pointForPlatform];
+//                plat_x += platformWidth;
+        
+//            if ( plat_x + platformWidth > 9288/CC_CONTENT_SCALE_FACTOR() )
+//                {
+//                plat_x = 9288/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+//                pointForPlatform = ccp(plat_x, platformPlacementY);
+//                [self createGroundWithPoint: pointForPlatform];
+//                break;
+//                }
+            
+            
+            //}
+        
+//        // Green blocks placed on top of your platforms.  Creating out collision and ground for platform.
+        for ( int plat_x = 1548/CC_CONTENT_SCALE_FACTOR(); plat_x < 2248/CC_CONTENT_SCALE_FACTOR(); )
+            {
+            int platformWidth = 0;
+            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
+            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+            
+            if ( plat_x + platformWidth < 2048/CC_CONTENT_SCALE_FACTOR())
+                {
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+                plat_x += platformWidth;
+                }
+            
+            if ( plat_x + platformWidth > 2048/CC_CONTENT_SCALE_FACTOR() )
+                {
+                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                [self createPlatformWithPoint: pointForPlatform];
+                break;
+                }
+            
+            }
+        
+        [self createPlatformWithPoint: ccp(3923/CC_CONTENT_SCALE_FACTOR(), 2340/CC_CONTENT_SCALE_FACTOR())];
+        [self createPlatformWithPoint: ccp(4913/CC_CONTENT_SCALE_FACTOR(), 2340/CC_CONTENT_SCALE_FACTOR())];
+        // not to scale
+        [self createPlatformWithPoint: ccp(7338/CC_CONTENT_SCALE_FACTOR(), 830/CC_CONTENT_SCALE_FACTOR())];
+        [self createPlatformWithPoint: ccp(10288/CC_CONTENT_SCALE_FACTOR(), 2790/CC_CONTENT_SCALE_FACTOR())];
+        
+        // get blue ground platform on the screen
+        // from from x = 7038 to 7788 at height 1530
+        for ( int plat_x = 7038/CC_CONTENT_SCALE_FACTOR(); plat_x < 7788/CC_CONTENT_SCALE_FACTOR(); )
+            {
+            int platformWidth = 0;
+            int platformPlacementY = 1950/CC_CONTENT_SCALE_FACTOR();
+            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+            
+            if ( plat_x + platformWidth < 7788/CC_CONTENT_SCALE_FACTOR())
+                {
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+                plat_x += platformWidth;
+                }
+            
+            if ( plat_x + platformWidth > 7788/CC_CONTENT_SCALE_FACTOR() )
+                {
+                plat_x = 7788/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                [self createPlatformWithPoint: pointForPlatform];
+                break;
+                }
+            
+            
+            }
+        
+        // get blue ground platform on the screen
+        // from from x = 7038 to 7788 at height 1530
+        for ( int plat_x = 7788/CC_CONTENT_SCALE_FACTOR(); plat_x < 8538/CC_CONTENT_SCALE_FACTOR(); )
+            {
+            int platformWidth = 0;
+            int platformPlacementY = 2370/CC_CONTENT_SCALE_FACTOR();
+            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+            
+            if ( plat_x + platformWidth < 8538/CC_CONTENT_SCALE_FACTOR())
+                {
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+                plat_x += platformWidth;
+                }
+            
+            if ( plat_x + platformWidth > 8538/CC_CONTENT_SCALE_FACTOR() )
+                {
+                plat_x = 8538/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                [self createPlatformWithPoint: pointForPlatform];
+                break;
+                }
+            
+            
+            }
+        
+        // get blue ground platform on the screen
+        // from from x = 7038 to 7788 at height 1530
+        for ( int plat_x = 8538/CC_CONTENT_SCALE_FACTOR(); plat_x < 9488/CC_CONTENT_SCALE_FACTOR(); )
+            {
+            int platformWidth = 0;
+            int platformPlacementY = 2790/CC_CONTENT_SCALE_FACTOR();
+            CGPoint pointForPlatform = ccp(0, platformPlacementY);
+            
+            if ( plat_x + platformWidth < 9488/CC_CONTENT_SCALE_FACTOR())
+                {
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                platformWidth = [self createPlatformWithPoint: pointForPlatform];
+                plat_x += platformWidth;
+                }
+            
+            if ( plat_x + platformWidth > 9488/CC_CONTENT_SCALE_FACTOR() )
+                {
+                plat_x = 9488/CC_CONTENT_SCALE_FACTOR() - platformWidth;
+                pointForPlatform = ccp(plat_x, platformPlacementY);
+                [self createPlatformWithPoint: pointForPlatform];
+                break;
+                }
+            
+            
+            }
+        
+        
+        
+        
         for (int i = 0; i < 3; i++)
         {
             // get black platform on the screen
             _blackPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"blackPlatform.png" alphaThreshold:0];
             _blackPlatform.anchorPoint = ccp(0,0);
-            _blackPlatform.position = ccp(800 + i * 350, 400 + ( i * 1.5 *  140));
+            _blackPlatform.position = ccp(674 + i * _blackPlatform.contentSize.width, 2550/CC_CONTENT_SCALE_FACTOR());
             [_levelObjectsLayer addChild: _blackPlatform z:2 tag:1];
        
-            // get green platform on the screen
-            _greenPlatform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
-            _greenPlatform.anchorPoint = ccp(0,0);
-            _greenPlatform.position = ccp(_blackPlatform.position.x, _blackPlatform.position.y + _blackPlatform.contentSize.height);
-            [_levelObjectsLayer addChild: _greenPlatform z:0 tag:2];
-            
             _greenPlatform.tag = 2;
             [_springs addObject:_blackPlatform];
-            [_platforms addObject:_greenPlatform];
         }
-            
-        // Walls. This list will create the set of walls for the game.  tag = 1 for left (blocking right movement)
-        // and tag = 2 for right (blocking left movement)
-        {
-            KKMutablePixelMaskSprite* wall1 = [[KKMutablePixelMaskSprite alloc] init];
-            
-            // Left wall
-            wall1.position = ccp( 1800, 100);
-            wall1.anchorPoint = ccp(0,0);
-            
-            [self setupExtendedSprite:wall1  withInitialFrame:@"wall.png"];
-            [_levelObjectsLayer addChild:wall1 z:0];
-            wall1.tag = 1;
-            [_walls addObject:wall1];
-            
-            KKMutablePixelMaskSprite* wall2 = [[KKMutablePixelMaskSprite alloc] init];
-            // Right wall
-            wall2.anchorPoint = ccp( 0,0);
-            wall2.position = ccp( 250, 100);
-            
-            [self setupExtendedSprite:wall2  withInitialFrame:@"wall.png"];
-            [_levelObjectsLayer addChild:wall2 z:0];
-            wall2.tag = 2;
-            [_walls addObject:wall2];
         
-        }
-            
+//        // Walls. This list will create the set of walls for the game.  tag = 1 for left (blocking right movement)
+//        // and tag = 2 for right (blocking left movement)
+//        {
+//            KKMutablePixelMaskSprite* wall1 = [[KKMutablePixelMaskSprite alloc] init];
+//            
+//            // Left wall
+//            wall1.position = ccp( 1800, 100);
+//            wall1.anchorPoint = ccp(0,0);
+//            
+//            [self setupExtendedSprite:wall1  withInitialFrame:@"wall.png"];
+//            [_levelObjectsLayer addChild:wall1 z:0];
+//            wall1.tag = 1;
+//            [_walls addObject:wall1];
+//            
+//            KKMutablePixelMaskSprite* wall2 = [[KKMutablePixelMaskSprite alloc] init];
+//            // Right wall
+//            wall2.anchorPoint = ccp( 0,0);
+//            wall2.position = ccp( 250, 100);
+//            
+//            [self setupExtendedSprite:wall2  withInitialFrame:@"wall.png"];
+//            [_levelObjectsLayer addChild:wall2 z:0];
+//            wall2.tag = 2;
+//            [_walls addObject:wall2];
+//        
+//        }
+        
         
         // get health on the screen
         CCLabelTTF* health = [CCLabelTTF labelWithString:@"Health" fontName:@"Arial" fontSize:20];
@@ -366,9 +625,9 @@
         [self addChild: _skyBackgroundLayer z: 1];
         [self addChild: _farBackgroundLayer z: 2];
         [self addChild: _backgroundLayer z: 3];
-        [self addChild:_midGroundLayer z: 4];
+        [self addChild: _midGroundLayer z: 4];
         
-        [self addChild: _levelObjectsLayer z: 5];
+        [self addChild: _levelObjectsLayer z: -5];
         [self addChild: _stageAssistorsLayer z: 6];
         
         [self addChild: _enemiesLayer z: 7];
@@ -387,7 +646,7 @@
     [self setupExtendedSprite:platform3  withInitialFrame:@"ground.png"];
     
     platform3.anchorPoint = ccp(0,0);
-    platform3.position = ccp(platformPoint.x, platformPoint.y);
+    platform3.position = ccp(platformPoint.x, platformPoint.y - platform3.contentSize.height);
     
     [_levelObjectsLayer addChild: platform3 z: 6];
     platform3.tag = 3;
@@ -395,6 +654,18 @@
     return (int)platform3.contentSize.width;
 }
 
+-(int)createPlatformWithPoint:(CGPoint) platformPoint
+{
+    KKPixelMaskSprite* platform = [[KKPixelMaskSprite alloc] initWithFile:@"greenPlatform.png" alphaThreshold:0];
+    
+    platform.anchorPoint = ccp(0,0);
+    platform.position = ccp(platformPoint.x, platformPoint.y);
+    
+    [_levelObjectsLayer addChild: platform z: 6];
+    platform.tag = 3;
+    [_platforms addObject:platform];
+    return (int)platform.contentSize.width;
+}
 
 
 -(CGSize) loadImageSlicesIntoLayer:(CCLayer*)layer withImageName:(NSString*)nameOfImage totalNumberOfSlices:(int)numberOfSlices totalNumberOfRows:(int)numberOfRows totalNumberOfColumnsPerRow:(int)numberOfColumnsPerRow
@@ -410,8 +681,17 @@ int width = 0;
 // 10 x 10 grid of background
 for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBackgroundSlice, ++x)
     {
-    int index = numberOfSlices - ((yMax - y) * yMax) + x;
+    int index;
     
+    if (numberOfRows > 1)
+        {
+        index = numberOfSlices - ((numberOfColumnsPerRow - y) * yMax) + x;
+        }
+    else
+        {
+        index = x - 1;
+        }
+        
     CCSprite* furthestBackgroundSlice = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"%@%03d.png", nameOfImage, index]];
     
     furthestBackgroundSlice.anchorPoint = ccp(0, 0);
@@ -445,9 +725,10 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
 -(void)updateLevelLayerPositions
 {
     _invisibleObjectsLayer.position = _foregroundLayer.position;
-    _skyBackgroundLayer.position = _foregroundLayer.position;
-    _farBackgroundLayer.position = ccp(0.05 * _foregroundLayer.position.x, _farBackgroundLayer.position.y);
-    _backgroundLayer.position = ccp(0.10 * _foregroundLayer.position.x, _backgroundLayer.position.y);
+    _skyBackgroundLayer.position = ccp(_foregroundLayer.position.x, _skyBackgroundLayer.position.y);
+    //_skyBackgroundLayer.position = ccp(0.025f * _foregroundLayer.position.x, 0.025f * _foregroundLayer.position.y);
+    _farBackgroundLayer.position = ccp(0.05f * _foregroundLayer.position.x, _farBackgroundLayer.position.y);
+    _backgroundLayer.position = ccp(0.10f * _foregroundLayer.position.x, _backgroundLayer.position.y);
     _midGroundLayer.position = _foregroundLayer.position;
     _enemiesLayer.position = _foregroundLayer.position;
     _levelObjectsLayer.position = _foregroundLayer.position;
@@ -840,8 +1121,10 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
     if ( [self didRuffCollideWithASpring:lastRuffMovementPosition] )
     {
         _isRunning = NO;
-        
-        lastRuffMovementPosition.y = (int)[self makeRuffJump: lastRuffMovementPosition.y withVelocity: RUFF_JUMP_SPEED * 8 ];
+        if ( _changeOfY > 0 )
+            {
+            lastRuffMovementPosition.y = (int)[self makeRuffJump: lastRuffMovementPosition.y withVelocity: RUFF_JUMP_SPEED * 20 ];
+            }
     }
     
     // not jumping and not moving
