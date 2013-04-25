@@ -156,20 +156,19 @@
         _levelWidth = 12384;//sizeOfLayer.width;
         _levelHeight = sizeOfLayer.height;
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_farBackgroundLayer withImageName:@"act-01-level-01-part-01-farBackground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_farBackgroundLayer withImageName:@"act-01-level-01-part-01-farBackground-" totalNumberOfSlices:1 totalNumberOfRows:1 totalNumberOfColumnsPerRow:1];
         
         _farBackgroundWidth = sizeOfLayer.width;
         _farBackgroundHeight = sizeOfLayer.height;
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_backgroundLayer withImageName:@"act-01-level-01-part-01-background-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_backgroundLayer withImageName:@"act-01-level-01-part-01-background-" totalNumberOfSlices:2 totalNumberOfRows:1 totalNumberOfColumnsPerRow:2];
         
         _backgroundWidth = sizeOfLayer.width;
         _backgroundHeight = sizeOfLayer.height;
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-floorForeground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midGround-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
-        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
 // Level 1
         // Ground
         [self createResourceWithImage:@"ground.png" atHeight:745 fromXPosition:0 toEndXPosition:1024 intoList:_grounds]; // Up to tree

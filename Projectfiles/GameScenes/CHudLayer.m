@@ -1,4 +1,3 @@
-
 // =============================================================================
 // File      : CTitleScreenScene.m
 // Project   : Ruff
@@ -32,16 +31,16 @@
         // position of health bar
         _healthBarOrigin = ccp(2.0f , director.screenSize.height - health.contentSize.height);
         _healthBarDestination = ccp(300.0f , director.screenSize.height - health.contentSize.height - 40.0f);
-
+        
         // left and right control circles
         _leftCirclePosition = ccp(101.0f , 101.0f);
         _rightCirclePosition = ccp(director.screenSize.width - 101.0f , 101.0f);
         
         
-        CCSprite* move = [[CCSprite alloc] initWithFile:@"Control_Move.png"];
+        CCSprite* move = [[CCSprite alloc] initWithFile:@"control-left-right.png"];
         move.position = ccp(101.0f , 101.0f);
         
-        CCSprite* action = [[CCSprite alloc] initWithFile:@"Control_Left.png"];
+        CCSprite* action = [[CCSprite alloc] initWithFile:@"control-jump-attack.png"];
         action.position = ccp(director.screenSize.width - 101.0f , 101.0f);
         
         [self addChild: move z:10];
@@ -62,14 +61,14 @@
     // set circle drawing color
     ccDrawColor4F( 0.0f, 0.0f, 0.0f, 1.0);
     
-//    //draw mock-up health bar for kicks
-//    ccDrawRect(_healthBarOrigin, _healthBarDestination);
+    //    //draw mock-up health bar for kicks
+    //    ccDrawRect(_healthBarOrigin, _healthBarDestination);
     
-//    // left circle on screen
-//    ccDrawCircle(_leftCirclePosition, 100, 0, 16, NO);
-//    
-//    // right circle on screen
-//    ccDrawCircle(_rightCirclePosition, 100, 0, 16, NO);
+    //    // left circle on screen
+    //    ccDrawCircle(_leftCirclePosition, 100, 0, 16, NO);
+    //
+    //    // right circle on screen
+    //    ccDrawCircle(_rightCirclePosition, 100, 0, 16, NO);
     
 	if (input.touchesAvailable)
         {
@@ -82,24 +81,24 @@
             
 			switch (color)
                 {
-                case 0:
-                ccDrawColor4F(0.2f, 1, 0.2f, 0.5f);
-                break;
-                case 1:
-                ccDrawColor4F(0.2f, 0.2f, 1, 0.5f);
-                break;
-                case 2:
-                ccDrawColor4F(1, 1, 0.2f, 0.5f);
-                break;
-                case 3:
-                ccDrawColor4F(1, 0.2f, 0.2f, 0.5f);
-                break;
-                case 4:
-                ccDrawColor4F(0.2f, 1, 1, 0.5f);
-                break;
-                
-                default:
-                break;
+                    case 0:
+                    ccDrawColor4F(0.2f, 1, 0.2f, 0.5f);
+                    break;
+                    case 1:
+                    ccDrawColor4F(0.2f, 0.2f, 1, 0.5f);
+                    break;
+                    case 2:
+                    ccDrawColor4F(1, 1, 0.2f, 0.5f);
+                    break;
+                    case 3:
+                    ccDrawColor4F(1, 0.2f, 0.2f, 0.5f);
+                    break;
+                    case 4:
+                    ccDrawColor4F(0.2f, 1, 1, 0.5f);
+                    break;
+                    
+                    default:
+                    break;
                 }
             
 			color++;
