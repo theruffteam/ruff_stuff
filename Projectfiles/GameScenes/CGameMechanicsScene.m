@@ -153,7 +153,7 @@
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_skyBackgroundLayer withImageName:@"act-01-level-01-part-01-skyBackground-" totalNumberOfSlices:6 totalNumberOfRows:2 totalNumberOfColumnsPerRow:3];
         
-        _levelWidth = sizeOfLayer.width;
+        _levelWidth = 12384;//sizeOfLayer.width;
         _levelHeight = sizeOfLayer.height;
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_farBackgroundLayer withImageName:@"act-01-level-01-part-01-farBackground-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
@@ -170,24 +170,38 @@
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midGround-" totalNumberOfSlices:100 totalNumberOfRows:10 totalNumberOfColumnsPerRow:10];
         
-            
+// Level 1
         // Ground
         [self createResourceWithImage:@"ground.png" atHeight:745 fromXPosition:0 toEndXPosition:1024 intoList:_grounds]; // Up to tree
         [self createResourceWithImage:@"ground.png" atHeight:1490 fromXPosition:1024 toEndXPosition:1586.5 intoList:_grounds]; // Tree top
         [self createResourceWithImage:@"ground.png" atHeight:745 fromXPosition:1586.5 toEndXPosition:3519 intoList:_grounds]; // After tree
         [self createResourceWithImage:@"ground.png" atHeight:185 fromXPosition:3519 toEndXPosition:5194 intoList:_grounds]; // Drop area
-            
 
         // Platforms
-        [self createGroundWithPoint:ccp(1961.5, 1170) andImage:@"greenPlatform.png" inList:_platforms];
-        [self createGroundWithPoint:ccp(2456.5, 1170) andImage:@"greenPlatform.png" inList:_platforms];
-        [self createGroundWithPoint:ccp(3669, 415) andImage:@"greenPlatform.png" inList:_platforms];
-        [self createGroundWithPoint:ccp(5144, 1395) andImage:@"greenPlatform.png" inList:_platforms];
+        [self createGroundWithPoint:ccp(1961.5, 1170) andImage:@"greenPlatform.png" inList:_platforms]; // Leaf 1
+        [self createGroundWithPoint:ccp(2456.5, 1170) andImage:@"greenPlatform.png" inList:_platforms]; // Leaf 2
+        //[self createGroundWithPoint:ccp(3669, 415) andImage:@"greenPlatform.png" inList:_platforms]; // Cliff ledge
+        [self createGroundWithPoint:ccp(5144, 1395) andImage:@"greenPlatform.png" inList:_platforms]; // Finish top
         [self createResourceWithImage:@"greenPlatform.png" atHeight:950 fromXPosition:700 toEndXPosition:1080 intoList: _platforms]; //Mushroom
-        [self createResourceWithImage:@"greenPlatform.png" atHeight:975 fromXPosition:3519 toEndXPosition:3894 intoList: _platforms];
-        [self createResourceWithImage:@"greenPlatform.png" atHeight:1185 fromXPosition:3894 toEndXPosition:4269 intoList: _platforms];
-        [self createResourceWithImage:@"greenPlatform.png" atHeight:1395 fromXPosition:4269 toEndXPosition:4744 intoList: _platforms];
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:975 fromXPosition:3519 toEndXPosition:3894 intoList: _platforms]; // First branch
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:1185 fromXPosition:3894 toEndXPosition:4269 intoList: _platforms]; // Second branch
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:1395 fromXPosition:4269 toEndXPosition:4744 intoList: _platforms]; // Third branch
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:415 fromXPosition:3600 toEndXPosition:3885 intoList: _platforms]; // Cliff ledge
+
+// Level 2
+        // Ground
+        [self createResourceWithImage:@"ground.png" atHeight:1395 fromXPosition:5244 toEndXPosition:5806 intoList:_grounds]; // start
+        [self createResourceWithImage:@"ground.png" atHeight:765 fromXPosition:5806 toEndXPosition:7681 intoList:_grounds]; // first drop
+        [self createResourceWithImage:@"ground.png" atHeight:975 fromXPosition:7681 toEndXPosition:8056 intoList:_grounds]; // first step
+        [self createResourceWithImage:@"ground.png" atHeight:1185 fromXPosition:8056 toEndXPosition:8806 intoList:_grounds]; // second step
+        [self createResourceWithImage:@"ground.png" atHeight:-3015 fromXPosition:8806 toEndXPosition:10494 intoList:_grounds]; // cave bottom
+        [self createResourceWithImage:@"ground.png" atHeight:-2595 fromXPosition:10494 toEndXPosition:11244 intoList:_grounds]; // cave step
+        [self createResourceWithImage:@"ground.png" atHeight:-1825 fromXPosition:11244 toEndXPosition:12384 intoList:_grounds]; // level exit
         
+        // Platforms
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:9044 toEndXPosition:9419 intoList:_platforms]; // top platform
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:345 fromXPosition:8806 toEndXPosition:9181 intoList:_platforms]; // middle platform
+        [self createResourceWithImage:@"greenPlatform.png" atHeight:-75 fromXPosition:9044 toEndXPosition:9410 intoList:_platforms]; // bottom platform
             
         // Spring
 //        [self createResourceWithImage:@"blackPlatform.png" atHeight:1275 fromXPosition:750 toEndXPosition:1124 intoList: _springs];
@@ -315,7 +329,7 @@
         [self addChild: _backgroundLayer z: 3];
         [self addChild: _midGroundLayer z: 4];
         
-        [self addChild: _levelObjectsLayer z: -15];
+        [self addChild: _levelObjectsLayer z: 15];
         [self addChild: _stageAssistorsLayer z: 6];
         
         [self addChild: _enemiesLayer z: 7];
