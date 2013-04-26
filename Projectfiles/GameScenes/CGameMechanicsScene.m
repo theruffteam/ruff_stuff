@@ -122,6 +122,7 @@
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
         
+        
         // get ruff sprite on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
 		_ruffSprite.anchorPoint = ccp(0,0);
@@ -151,22 +152,29 @@
         
         CGSize sizeOfLayer;
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_skyBackgroundLayer withImageName:@"act-01-level-01-part-01-skyBackground-" totalNumberOfSlices:6 totalNumberOfRows:2 totalNumberOfColumnsPerRow:3];
+        // 8bit color format w/out transparency
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_A8];
+        
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_skyBackgroundLayer withImageName:@"act-01-level-01-part-01-skyBackground-" totalNumberOfSlices:1 totalNumberOfRows:1 totalNumberOfColumnsPerRow:1];
         
         _levelWidth = 12384;//sizeOfLayer.width;
-        _levelHeight = sizeOfLayer.height;
+        _levelHeight = 2583;//sizeOfLayer.height;
         
+        // 16 bit color best quality w/transparency
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB5A1];
         sizeOfLayer = [self loadImageSlicesIntoLayer:_farBackgroundLayer withImageName:@"act-01-level-01-part-01-farBackground-" totalNumberOfSlices:1 totalNumberOfRows:1 totalNumberOfColumnsPerRow:1];
         
         _farBackgroundWidth = sizeOfLayer.width;
         _farBackgroundHeight = sizeOfLayer.height;
         
+        //32 bit, highest quality w/transparency
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         sizeOfLayer = [self loadImageSlicesIntoLayer:_backgroundLayer withImageName:@"act-01-level-01-part-01-background-" totalNumberOfSlices:2 totalNumberOfRows:1 totalNumberOfColumnsPerRow:2];
         
         _backgroundWidth = sizeOfLayer.width;
         _backgroundHeight = sizeOfLayer.height;
         
-        sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-floorForeground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
+        sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-foreground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
 // Level 1
@@ -292,10 +300,10 @@
         _invisibleObjectsLayer.position = ccp(0,0);
         
         _skyBackgroundLayer.anchorPoint = ccp(0,0);
-        _skyBackgroundLayer.position = ccp(0,-1530);
+        _skyBackgroundLayer.position = ccp(0,0);//-1530);
         
         _farBackgroundLayer.anchorPoint = ccp(0,0);
-        _farBackgroundLayer.position = ccp(0,280);
+        _farBackgroundLayer.position = ccp(0,480);
         
         _backgroundLayer.anchorPoint = ccp(0,0);
         _backgroundLayer.position = ccp(0,0); // 40 is how far in the grass do we want ruff to be in
@@ -392,7 +400,6 @@ int yPosition = 0;
 int height = 0;
 int width = 0;
 
-// 10 x 10 grid of background
 for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBackgroundSlice, ++x)
     {
     int index = numberOfSlices - ((numberOfColumnsPerRow - y) * yMax) + x;
@@ -430,8 +437,8 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
 -(void)updateLevelLayerPositions
 {
     _invisibleObjectsLayer.position = _foregroundLayer.position;
-    _skyBackgroundLayer.position = ccp(_foregroundLayer.position.x, _skyBackgroundLayer.position.y);
-    _farBackgroundLayer.position = ccp(0.05f * _foregroundLayer.position.x, _farBackgroundLayer.position.y);
+    //_skyBackgroundLayer.position = ccp(_foregroundLayer.position.x, _skyBackgroundLayer.position.y);
+    _farBackgroundLayer.position = ccp(0.018f * _foregroundLayer.position.x, _farBackgroundLayer.position.y);
     _backgroundLayer.position = ccp(0.10f * _foregroundLayer.position.x, _backgroundLayer.position.y);
     _midGroundLayer.position = _foregroundLayer.position;
     _enemiesLayer.position = _foregroundLayer.position;

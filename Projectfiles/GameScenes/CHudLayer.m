@@ -39,9 +39,12 @@
         
         CCSprite* move = [[CCSprite alloc] initWithFile:@"control-left-right.png"];
         move.position = ccp(101.0f , 101.0f);
+        move.opacity = 128;
+        
         
         CCSprite* action = [[CCSprite alloc] initWithFile:@"control-jump-attack.png"];
         action.position = ccp(director.screenSize.width - 101.0f , 101.0f);
+        action.opacity = 128;
         
         [self addChild: move z:10];
         [self addChild: action z: 10];
