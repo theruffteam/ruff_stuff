@@ -23,6 +23,9 @@
 		6802B9B3172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A7172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz */; };
 		6802B9B4172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A8172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist */; };
 		6802B9B5172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A9172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz */; };
+		6802B9BC172C00A300E617C5 /* CFlower.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802B9B7172C00A300E617C5 /* CFlower.m */; };
+		6802B9BD172C00A300E617C5 /* COwl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802B9B9172C00A300E617C5 /* COwl.m */; };
+		6802B9BE172C00A300E617C5 /* CSnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802B9BB172C00A300E617C5 /* CSnail.m */; };
 		6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A82016B4D13F007EA9D2 /* CWorld.m */; };
 		6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82A16B4F3C3007EA9D2 /* audio.plist */; };
 		682E1AE016B94D440051C33A /* select_item.wav in Resources */ = {isa = PBXBuildFile; fileRef = 682E1ADF16B94D440051C33A /* select_item.wav */; };
@@ -178,6 +181,12 @@
 		6802B9A7172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "snail-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
 		6802B9A8172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "snail-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
 		6802B9A9172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "snail-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
+		6802B9B6172C00A300E617C5 /* CFlower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CFlower.h; path = ActorClasses/CFlower.h; sourceTree = "<group>"; };
+		6802B9B7172C00A300E617C5 /* CFlower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CFlower.m; path = ActorClasses/CFlower.m; sourceTree = "<group>"; };
+		6802B9B8172C00A300E617C5 /* COwl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = COwl.h; path = ActorClasses/COwl.h; sourceTree = "<group>"; };
+		6802B9B9172C00A300E617C5 /* COwl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = COwl.m; path = ActorClasses/COwl.m; sourceTree = "<group>"; };
+		6802B9BA172C00A300E617C5 /* CSnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSnail.h; path = ActorClasses/CSnail.h; sourceTree = "<group>"; };
+		6802B9BB172C00A300E617C5 /* CSnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSnail.m; path = ActorClasses/CSnail.m; sourceTree = "<group>"; };
 		6827A81F16B4D13F007EA9D2 /* CWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWorld.h; sourceTree = "<group>"; };
 		6827A82016B4D13F007EA9D2 /* CWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWorld.m; sourceTree = "<group>"; };
 		6827A82A16B4F3C3007EA9D2 /* audio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audio.plist; sourceTree = "<group>"; };
@@ -428,6 +437,12 @@
 		684546DB16C794B600AD018E /* ActorClasses */ = {
 			isa = PBXGroup;
 			children = (
+				6802B9B6172C00A300E617C5 /* CFlower.h */,
+				6802B9B7172C00A300E617C5 /* CFlower.m */,
+				6802B9B8172C00A300E617C5 /* COwl.h */,
+				6802B9B9172C00A300E617C5 /* COwl.m */,
+				6802B9BA172C00A300E617C5 /* CSnail.h */,
+				6802B9BB172C00A300E617C5 /* CSnail.m */,
 				684546D616C7949800AD018E /* CYoungRuff.h */,
 				684546D716C7949800AD018E /* CYoungRuff.m */,
 			);
@@ -1143,6 +1158,9 @@
 				687BA00716F8153300CECAB6 /* KKMutablePixelMaskSprite.m in Sources */,
 				687BA00D16F99A5900CECAB6 /* CCSpriteFrameExtended.m in Sources */,
 				68918B96170E94F30061320C /* CHudLayer.m in Sources */,
+				6802B9BC172C00A300E617C5 /* CFlower.m in Sources */,
+				6802B9BD172C00A300E617C5 /* COwl.m in Sources */,
+				6802B9BE172C00A300E617C5 /* CSnail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -123,7 +123,8 @@
         
         // must use this when click premultiplied alpha in texture packer
         [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
-        
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB5A1];
+
         
         // get ruff sprite on the screen
         _ruffSprite = [[CYoungRuff alloc] initRuff:0];
@@ -131,6 +132,24 @@
         _ruffSprite.position = ccp(500, 2000);
         
         [self setupExtendedSprite:_ruffSprite withSpritesheet:@"ruff-sprite-sheet.plist" andInitialFrameName:@"ruff-ready-01.png"];
+        
+        // enemy stuff
+        [self addPixelMaskSpriteFramesToCacheWithFile: @"flower-sprite-sheet.plist"];
+        [self addPixelMaskSpriteFramesToCacheWithFile: @"owl-sprite-sheet.plist"];
+        [self addPixelMaskSpriteFramesToCacheWithFile: @"snail-sprite-sheet.plist"];
+        
+        _owlEnemies = [[NSMutableArray alloc] init];
+        _snailEnemies = [[NSMutableArray alloc] init];
+        _flowerEnemies = [[NSMutableArray alloc] init];
+        
+        
+        CFlower* flower = [[CFlower alloc] initFlower];
+        [self setupExtendedSprite: flower   withInitialFrame:@"flower-attack-01.png"];
+        // get flower sprite on the screen
+		flower.anchorPoint = ccp(0,0);
+        flower.position = ccp(2400, 765);
+        
+        [_enemiesLayer addChild: flower];
         
         CCDirector* director = [CCDirector sharedDirector];
             
@@ -246,11 +265,6 @@
         _leftCirclePosition = ccp(101.0f , 101.0f);
         _rightCirclePosition = ccp(director.screenSize.width - 101.0f , 101.0f);
         
-        // load resources after init
-        [self scheduleOnce: @selector(LoadLevelResources) delay:0];
-
-        // update the screen based on fps
-        [self scheduleUpdate];
 
 		// initialize KKInput
 		input.multipleTouchEnabled = YES;
@@ -328,6 +342,9 @@
         
         [self addChild: _foregroundLayer z: 8];
         [self addChild: _hudLayer z: 9];
+        
+        // load resources after init
+        [self scheduleOnce: @selector(LoadLevelResources) delay:0];
         }
     
     return self;
@@ -437,6 +454,9 @@
     [self createResourceWithImage:@"greenPlatform.png" atHeight:-1975 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -3
     
     self.touchEnabled = YES;
+    
+    // update the screen based on fps
+    [self scheduleUpdate];
 }
 
 
@@ -1114,4 +1134,60 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
     _lastJumpTime = _gameTime;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+-(void) increaseAssetLoadCount
+{
+    _assetLoadCount++;
+    _loadingAsset = NO;
+}
+
+-(void) loadAssetsThenGotoMainMenu:(ccTime)delta
+{
+    NSLog(@"load assets %i", _assetLoadCount);
+    switch (_assetLoadCount)
+    {
+        case 0:
+        if (_loadingAsset == NO)
+            {
+            _loadingAsset = YES;
+            NSLog(@"============= Loading home.png ===============");
+            [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB5A1];
+            [[CCTextureCache sharedTextureCache] addImageAsync:@"home.png"
+                                                        target:self
+                                                      selector:@selector(increaseAssetLoadCount)];
+            }
+        break;
+        case 1:
+        if (_loadingAsset == NO)
+            {
+            _loadingAsset = YES;
+            [self performSelectorInBackground:@selector(loadSpriteFrames:) withObject:nil];
+            }
+        break;
+        
+        // extend with more sequentially numbered cases, as needed
+        
+        // the default case runs last, loads the next scene
+        default:
+        {
+        [self unscheduleAllSelectors];
+        //CTitleScreen* mainMenuScene = [MainMenuScene node];
+        //[[CCDirector sharedDirector] replaceScene:mainMenuScene];
+        }
+        break;
+    }
+}
+
+
 @end

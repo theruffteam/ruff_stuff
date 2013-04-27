@@ -11,6 +11,9 @@
 #import <Foundation/Foundation.h>
 #import "kobold2d.h"
 #import "CYoungRuff.h"
+#import  "CFlower.h"
+#import "COwl.h"
+#import "CSnail.h"
 #import "CHudLayer.h"
 
 
@@ -42,6 +45,9 @@
     @property    NSMutableArray*                platforms;
     @property    NSMutableArray*                walls;
     @property    NSMutableArray*                springs;
+    @property    NSMutableArray*                owlEnemies;
+    @property    NSMutableArray*                flowerEnemies;
+    @property    NSMutableArray*                snailEnemies;
     @property    int                            defaultGround;
     @property    CGPoint                        lastSelfMovementPosition;
     @property    int                            levelWidth;
@@ -72,4 +78,11 @@
     @property    CCAnimation*       ruffLandingAnimation;
     @property    id                 ruffLandingAction;
 
+
+
+
+
+
+    @property    int                             assetLoadCount;
+    @property    BOOL                            loadingAsset;
 @end
