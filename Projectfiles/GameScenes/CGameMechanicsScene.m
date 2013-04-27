@@ -880,6 +880,8 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
     
     _ruffSprite.position = ccp(lastRuffMovementPositionX, _ruffSprite.position.y);
     
+    BOOL wasThereACollision = NO;
+    
     for (KKPixelMaskSprite* wall in _walls)
     {
         if ( [_ruffSprite pixelMaskIntersectsNode: wall])
@@ -891,6 +893,7 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
                 !_ruffSprite.flipX /* facing right */ )
             {
                 lastRuffMovementPositionX = wall.position.x - _ruffSprite.contentSize.width;
+                wasThereACollision = YES;
                 break;
             }
             // going left
@@ -899,6 +902,7 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
                      _ruffSprite.flipX /* facing left */ )
             {
                 lastRuffMovementPositionX = wall.position.x + wall.contentSize.width;
+                wasThereACollision = YES;
                 break;
             }
             else
@@ -906,11 +910,13 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
                 CCLOG(@"Colission with wall but didn't hit any condition");
             }
         }
-        else
+
+    }
+    
+    if ( !wasThereACollision )
         {
             _ruffSprite.position = ccp(ruffsCurrentPositionX, _ruffSprite.position.y);
         }
-    }
     
     return lastRuffMovementPositionX;
 }
