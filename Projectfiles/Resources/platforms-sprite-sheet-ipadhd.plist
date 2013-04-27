@@ -7,106 +7,28 @@
             <key>greenPlatform.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{204,284}}</string>
+                <string>{{0,0},{102,282}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{204,284}}</string>
+                <string>{{0,0},{102,282}}</string>
                 <key>sourceSize</key>
-                <string>{204,284}</string>
-            </dict>
-            <key>ground.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{212,2},{604,38}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{604,38}}</string>
-                <key>sourceSize</key>
-                <string>{604,38}</string>
-            </dict>
-            <key>platform-01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{822,2},{604,103}}</string>
-                <key>offset</key>
-                <string>{0,-5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,10},{604,103}}</string>
-                <key>sourceSize</key>
-                <string>{604,113}</string>
-            </dict>
-            <key>platform-02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1432,2},{604,105}}</string>
-                <key>offset</key>
-                <string>{0,-5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,10},{604,105}}</string>
-                <key>sourceSize</key>
-                <string>{604,115}</string>
-            </dict>
-            <key>platform-03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,292},{604,175}}</string>
-                <key>offset</key>
-                <string>{0,-3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,6},{604,175}}</string>
-                <key>sourceSize</key>
-                <string>{604,181}</string>
-            </dict>
-            <key>platform-04.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{612,292},{604,107}}</string>
-                <key>offset</key>
-                <string>{0,-9}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,18},{604,107}}</string>
-                <key>sourceSize</key>
-                <string>{604,125}</string>
-            </dict>
-            <key>platform-05.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1222,292},{604,97}}</string>
-                <key>offset</key>
-                <string>{0,-11}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,22},{604,97}}</string>
-                <key>sourceSize</key>
-                <string>{604,119}</string>
+                <string>{102,282}</string>
             </dict>
             <key>wall.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1832,292},{38,604}}</string>
+                <string>{{102,0},{36,202}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{38,604}}</string>
+                <string>{{0,0},{36,202}}</string>
                 <key>sourceSize</key>
-                <string>{38,604}</string>
+                <string>{36,202}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -116,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>platforms-sprite-sheet-ipadhd.pvr.ccz</string>
             <key>size</key>
-            <string>{2040,898}</string>
+            <string>{282,282}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4c3b5aab4f0ae8c603216df4c121ba4f$</string>
+            <string>$TexturePacker:SmartUpdate:fc23728841ae925f1373f0f62d574328$</string>
             <key>textureFileName</key>
             <string>platforms-sprite-sheet-ipadhd.pvr.ccz</string>
         </dict>
