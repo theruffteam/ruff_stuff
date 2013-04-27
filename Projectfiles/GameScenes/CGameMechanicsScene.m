@@ -185,7 +185,7 @@
             
             // Level 1
             // Ground
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:0 toEndXPosition:1024 intoList:_platforms]; // Up to tree
+            [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:0 toEndXPosition:1080 intoList:_platforms]; // Up to tree
             [self createResourceWithImage:@"greenPlatform.png" atHeight:1509 fromXPosition:1024 toEndXPosition:1586.5 intoList:_platforms]; // Tree top
             [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:1586.5 toEndXPosition:3519 intoList:_platforms]; // After tree
             [self createResourceWithImage:@"greenPlatform.png" atHeight:205 fromXPosition:3519 toEndXPosition:5194 intoList:_platforms]; // Drop area
@@ -218,7 +218,7 @@
         
             // Walls. This list will create the set of walls for the game.
             // Level 1
-            [self createResourceWithImage:@"wall.png" atPosition:1024 fromYPosition:745 toEndYPosition:1490 intoList:_walls]; // left of tree
+            [self createResourceWithImage:@"wall.png" atPosition:1080 fromYPosition:745 toEndYPosition:1490 intoList:_walls]; // left of tree
             [self createResourceWithImage:@"wall.png" atPosition:1486 fromYPosition:745 toEndYPosition:1490 intoList:_walls]; // right of tree
             [self createResourceWithImage:@"wall.png" atPosition:3419 fromYPosition:185 toEndYPosition:745 intoList:_walls]; // drop left
             [self createResourceWithImage:@"wall.png" atPosition:5194 fromYPosition:185 toEndYPosition:1395 intoList:_walls]; // drop right
