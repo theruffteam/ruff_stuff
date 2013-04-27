@@ -20,15 +20,15 @@
             <key>wall.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,0},{36,202}}</string>
+                <string>{{0,282},{202,202}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,202}}</string>
+                <string>{{0,0},{202,202}}</string>
                 <key>sourceSize</key>
-                <string>{36,202}</string>
+                <string>{202,202}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -38,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>platforms-sprite-sheet-ipadhd.pvr.ccz</string>
             <key>size</key>
-            <string>{282,282}</string>
+            <string>{202,484}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fc23728841ae925f1373f0f62d574328$</string>
+            <string>$TexturePacker:SmartUpdate:969c244de830ea0906c33ef7e93928ff$</string>
             <key>textureFileName</key>
             <string>platforms-sprite-sheet-ipadhd.pvr.ccz</string>
         </dict>

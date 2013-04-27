@@ -22,6 +22,8 @@
 @interface CGameMechanicsScene (PrivateMethods)
 
 -(void) keepRuffBetweenScreenBorders;
+-(void) LoadLevelResources;
+
 
 @end
 
@@ -141,7 +143,7 @@
         _platform3 = [[KKMutablePixelMaskSprite alloc] init];
         _platform3.anchorPoint = ccp(0,0);
         _platform3.position = ccp(0,0);
-        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"ground.png"];
+        [self setupExtendedSprite:_platform3 withSpritesheet:@"platforms-sprite-sheet.plist" andInitialFrameName:@"wall.png"];
         
         
         KKInput* input = [KKInput sharedInput];
@@ -168,7 +170,7 @@
         _farBackgroundHeight = sizeOfLayer.height;
         
         //32 bit, highest quality w/transparency
-        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+        //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         sizeOfLayer = [self loadImageSlicesIntoLayer:_backgroundLayer withImageName:@"act-01-level-01-part-01-background-" totalNumberOfSlices:2 totalNumberOfRows:1 totalNumberOfColumnsPerRow:2];
         
         _backgroundWidth = sizeOfLayer.width;
@@ -177,12 +179,16 @@
         sizeOfLayer = [self loadImageSlicesIntoLayer:_foregroundLayer withImageName:@"act-01-level-01-part-01-foreground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
         
         sizeOfLayer = [self loadImageSlicesIntoLayer:_midGroundLayer withImageName:@"act-01-level-01-part-01-midground-" totalNumberOfSlices:3 totalNumberOfRows:1 totalNumberOfColumnsPerRow:3];
+            
+        
+
+            
             // Level 1
             // Ground
             [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:0 toEndXPosition:1024 intoList:_platforms]; // Up to tree
             [self createResourceWithImage:@"greenPlatform.png" atHeight:1509 fromXPosition:1024 toEndXPosition:1586.5 intoList:_platforms]; // Tree top
             [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:1586.5 toEndXPosition:3519 intoList:_platforms]; // After tree
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:204 fromXPosition:3519 toEndXPosition:5194 intoList:_platforms]; // Drop area
+            [self createResourceWithImage:@"greenPlatform.png" atHeight:205 fromXPosition:3519 toEndXPosition:5194 intoList:_platforms]; // Drop area
             
             // Platforms
             [self createResourceWithImage:@"greenPlatform.png" atHeight:1280 fromXPosition:1950 toEndXPosition: 2098 intoList: _platforms]; // Leaf 1
@@ -194,24 +200,7 @@
             [self createResourceWithImage:@"greenPlatform.png" atHeight:415 fromXPosition:3519 toEndXPosition:3875 intoList: _platforms]; // Cliff ledge
             [self createResourceWithImage:@"greenPlatform.png" atHeight:650 fromXPosition:3519 toEndXPosition:3629 intoList: _platforms]; // Cliff assister
             
-            // Level 2
-            // Ground
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:1395 fromXPosition:5144 toEndXPosition:5806 intoList:_platforms]; // start
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:765 fromXPosition:5806 toEndXPosition:7681 intoList:_platforms]; // first drop
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:975 fromXPosition:7681 toEndXPosition:8056 intoList:_platforms]; // first step
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:1185 fromXPosition:8056 toEndXPosition:8806 intoList:_platforms]; // second step
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-3015 fromXPosition:8806 toEndXPosition:10494 intoList:_platforms]; // cave bottom
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-2595 fromXPosition:10494 toEndXPosition:11244 intoList:_platforms]; // cave step
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-1825 fromXPosition:11244 toEndXPosition:12384 intoList:_platforms]; // level exit
             
-            // Platforms
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:764 fromXPosition:9044 toEndXPosition:9419 intoList:_platforms]; // top platform
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:345 fromXPosition:8806 toEndXPosition:9181 intoList:_platforms]; // middle platform
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-75 fromXPosition:9044 toEndXPosition:9410 intoList:_platforms]; // bottom platform
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-2805 fromXPosition:10194 toEndXPosition:10494 intoList:_platforms]; // first step shelf for assister
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-2385 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -1
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-2175 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -2
-            [self createResourceWithImage:@"greenPlatform.png" atHeight:-1965 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -3
             
         // Spring
 //        [self createResourceWithImage:@"blackPlatform.png" atHeight:1275 fromXPosition:750 toEndXPosition:1124 intoList: _springs];
@@ -229,16 +218,16 @@
         
             // Walls. This list will create the set of walls for the game.
             // Level 1
-            [self createResourceWithImage:@"wall.png" atPosition:1024 fromYPosition:745 toEndYPosition:1490 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:1586 fromYPosition:745 toEndYPosition:1490 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:3519 fromYPosition:185 toEndYPosition:745 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:5194 fromYPosition:185 toEndYPosition:1395 intoList:_walls];
+            [self createResourceWithImage:@"wall.png" atPosition:1024 fromYPosition:745 toEndYPosition:1490 intoList:_walls]; // left of tree
+            [self createResourceWithImage:@"wall.png" atPosition:1486 fromYPosition:745 toEndYPosition:1490 intoList:_walls]; // right of tree
+            [self createResourceWithImage:@"wall.png" atPosition:3419 fromYPosition:185 toEndYPosition:745 intoList:_walls]; // drop left
+            [self createResourceWithImage:@"wall.png" atPosition:5194 fromYPosition:185 toEndYPosition:1395 intoList:_walls]; // drop right
             // Level 2
-            [self createResourceWithImage:@"wall.png" atPosition:5806 fromYPosition:765 toEndYPosition:1395 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:7681 fromYPosition:765 toEndYPosition:975 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:8056 fromYPosition:975 toEndYPosition:1185 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:8806 fromYPosition:-3015 toEndYPosition:1185 intoList:_walls];
-            [self createResourceWithImage:@"wall.png" atPosition:9419 fromYPosition:-2805 toEndYPosition:1605 intoList:_walls];
+            [self createResourceWithImage:@"wall.png" atPosition:5706 fromYPosition:765 toEndYPosition:1395 intoList:_walls]; // first drop
+            [self createResourceWithImage:@"wall.png" atPosition:7681 fromYPosition:765 toEndYPosition:960 intoList:_walls]; // first step
+            [self createResourceWithImage:@"wall.png" atPosition:8056 fromYPosition:975 toEndYPosition:1170 intoList:_walls]; // second step
+            [self createResourceWithImage:@"wall.png" atPosition:8706 fromYPosition:-3015 toEndYPosition:1170 intoList:_walls]; // big drop left
+            [self createResourceWithImage:@"wall.png" atPosition:9369 fromYPosition:-2805 toEndYPosition:1605 intoList:_walls]; // big drop right
             [self createResourceWithImage:@"wall.png" atPosition:10494 fromYPosition:-3015 toEndYPosition:-2595 intoList:_walls];
             [self createResourceWithImage:@"wall.png" atPosition:11244 fromYPosition:-2595 toEndYPosition:-1825 intoList:_walls];
         
@@ -257,6 +246,9 @@
         _leftCirclePosition = ccp(101.0f , 101.0f);
         _rightCirclePosition = ccp(director.screenSize.width - 101.0f , 101.0f);
         
+        // load resources after init
+        [self scheduleOnce: @selector(LoadLevelResources) delay:0];
+
         // update the screen based on fps
         [self scheduleUpdate];
 
@@ -339,6 +331,112 @@
         }
     
     return self;
+}
+
+
+-(void) LoadLevelResources
+{
+    self.touchEnabled = NO;
+    
+    // Loading images for level 2
+    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB5A1];
+    // Image L2-1-1 forground then background
+    CCSprite* level2_1_1_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-01-001.png"];
+    level2_1_1_F.anchorPoint = ccp(0, 0);
+    level2_1_1_F.position = ccp(5244, 1750);
+    [_foregroundLayer addChild:level2_1_1_F z:0];
+    
+    
+    // Image L2-2-1 forground then background
+    CCSprite* level2_2_1_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-02-001.png"];
+    level2_2_1_F.anchorPoint = ccp(0, 0);
+    level2_2_1_F.position = ccp(5244, 521);
+    [_foregroundLayer addChild:level2_2_1_F z:0];
+    CCSprite* level2_2_1_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-02-001.png"];
+    level2_2_1_M.anchorPoint = ccp(0, 0);
+    level2_2_1_M.position = ccp(5244, 521);
+    [_midGroundLayer addChild:level2_2_1_M z:0];
+    
+    // Image L2-2-2 forground then background
+    CCSprite* level2_2_2_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-02-002.png"];
+    level2_2_2_F.anchorPoint = ccp(0, 0);
+    level2_2_2_F.position = ccp(7292, 521);
+    [_foregroundLayer addChild:level2_2_2_F z:0];
+    CCSprite* level2_2_2_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-02-002.png"];
+    level2_2_2_M.anchorPoint = ccp(0, 0);
+    level2_2_2_M.position = ccp(7292, 521);
+    [_midGroundLayer addChild:level2_2_2_M z:0];
+    
+    // Image L2-2-3 forground then background
+    CCSprite* level2_2_3_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-02-003.png"];
+    level2_2_3_F.anchorPoint = ccp(0, 0);
+    level2_2_3_F.position = ccp(8305, -297);
+    [_foregroundLayer addChild:level2_2_3_F z:0];
+    CCSprite* level2_2_3_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-02-003.png"];
+    level2_2_3_M.anchorPoint = ccp(0, 0);
+    level2_2_3_M.position = ccp(8305, -297);
+    [_midGroundLayer addChild:level2_2_3_M z:0];
+    
+    // Image L2-3-1 forground then background
+    CCSprite* level2_3_1_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-03-001.png"];
+    level2_3_1_F.anchorPoint = ccp(0, 0);
+    level2_3_1_F.position = ccp(8305, -2345);
+    [_foregroundLayer addChild:level2_3_1_F z:0];
+    CCSprite* level2_3_1_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-03-001.png"];
+    level2_3_1_M.anchorPoint = ccp(0, 0);
+    level2_3_1_M.position = ccp(8305, -2345);
+    [_midGroundLayer addChild:level2_3_1_M z:0];
+    
+    // Image L2-4-1 forground then background
+    CCSprite* level2_4_1_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-04-001.png"];
+    level2_4_1_F.anchorPoint = ccp(0, 0);
+    level2_4_1_F.position = ccp(8305, -3231);
+    [_foregroundLayer addChild:level2_4_1_F z:0];
+    CCSprite* level2_4_1_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-04-001.png"];
+    level2_4_1_M.anchorPoint = ccp(0, 0);
+    level2_4_1_M.position = ccp(8305, -3231);
+    [_midGroundLayer addChild:level2_4_1_M z:0];
+    
+    // Image L2-4-2 forground then background
+    CCSprite* level2_4_2_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-04-002.png"];
+    level2_4_2_F.anchorPoint = ccp(0, 0);
+    level2_4_2_F.position = ccp(9469, -3231);
+    [_foregroundLayer addChild:level2_4_2_F z:0];
+    CCSprite* level2_4_2_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-04-002.png"];
+    level2_4_2_M.anchorPoint = ccp(0, 0);
+    level2_4_2_M.position = ccp(9469, -3231);
+    [_midGroundLayer addChild:level2_4_2_M z:0];
+    
+    // Image L2-4-3 forground then background
+    CCSprite* level2_4_3_F = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-foreground-row-04-003.png"];
+    level2_4_3_F.anchorPoint = ccp(0, 0);
+    level2_4_3_F.position = ccp(11517, -3231);
+    [_foregroundLayer addChild:level2_4_3_F z:0];
+    CCSprite* level2_4_3_M = [[CCSprite alloc] initWithFile:@"act-01-level-01-part-02-midground-row-04-003.png"];
+    level2_4_3_M.anchorPoint = ccp(0, 0);
+    level2_4_3_M.position = ccp(11517, -3231);
+    [_midGroundLayer addChild:level2_4_3_M z:0];
+    
+    // Level 2
+    // Ground
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:1395 fromXPosition:5144 toEndXPosition:5806 intoList:_platforms]; // start
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:755 fromXPosition:5806 toEndXPosition:7681 intoList:_platforms]; // first drop
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:965 fromXPosition:7681 toEndXPosition:8056 intoList:_platforms]; // first step
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:1175 fromXPosition:8056 toEndXPosition:8806 intoList:_platforms]; // second step
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-3028 fromXPosition:8806 toEndXPosition:10494 intoList:_platforms]; // cave bottom
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-2580 fromXPosition:10494 toEndXPosition:11244 intoList:_platforms]; // cave step
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-1803 fromXPosition:11244 toEndXPosition:12384 intoList:_platforms]; // level exit
+    
+    // Platforms
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:760 fromXPosition:9044 toEndXPosition:9419 intoList:_platforms]; // top platform
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:335 fromXPosition:8806 toEndXPosition:9181 intoList:_platforms]; // middle platform
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-85 fromXPosition:9044 toEndXPosition:9410 intoList:_platforms]; // bottom platform
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-2815 fromXPosition:10194 toEndXPosition:10494 intoList:_platforms]; // first step shelf for assister
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-2395 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -1
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-2185 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -2
+    [self createResourceWithImage:@"greenPlatform.png" atHeight:-1975 fromXPosition:10944 toEndXPosition:11244 intoList:_platforms]; // second step shelf for assister -3
+    
+    self.touchEnabled = YES;
 }
 
 
@@ -787,20 +885,25 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
         if ( [_ruffSprite pixelMaskIntersectsNode: wall])
         {
             // going right
-            if ( lastRuffMovementPositionX + _ruffSprite.contentSize.width >= wall.position.x && !_ruffSprite.flipX && lastRuffMovementPositionX < wall.position.x )
+                
+            if ( lastRuffMovementPositionX + _ruffSprite.contentSize.width >= wall.position.x && /* ruffs head is inbetween the walls*/
+                lastRuffMovementPositionX + _ruffSprite.contentSize.width <= wall.position.x + wall.contentSize.width &&
+                !_ruffSprite.flipX /* facing right */ )
             {
                 lastRuffMovementPositionX = wall.position.x - _ruffSprite.contentSize.width;
                 break;
             }
             // going left
-            else if ( (lastRuffMovementPositionX <= (wall.position.x + wall.contentSize.width)) && _ruffSprite.flipX && ((lastRuffMovementPositionX + _ruffSprite.contentSize.width) > (wall.position.x + wall.contentSize.width)))
+            else if ( (lastRuffMovementPositionX <= (wall.position.x + wall.contentSize.width)) && /* ruffs head is inbetween the walls */
+                     ( lastRuffMovementPositionX >= wall.position.x) &&
+                     _ruffSprite.flipX /* facing left */ )
             {
                 lastRuffMovementPositionX = wall.position.x + wall.contentSize.width;
                 break;
             }
             else
             {
-                CCLOG(@"Colission with wall but didn't hit an condition");
+                CCLOG(@"Colission with wall but didn't hit any condition");
             }
         }
         else
@@ -939,7 +1042,7 @@ for (int nextBackgroundSlice = 0; nextBackgroundSlice < numberOfSlices; ++nextBa
     
     if ( [self didRuffCollideWithAPlatform:lastRuffMovementPosition] )
         {
-        CCLOG(@"green platform");
+//        CCLOG(@"green platform");
         }
     else if (_ruffBaseY != _defaultGround )
         {

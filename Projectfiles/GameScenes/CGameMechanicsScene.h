@@ -28,6 +28,7 @@
     @property    BOOL                           isJumping;
     @property    BOOL                           isMoving;
     @property    BOOL                           isRunning;
+    @property    BOOL                           areInitialResourcesLoaded;
     @property    ccTime                         jumpTime;
     @property    int                            ruffBaseY;
     @property    unsigned int                   placeRuffOnScreen;
