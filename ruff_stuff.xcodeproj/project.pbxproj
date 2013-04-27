@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6802B997172BFE1200E617C5 /* ruff-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B993172BFE1200E617C5 /* ruff-sprite-sheet-ipad.plist */; };
+		6802B998172BFE1200E617C5 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B994172BFE1200E617C5 /* ruff-sprite-sheet-ipad.pvr.ccz */; };
+		6802B999172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B995172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.plist */; };
+		6802B99A172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B996172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.pvr.ccz */; };
+		6802B9AA172BFFD800E617C5 /* flower-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B99C172BFFD800E617C5 /* flower-sprite-sheet-ipad.plist */; };
+		6802B9AB172BFFD800E617C5 /* flower-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B99D172BFFD800E617C5 /* flower-sprite-sheet-ipad.pvr.ccz */; };
+		6802B9AC172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B99E172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.plist */; };
+		6802B9AD172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B99F172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.pvr.ccz */; };
+		6802B9AE172BFFD800E617C5 /* owl-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A1172BFFD800E617C5 /* owl-sprite-sheet-ipad.plist */; };
+		6802B9AF172BFFD800E617C5 /* owl-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A2172BFFD800E617C5 /* owl-sprite-sheet-ipad.pvr.ccz */; };
+		6802B9B0172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A3172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.plist */; };
+		6802B9B1172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A4172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.pvr.ccz */; };
+		6802B9B2172BFFD800E617C5 /* snail-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A6172BFFD800E617C5 /* snail-sprite-sheet-ipad.plist */; };
+		6802B9B3172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A7172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz */; };
+		6802B9B4172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A8172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist */; };
+		6802B9B5172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6802B9A9172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz */; };
 		6827A82916B4D13F007EA9D2 /* CWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 6827A82016B4D13F007EA9D2 /* CWorld.m */; };
 		6827A82B16B4F3C3007EA9D2 /* audio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6827A82A16B4F3C3007EA9D2 /* audio.plist */; };
 		682E1AE016B94D440051C33A /* select_item.wav in Resources */ = {isa = PBXBuildFile; fileRef = 682E1ADF16B94D440051C33A /* select_item.wav */; };
@@ -39,10 +55,6 @@
 		688BB75F172A67B5007C5A7A /* act-01-level-01-part-01-midground-002-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 688BB75C172A67B5007C5A7A /* act-01-level-01-part-01-midground-002-ipad.png */; };
 		688BB760172A67B5007C5A7A /* act-01-level-01-part-01-midground-003-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 688BB75D172A67B5007C5A7A /* act-01-level-01-part-01-midground-003-ipad.png */; };
 		68918B96170E94F30061320C /* CHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68918B94170E94F30061320C /* CHudLayer.m */; };
-		68A1412616FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412216FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz */; };
-		68A1412716FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412316FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz */; };
-		68A1412816FC41DC00470272 /* ruff-sprite-sheet-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412416FC41DC00470272 /* ruff-sprite-sheet-ipad.plist */; };
-		68A1412916FC41DC00470272 /* ruff-sprite-sheet-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412516FC41DC00470272 /* ruff-sprite-sheet-ipadhd.plist */; };
 		68A1412B16FC43F400470272 /* titleFixed-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412A16FC43F400470272 /* titleFixed-ipadhd.png */; };
 		68A1412D16FC446500470272 /* titleFixed-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A1412C16FC446500470272 /* titleFixed-ipad.png */; };
 		68A4C67F16D5FA38001E1934 /* CLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A4C67E16D5FA38001E1934 /* CLevel.m */; };
@@ -150,6 +162,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6802B993172BFE1200E617C5 /* ruff-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		6802B994172BFE1200E617C5 /* ruff-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		6802B995172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
+		6802B996172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
+		6802B99C172BFFD800E617C5 /* flower-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "flower-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		6802B99D172BFFD800E617C5 /* flower-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "flower-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		6802B99E172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "flower-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
+		6802B99F172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "flower-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
+		6802B9A1172BFFD800E617C5 /* owl-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "owl-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		6802B9A2172BFFD800E617C5 /* owl-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "owl-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		6802B9A3172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "owl-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
+		6802B9A4172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "owl-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
+		6802B9A6172BFFD800E617C5 /* snail-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "snail-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
+		6802B9A7172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "snail-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
+		6802B9A8172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "snail-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
+		6802B9A9172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "snail-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
 		6827A81F16B4D13F007EA9D2 /* CWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWorld.h; sourceTree = "<group>"; };
 		6827A82016B4D13F007EA9D2 /* CWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWorld.m; sourceTree = "<group>"; };
 		6827A82A16B4F3C3007EA9D2 /* audio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audio.plist; sourceTree = "<group>"; };
@@ -190,10 +218,6 @@
 		688BB75D172A67B5007C5A7A /* act-01-level-01-part-01-midground-003-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "act-01-level-01-part-01-midground-003-ipad.png"; sourceTree = "<group>"; };
 		68918B94170E94F30061320C /* CHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHudLayer.m; path = GameScenes/CHudLayer.m; sourceTree = "<group>"; };
 		68918B95170E94F30061320C /* CHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHudLayer.h; path = GameScenes/CHudLayer.h; sourceTree = "<group>"; };
-		68A1412216FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipad.pvr.ccz"; sourceTree = "<group>"; };
-		68A1412316FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ruff-sprite-sheet-ipadhd.pvr.ccz"; sourceTree = "<group>"; };
-		68A1412416FC41DC00470272 /* ruff-sprite-sheet-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipad.plist"; sourceTree = "<group>"; };
-		68A1412516FC41DC00470272 /* ruff-sprite-sheet-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ruff-sprite-sheet-ipadhd.plist"; sourceTree = "<group>"; };
 		68A1412A16FC43F400470272 /* titleFixed-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFixed-ipadhd.png"; sourceTree = "<group>"; };
 		68A1412C16FC446500470272 /* titleFixed-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFixed-ipad.png"; sourceTree = "<group>"; };
 		68A4C67D16D5FA38001E1934 /* CLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLevel.h; sourceTree = "<group>"; };
@@ -346,6 +370,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6802B96D172BFBEA00E617C5 /* Sprite Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				6802B99B172BFFD800E617C5 /* Flower */,
+				6802B9A0172BFFD800E617C5 /* Owl */,
+				6802B9A5172BFFD800E617C5 /* Snail */,
+				6802B992172BFE1200E617C5 /* Ruff */,
+			);
+			path = "Sprite Sheets";
+			sourceTree = "<group>";
+		};
+		6802B992172BFE1200E617C5 /* Ruff */ = {
+			isa = PBXGroup;
+			children = (
+				6802B993172BFE1200E617C5 /* ruff-sprite-sheet-ipad.plist */,
+				6802B994172BFE1200E617C5 /* ruff-sprite-sheet-ipad.pvr.ccz */,
+				6802B995172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.plist */,
+				6802B996172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.pvr.ccz */,
+			);
+			path = Ruff;
+			sourceTree = "<group>";
+		};
+		6802B99B172BFFD800E617C5 /* Flower */ = {
+			isa = PBXGroup;
+			children = (
+				6802B99C172BFFD800E617C5 /* flower-sprite-sheet-ipad.plist */,
+				6802B99D172BFFD800E617C5 /* flower-sprite-sheet-ipad.pvr.ccz */,
+				6802B99E172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.plist */,
+				6802B99F172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.pvr.ccz */,
+			);
+			path = Flower;
+			sourceTree = "<group>";
+		};
+		6802B9A0172BFFD800E617C5 /* Owl */ = {
+			isa = PBXGroup;
+			children = (
+				6802B9A1172BFFD800E617C5 /* owl-sprite-sheet-ipad.plist */,
+				6802B9A2172BFFD800E617C5 /* owl-sprite-sheet-ipad.pvr.ccz */,
+				6802B9A3172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.plist */,
+				6802B9A4172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.pvr.ccz */,
+			);
+			path = Owl;
+			sourceTree = "<group>";
+		};
+		6802B9A5172BFFD800E617C5 /* Snail */ = {
+			isa = PBXGroup;
+			children = (
+				6802B9A6172BFFD800E617C5 /* snail-sprite-sheet-ipad.plist */,
+				6802B9A7172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz */,
+				6802B9A8172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist */,
+				6802B9A9172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz */,
+			);
+			path = Snail;
+			sourceTree = "<group>";
+		};
 		684546DB16C794B600AD018E /* ActorClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,25 +565,6 @@
 				688BB75D172A67B5007C5A7A /* act-01-level-01-part-01-midground-003-ipad.png */,
 			);
 			path = midground;
-			sourceTree = "<group>";
-		};
-		68A60AF216F54D7500EB7970 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				68A60AF316F54D8000EB7970 /* Ruff */,
-			);
-			name = Animations;
-			sourceTree = "<group>";
-		};
-		68A60AF316F54D8000EB7970 /* Ruff */ = {
-			isa = PBXGroup;
-			children = (
-				68A1412216FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz */,
-				68A1412316FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz */,
-				68A1412416FC41DC00470272 /* ruff-sprite-sheet-ipad.plist */,
-				68A1412516FC41DC00470272 /* ruff-sprite-sheet-ipadhd.plist */,
-			);
-			name = Ruff;
 			sourceTree = "<group>";
 		};
 		68BD0E37172A39B6008A3B86 /* Hud */ = {
@@ -727,12 +787,12 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6802B96D172BFBEA00E617C5 /* Sprite Sheets */,
 				686D143A1729262000D43DBF /* ipadhd */,
 				686D14561729262000D43DBF /* ipad */,
 				E654E3F916FEAF130057B533 /* Platforms */,
 				68A1412A16FC43F400470272 /* titleFixed-ipadhd.png */,
 				68A1412C16FC446500470272 /* titleFixed-ipad.png */,
-				68A60AF216F54D7500EB7970 /* Animations */,
 				687C2F3E16B7F73300E231F9 /* Configuration Files */,
 				687C2F5416B8BAB900E231F9 /* HD Files */,
 				682E5E2416DB3DE200820D6A /* ruffReady-ipad.png */,
@@ -970,10 +1030,6 @@
 				68E8918E16F1A37300CDEED6 /* greenPlatform-ipadhd.png in Resources */,
 				68E8919116F43DA300CDEED6 /* floor-ipad.png in Resources */,
 				68E8919216F43DA300CDEED6 /* floor-ipadhd.png in Resources */,
-				68A1412616FC41DC00470272 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */,
-				68A1412716FC41DC00470272 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */,
-				68A1412816FC41DC00470272 /* ruff-sprite-sheet-ipad.plist in Resources */,
-				68A1412916FC41DC00470272 /* ruff-sprite-sheet-ipadhd.plist in Resources */,
 				68A1412B16FC43F400470272 /* titleFixed-ipadhd.png in Resources */,
 				68A1412D16FC446500470272 /* titleFixed-ipad.png in Resources */,
 				68BD0E3A172A39B6008A3B86 /* control-jump-attack-ipadhd.png in Resources */,
@@ -1036,6 +1092,22 @@
 				E611C41F172BF241000E3AC0 /* platforms-sprite-sheet-ipad.pvr.ccz in Resources */,
 				E611C420172BF241000E3AC0 /* platforms-sprite-sheet-ipadhd.plist in Resources */,
 				E611C421172BF241000E3AC0 /* platforms-sprite-sheet-ipadhd.pvr.ccz in Resources */,
+				6802B997172BFE1200E617C5 /* ruff-sprite-sheet-ipad.plist in Resources */,
+				6802B998172BFE1200E617C5 /* ruff-sprite-sheet-ipad.pvr.ccz in Resources */,
+				6802B999172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.plist in Resources */,
+				6802B99A172BFE1200E617C5 /* ruff-sprite-sheet-ipadhd.pvr.ccz in Resources */,
+				6802B9AA172BFFD800E617C5 /* flower-sprite-sheet-ipad.plist in Resources */,
+				6802B9AB172BFFD800E617C5 /* flower-sprite-sheet-ipad.pvr.ccz in Resources */,
+				6802B9AC172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.plist in Resources */,
+				6802B9AD172BFFD800E617C5 /* flower-sprite-sheet-ipadhd.pvr.ccz in Resources */,
+				6802B9AE172BFFD800E617C5 /* owl-sprite-sheet-ipad.plist in Resources */,
+				6802B9AF172BFFD800E617C5 /* owl-sprite-sheet-ipad.pvr.ccz in Resources */,
+				6802B9B0172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.plist in Resources */,
+				6802B9B1172BFFD800E617C5 /* owl-sprite-sheet-ipadhd.pvr.ccz in Resources */,
+				6802B9B2172BFFD800E617C5 /* snail-sprite-sheet-ipad.plist in Resources */,
+				6802B9B3172BFFD800E617C5 /* snail-sprite-sheet-ipad.pvr.ccz in Resources */,
+				6802B9B4172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.plist in Resources */,
+				6802B9B5172BFFD800E617C5 /* snail-sprite-sheet-ipadhd.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
